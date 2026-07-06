@@ -16,7 +16,7 @@ export function FilterCheckboxOption({
       <span className="flex min-w-0 items-center gap-2.5">
         <input
           className="h-4 w-4 shrink-0 accent-[var(--voyana-color-accent-teal-strong)]"
-          defaultChecked={checked}
+          checked={checked}
           type="checkbox"
           onChange={onChange}
         />

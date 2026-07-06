@@ -10,12 +10,6 @@ type CalendarMonth = {
   title: string;
 };
 
-type GuestGroup = {
-  label: string;
-  note: string;
-  underlined?: boolean;
-};
-
 export const heroSearchSegments: readonly {
   id: HeroSearchPanel;
   label: string;
@@ -23,18 +17,23 @@ export const heroSearchSegments: readonly {
 }[] = [
   {
     id: "where",
-    label: "Where",
-    value: "Search destinations",
+    label: "Where to?",
+    value: "Any destination",
   },
   {
     id: "when",
     label: "When",
-    value: "Add dates",
+    value: "Choose dates",
   },
   {
-    id: "who",
-    label: "Who",
-    value: "Add guests",
+    id: "budget",
+    label: "Budget",
+    value: "Set budget",
+  },
+  {
+    id: "style",
+    label: "Trip style",
+    value: "Beach, city, family, luxury...",
   },
 ] as const;
 
@@ -179,23 +178,45 @@ export const flexibleDateOptions = [
   "+ 14 days",
 ] as const;
 
-export const guestGroups: readonly GuestGroup[] = [
+export const budgetOptions = [
   {
-    label: "Adults",
-    note: "Ages 13 or above",
+    label: "Under EUR 600",
+    note: "City breaks, last-minute deals, and short seasonal escapes.",
   },
   {
-    label: "Children",
-    note: "Ages 2 - 12",
+    label: "Around EUR 800",
+    note: "Beach holidays, all-inclusive resorts, and flexible summer offers.",
   },
   {
-    label: "Infants",
-    note: "Under 2",
+    label: "EUR 1,200+",
+    note: "Luxury stays, family packages, and longer curated trips.",
+  },
+] as const;
+
+export const tripStyleOptions = [
+  {
+    label: "Beach Holidays",
+    note: "Sunny resorts, sea views, and relaxed all-inclusive stays.",
   },
   {
-    label: "Pets",
-    note: "Bringing a service animal?",
-    underlined: true,
+    label: "City Breaks",
+    note: "Culture, food, shopping, and easy flights.",
+  },
+  {
+    label: "Family Trips",
+    note: "Flexible rooms and child-friendly options.",
+  },
+  {
+    label: "Luxury Escapes",
+    note: "Premium hotels, private villas, and upgraded experiences.",
+  },
+  {
+    label: "Adventure Travel",
+    note: "Tours, nature routes, safaris, hikes, and active itineraries.",
+  },
+  {
+    label: "Last-Minute Deals",
+    note: "Ready-to-book offers for flexible travelers.",
   },
 ] as const;
 

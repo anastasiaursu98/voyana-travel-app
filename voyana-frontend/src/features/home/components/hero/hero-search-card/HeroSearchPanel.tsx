@@ -1,4 +1,3 @@
-import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import ApartmentRoundedIcon from "@mui/icons-material/ApartmentRounded";
 import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
@@ -7,7 +6,6 @@ import ForestRoundedIcon from "@mui/icons-material/ForestRounded";
 import LocationCityRoundedIcon from "@mui/icons-material/LocationCityRounded";
 import NearMeRoundedIcon from "@mui/icons-material/NearMeRounded";
 import PlaceRoundedIcon from "@mui/icons-material/PlaceRounded";
-import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
 import TempleBuddhistRoundedIcon from "@mui/icons-material/TempleBuddhistRounded";
 import type { SvgIconProps } from "@mui/material/SvgIcon";
 import type { ComponentType, CSSProperties } from "react";
@@ -16,9 +14,10 @@ import {
   calendarTabs,
   destinationSuggestions,
   flexibleDateOptions,
-  guestGroups,
   weekdayLabels,
 } from "./heroSearchPanels.content";
+import { HeroBudgetPanel } from "./HeroBudgetPanel";
+import { HeroTripStylePanel } from "./HeroTripStylePanel";
 import type { HeroSearchPanel as HeroSearchPanelName } from "./types";
 
 type HeroSearchPanelProps = {
@@ -38,9 +37,10 @@ const destinationIcons = {
 } satisfies Record<DestinationIcon, ComponentType<SvgIconProps>>;
 
 const panelWidthClasses = {
+  budget: "lg:mx-auto lg:max-w-112",
+  style: "lg:ml-auto lg:max-w-128",
   where: "lg:mr-auto lg:max-w-112",
   when: "lg:mx-auto lg:max-w-212",
-  who: "lg:ml-auto lg:max-w-112",
 } as const;
 
 export function HeroSearchPanel({ activePanel }: HeroSearchPanelProps) {
@@ -50,7 +50,8 @@ export function HeroSearchPanel({ activePanel }: HeroSearchPanelProps) {
     >
       {activePanel === "where" ? <WherePanel /> : null}
       {activePanel === "when" ? <CalendarPanel /> : null}
-      {activePanel === "who" ? <GuestsPanel /> : null}
+      {activePanel === "budget" ? <HeroBudgetPanel /> : null}
+      {activePanel === "style" ? <HeroTripStylePanel /> : null}
     </div>
   );
 }
@@ -192,54 +193,6 @@ function CalendarPanel() {
           >
             {option}
           </button>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function GuestsPanel() {
-  return (
-    <div className="p-6 sm:p-8">
-      <div className="divide-y divide-[rgb(var(--voyana-rgb-border-subtle)/0.86)]">
-        {guestGroups.map((group) => (
-          <div
-            key={group.label}
-            className="flex items-center justify-between gap-6 py-5 first:pt-0 last:pb-0"
-          >
-            <div className="min-w-0">
-              <h3 className="text-base font-black text-(--voyana-color-text-primary)">
-                {group.label}
-              </h3>
-              <p
-                className={`mt-1 text-sm font-medium text-(--voyana-color-text-muted) ${
-                  group.underlined ? "underline underline-offset-2" : ""
-                }`}
-              >
-                {group.note}
-              </p>
-            </div>
-
-            <div className="flex shrink-0 items-center gap-3">
-              <button
-                type="button"
-                aria-label={`Decrease ${group.label}`}
-                className="grid size-8 place-items-center rounded-full bg-[rgb(var(--voyana-rgb-border-subtle)/0.45)] text-[rgb(var(--voyana-rgb-text-primary)/0.44)]"
-              >
-                <RemoveRoundedIcon fontSize="small" />
-              </button>
-              <span className="w-4 text-center text-base font-semibold text-(--voyana-color-text-primary)">
-                0
-              </span>
-              <button
-                type="button"
-                aria-label={`Increase ${group.label}`}
-                className="grid size-8 place-items-center rounded-full bg-[rgb(var(--voyana-rgb-border-subtle)/0.45)] text-(--voyana-color-text-primary) transition hover:bg-(--voyana-color-button-primary)"
-              >
-                <AddRoundedIcon fontSize="small" />
-              </button>
-            </div>
-          </div>
         ))}
       </div>
     </div>

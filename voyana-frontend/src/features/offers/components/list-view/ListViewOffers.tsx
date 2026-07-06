@@ -7,6 +7,7 @@ import {
   OFFER_PRICE_FILTER_MIN,
   useOffersFilters,
 } from "../../hooks/useOffersFilters";
+import { useMobileOfferFilters } from "../../hooks/useMobileOfferFilters";
 import {
   fetchOffers,
   selectOffers,
@@ -14,7 +15,9 @@ import {
   selectOffersStatus,
 } from "../../store/offersSlice";
 import { OfferCard } from "./OfferCard";
+import { OffersFilterControls } from "./OffersFilterControls";
 import { OffersFilterPanel } from "./OffersFilterPanel";
+import { OffersMobileFilterDrawer } from "./OffersMobileFilterDrawer";
 
 export const ListViewOffers = () => {
   const dispatch = useAppDispatch();
@@ -22,8 +25,18 @@ export const ListViewOffers = () => {
   const offersStatus = useAppSelector(selectOffersStatus);
   const offersError = useAppSelector(selectOffersError);
 
-  const { filters, handleCategoryChange, handlePriceRangeChange } =
-    useOffersFilters();
+  const {
+    filters,
+    handleCategoryChange,
+    handleFiltersReset,
+    handlePriceRangeChange,
+  } = useOffersFilters();
+  const {
+    handleMobileFiltersClose,
+    handleMobileFiltersOpen,
+    isMobileFiltersOpen,
+    mobileFiltersRef,
+  } = useMobileOfferFilters();
 
   useEffect(() => {
     void dispatch(fetchOffers(filters));
@@ -49,17 +62,35 @@ export const ListViewOffers = () => {
         </div>
 
         <div className="grid gap-6 lg:grid-cols-[18rem_minmax(0,1fr)] lg:items-start">
-          <OffersFilterPanel
-            onCategoryChange={handleCategoryChange}
-            onPriceRangeChange={handlePriceRangeChange}
-            priceRange={[
-              filters.minPrice ?? OFFER_PRICE_FILTER_MIN,
-              filters.maxPrice ?? OFFER_PRICE_FILTER_MAX,
-            ]}
-            selectedCategories={filters.category}
-          />
+          <div className="hidden lg:block">
+            <OffersFilterPanel
+              onCategoryChange={handleCategoryChange}
+              onPriceRangeChange={handlePriceRangeChange}
+              onReset={handleFiltersReset}
+              priceRange={[
+                filters.minPrice ?? OFFER_PRICE_FILTER_MIN,
+                filters.maxPrice ?? OFFER_PRICE_FILTER_MAX,
+              ]}
+              selectedCategories={filters.category}
+            />
+          </div>
 
           <div className="min-w-0">
+            <div className="mb-4 flex items-center justify-between gap-3 lg:hidden">
+              <p className="text-sm font-bold text-(--voyana-color-text-muted)">
+                Refine offers by price and category.
+              </p>
+              <button
+                type="button"
+                onClick={handleMobileFiltersOpen}
+                className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-(--voyana-color-background-dark) px-4 text-sm font-black text-(--voyana-color-white) shadow-[0_14px_28px_rgb(var(--voyana-rgb-background-dark)/0.16)] transition hover:-translate-y-0.5 hover:bg-(--voyana-color-text-strong) focus:outline-none focus:ring-4 focus:ring-[rgb(var(--voyana-rgb-accent-teal)/0.22)]"
+                aria-expanded={isMobileFiltersOpen}
+                aria-controls="mobile-offer-filters"
+              >
+                Filters
+              </button>
+            </div>
+
             {offersStatus === "failed" ? (
               <p className="rounded-lg border border-[rgb(var(--voyana-rgb-border-subtle)/0.92)] bg-(--voyana-color-background-section) p-5 text-sm font-bold text-(--voyana-color-text-muted)">
                 {offersError ?? "Offers could not be loaded."}
@@ -80,6 +111,23 @@ export const ListViewOffers = () => {
           </div>
         </div>
       </div>
+      <OffersMobileFilterDrawer
+        isOpen={isMobileFiltersOpen}
+        onClose={handleMobileFiltersClose}
+        panelRef={mobileFiltersRef}
+      >
+        <div id="mobile-offer-filters">
+          <OffersFilterControls
+            onCategoryChange={handleCategoryChange}
+            onPriceRangeChange={handlePriceRangeChange}
+            priceRange={[
+              filters.minPrice ?? OFFER_PRICE_FILTER_MIN,
+              filters.maxPrice ?? OFFER_PRICE_FILTER_MAX,
+            ]}
+            selectedCategories={filters.category}
+          />
+        </div>
+      </OffersMobileFilterDrawer>
     </PublicPageShell>
   );
 };

@@ -3,7 +3,8 @@ import OfferCategory from "../models/OfferCategory.model";
 export const categoriesRepository = {
   findActiveCategories() {
     return OfferCategory.find({ isActive: true }).sort({
-      createdAt: -1,
+      displayOrder: 1,
+      label: 1,
     });
   },
   findActiveCategoryIdByValue(value: string) {

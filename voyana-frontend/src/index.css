@@ -136,17 +136,3 @@ select {
   min-height: 100%;
   background: #fff !important;
 }
-
-html:has(.voyana-all-inclusive-beach-resort-page),
-body:has(.voyana-all-inclusive-beach-resort-page),
-#root:has(.voyana-all-inclusive-beach-resort-page),
-body:has(.voyana-all-inclusive-beach-resort-page) main {
-  background: #fff !important;
-}
-
-body:has(.voyana-all-inclusive-beach-resort-page)
-  .public-header[data-header-style="light"] {
-  border-bottom-color: #fff !important;
-  background: #fff !important;
-  box-shadow: none !important;
-}

@@ -1,1 +1,1 @@
-export type HeroSearchPanel = "where" | "when" | "who";
+export type HeroSearchPanel = "where" | "when" | "budget" | "style";

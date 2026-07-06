@@ -26,6 +26,10 @@ type OfferLookupSeed = {
   value: string;
 };
 
+type OfferCategoryLookupSeed = OfferLookupSeed & {
+  description: string;
+};
+
 type OfferTypeLookupSeed = OfferLookupSeed & {
   categoryValue: string;
 };
@@ -42,6 +46,10 @@ const switzerlandSkiStartDate = new Date("2026-12-12T00:00:00.000Z");
 const switzerlandSkiEndDate = new Date("2026-12-19T00:00:00.000Z");
 const tanzaniaSafariStartDate = new Date("2026-08-18T00:00:00.000Z");
 const tanzaniaSafariEndDate = new Date("2026-08-26T00:00:00.000Z");
+const spainTourStartDate = new Date("2026-10-06T00:00:00.000Z");
+const spainTourEndDate = new Date("2026-10-13T00:00:00.000Z");
+const egyptLastMinuteStartDate = new Date("2026-07-18T00:00:00.000Z");
+const egyptLastMinuteEndDate = new Date("2026-07-22T00:00:00.000Z");
 
 const hurghadaOfferCode = "hurghada-red-sea-resort-all-inclusive";
 const maldivesOfferCode = "maldives-lagoon-all-inclusive";
@@ -49,9 +57,13 @@ const dubaiOfferCode = "dubai-palm-all-inclusive-resort";
 const costaBravaOfferCode = "barcelona-costa-brava-all-inclusive";
 const switzerlandSkiOfferCode = "switzerland-alpine-ski-retreat";
 const tanzaniaSafariOfferCode = "tanzania-guided-safari-adventure";
+const spainTourOfferCode = "spain-guided-culture-tour";
+const egyptLastMinuteOfferCode = "egypt-last-minute-red-sea-break";
 
-const offerCategorySeeds: OfferLookupSeed[] = [
+const offerCategorySeeds: OfferCategoryLookupSeed[] = [
   {
+    description:
+      "Sunny resort stays, sea views, island escapes, and relaxed all-inclusive beach packages.",
     displayOrder: 1,
     id: "beach-holidays",
     isActive: true,
@@ -59,6 +71,8 @@ const offerCategorySeeds: OfferLookupSeed[] = [
     value: "BEACH_HOLIDAYS",
   },
   {
+    description:
+      "Short urban breaks with culture, food, shopping, events, and convenient flight options.",
     displayOrder: 2,
     id: "city-breaks",
     isActive: true,
@@ -66,6 +80,8 @@ const offerCategorySeeds: OfferLookupSeed[] = [
     value: "CITY_BREAKS",
   },
   {
+    description:
+      "Heritage routes, guided cultural visits, museums, local traditions, and historic city stays.",
     displayOrder: 3,
     id: "culture-and-history",
     isActive: true,
@@ -73,6 +89,8 @@ const offerCategorySeeds: OfferLookupSeed[] = [
     value: "CULTURE_AND_HISTORY",
   },
   {
+    description:
+      "Active itineraries with nature routes, safaris, hikes, outdoor tours, and guided exploration.",
     displayOrder: 4,
     id: "adventure-and-outdoor",
     isActive: true,
@@ -80,6 +98,8 @@ const offerCategorySeeds: OfferLookupSeed[] = [
     value: "ADVENTURE_AND_OUTDOOR",
   },
   {
+    description:
+      "Family-friendly holidays with flexible rooms, kids activities, easy logistics, and comfortable stays.",
     displayOrder: 5,
     id: "family",
     isActive: true,
@@ -87,6 +107,8 @@ const offerCategorySeeds: OfferLookupSeed[] = [
     value: "FAMILY",
   },
   {
+    description:
+      "Spa hotels, wellness retreats, restorative stays, thermal facilities, and slower-paced escapes.",
     displayOrder: 6,
     id: "wellness-and-spa",
     isActive: true,
@@ -94,6 +116,8 @@ const offerCategorySeeds: OfferLookupSeed[] = [
     value: "WELLNESS_AND_SPA",
   },
   {
+    description:
+      "Premium hotels, private villas, upgraded experiences, refined dining, and high-comfort travel.",
     displayOrder: 7,
     id: "luxury",
     isActive: true,
@@ -101,6 +125,8 @@ const offerCategorySeeds: OfferLookupSeed[] = [
     value: "LUXURY",
   },
   {
+    description:
+      "Sea and river cruise holidays with planned routes, onboard services, and port-based experiences.",
     displayOrder: 8,
     id: "cruises",
     isActive: true,
@@ -108,11 +134,31 @@ const offerCategorySeeds: OfferLookupSeed[] = [
     value: "CRUISES",
   },
   {
+    description:
+      "Winter stays with ski access, alpine resorts, snow activities, chalets, and seasonal mountain trips.",
     displayOrder: 9,
     id: "ski-and-winter",
     isActive: true,
     label: "Ski and winter",
     value: "SKI_AND_WINTER",
+  },
+  {
+    description:
+      "Multi-stop guided routes, day-by-day itineraries, local guides, cultural visits, and planned transportation.",
+    displayOrder: 10,
+    id: "tours",
+    isActive: true,
+    label: "Tours",
+    value: "TOURS",
+  },
+  {
+    description:
+      "Ready-to-book offers for flexible travelers with near departure dates, visible savings, and quick decisions.",
+    displayOrder: 11,
+    id: "last-minute",
+    isActive: true,
+    label: "Last minute",
+    value: "LAST_MINUTE",
   },
 ];
 
@@ -237,6 +283,22 @@ const offerTypeSeeds: OfferTypeLookupSeed[] = [
     label: "Ski package",
     value: "SKI_PACKAGE",
   },
+  {
+    categoryValue: "TOURS",
+    displayOrder: 16,
+    id: "guided-tour-package",
+    isActive: true,
+    label: "Guided tour package",
+    value: "GUIDED_TOUR_PACKAGE",
+  },
+  {
+    categoryValue: "LAST_MINUTE",
+    displayOrder: 17,
+    id: "last-minute-deal",
+    isActive: true,
+    label: "Last minute deal",
+    value: "LAST_MINUTE_DEAL",
+  },
 ];
 
 const legacyOfferTypeByClassification = new Map<string, string>([
@@ -253,6 +315,8 @@ const legacyOfferTypeByClassification = new Map<string, string>([
   ["SKI_AND_WINTER:SKI_RESORT", "SKI_PACKAGE"],
   ["ADVENTURE_AND_OUTDOOR:ADVENTURE_TRIP", "TREKKING_TRIP"],
   ["ADVENTURE_AND_OUTDOOR:GUIDED_TOUR", "SAFARI_PACKAGE"],
+  ["TOURS:GUIDED_TOUR", "GUIDED_TOUR_PACKAGE"],
+  ["LAST_MINUTE:LAST_MINUTE_DEAL", "LAST_MINUTE_DEAL"],
 ]);
 
 const getSeedOfferTypeValue = ({
@@ -1062,6 +1126,240 @@ const curatedSeedOffers: SeedOffer[] = [
       },
       pageMetadata: {
         pageTitle: "Tanzania Guided Safari Adventure | Voyana",
+      },
+    },
+  },
+  {
+    code: spainTourOfferCode,
+    destinationSlug: "spain",
+    payload: {
+      code: spainTourOfferCode,
+      slug: spainTourOfferCode,
+      name: "Spain Guided Culture Tour",
+      description:
+        "Seven-night guided Spain tour with Barcelona, coastal towns, cultural visits, selected meals, planned transfers, and a day-by-day sightseeing route.",
+      classification: {
+        offerType: "GUIDED_TOUR",
+        category: "TOURS",
+      },
+      media: {
+        coverImage: {
+          url: "https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=1600&q=80",
+          alt: "Barcelona architecture and city streets",
+          caption: "Spain guided culture route",
+        },
+        galleryImages: [
+          {
+            id: "spain-tour-barcelona",
+            url: "https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&w=1200&q=80",
+            alt: "Barcelona city architecture",
+            caption: "Barcelona city visit",
+          },
+          {
+            id: "spain-tour-coast",
+            url: "https://images.unsplash.com/photo-1511527661048-7fe73d85e9a4?auto=format&fit=crop&w=1200&q=80",
+            alt: "Mediterranean coast in Spain",
+            caption: "Coastal town day",
+          },
+          {
+            id: "spain-tour-food",
+            url: "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?auto=format&fit=crop&w=1200&q=80",
+            alt: "Spanish market food and local tasting",
+            caption: "Food and culture stop",
+          },
+        ],
+      },
+      pricing: {
+        amount: 980,
+        currency: "EUR",
+        unit: "person",
+        originalAmount: 1160,
+        discountLabel: "Guided tour",
+      },
+      travelPeriod: {
+        duration: "7 nights",
+        startDate: spainTourStartDate,
+        endDate: spainTourEndDate,
+      },
+      rating: 4.7,
+      logistics: {
+        amenities: [
+          {
+            id: "city-hotels",
+            label: "City hotels",
+            value: "Included",
+            icon: "hotel",
+          },
+          {
+            id: "local-guide",
+            label: "Local guide",
+            value: "Included",
+            icon: "activity",
+          },
+          {
+            id: "planned-transport",
+            label: "Planned transport",
+            value: "Included",
+            icon: "transport",
+          },
+          {
+            id: "selected-meals",
+            label: "Selected meals",
+            value: "Included",
+            icon: "meal",
+          },
+          {
+            id: "cultural-visits",
+            label: "Cultural visits",
+            value: "6",
+            icon: "location",
+          },
+        ],
+        stayDetails: [
+          {
+            id: "group-size",
+            label: "Group size",
+            value: "6 to 14 travelers",
+            icon: "family",
+          },
+          {
+            id: "route",
+            label: "Route",
+            value: "Barcelona and coast",
+            icon: "location",
+          },
+          {
+            id: "guide",
+            label: "Tour guide",
+            value: "Included",
+            icon: "activity",
+          },
+        ],
+      },
+      publishing: {
+        isActive: true,
+        isFeatured: true,
+        priority: 7,
+      },
+      pageMetadata: {
+        pageTitle: "Spain Guided Culture Tour | Voyana",
+      },
+    },
+  },
+  {
+    code: egyptLastMinuteOfferCode,
+    destinationSlug: "egypt",
+    payload: {
+      code: egyptLastMinuteOfferCode,
+      slug: egyptLastMinuteOfferCode,
+      name: "Egypt Last Minute Red Sea Break",
+      description:
+        "Four-night Red Sea last-minute escape with beach hotel stay, breakfast, quick booking availability, optional airport transfer, and flexible room choices.",
+      classification: {
+        offerType: "LAST_MINUTE_DEAL",
+        category: "LAST_MINUTE",
+      },
+      media: {
+        coverImage: {
+          url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80",
+          alt: "Sunny beach and sea for a last-minute escape",
+          caption: "Red Sea last-minute beach break",
+        },
+        galleryImages: [
+          {
+            id: "egypt-last-minute-beach",
+            url: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1200&q=80",
+            alt: "Clear water and beach",
+            caption: "Beach days",
+          },
+          {
+            id: "egypt-last-minute-hotel",
+            url: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80",
+            alt: "Comfortable hotel pool",
+            caption: "Quick stay hotel",
+          },
+          {
+            id: "egypt-last-minute-snorkeling",
+            url: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80",
+            alt: "Snorkeling in clear sea water",
+            caption: "Optional activities",
+          },
+        ],
+      },
+      pricing: {
+        amount: 390,
+        currency: "EUR",
+        unit: "person",
+        originalAmount: 540,
+        discountLabel: "Last minute",
+      },
+      travelPeriod: {
+        duration: "4 nights",
+        startDate: egyptLastMinuteStartDate,
+        endDate: egyptLastMinuteEndDate,
+      },
+      rating: 4.5,
+      logistics: {
+        amenities: [
+          {
+            id: "hotel-stay",
+            label: "Hotel stay",
+            value: "Included",
+            icon: "hotel",
+          },
+          {
+            id: "breakfast",
+            label: "Breakfast",
+            value: "Included",
+            icon: "breakfast",
+          },
+          {
+            id: "beach-access",
+            label: "Beach access",
+            value: "Included",
+            icon: "beach",
+          },
+          {
+            id: "airport-transfer",
+            label: "Airport transfer",
+            value: "Optional",
+            icon: "airportShuttle",
+          },
+          {
+            id: "instant-confirmation",
+            label: "Quick confirmation",
+            value: "Available",
+            icon: "calendar",
+          },
+        ],
+        stayDetails: [
+          {
+            id: "booking-window",
+            label: "Booking window",
+            value: "Near departure",
+            icon: "calendar",
+          },
+          {
+            id: "duration",
+            label: "Duration",
+            value: "4 nights",
+            icon: "calendar",
+          },
+          {
+            id: "room-options",
+            label: "Room options",
+            value: "Flexible",
+            icon: "hotel",
+          },
+        ],
+      },
+      publishing: {
+        isActive: true,
+        isFeatured: true,
+        priority: 8,
+      },
+      pageMetadata: {
+        pageTitle: "Egypt Last Minute Red Sea Break | Voyana",
       },
     },
   },

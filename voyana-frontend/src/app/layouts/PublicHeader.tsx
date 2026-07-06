@@ -1,11 +1,18 @@
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import { useEffect, useRef, useState } from "react";
-import { Link as RouterLink, useLocation } from "react-router-dom";
+import {
+  Link as RouterLink,
+  NavLink,
+  useLocation,
+} from "react-router-dom";
 import { PublicContentContainer } from "../../shared/components/PublicContentContainer";
 import { VoyanaLogoMark } from "../../shared/components/VoyanaLogoMark";
 import { routes } from "../router/routes";
 import { PUBLIC_NAV_ITEMS } from "./constants/publicLayout.constants";
+import { usePublicHeaderMobileMenu } from "./hooks/usePublicHeaderMobileMenu";
+import { PublicHeaderMobileMenu } from "./PublicHeaderMobileMenu";
+import { PublicHeaderOffersDropdown } from "./PublicHeaderOffersDropdown";
 
 export function PublicHeader() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -15,6 +22,32 @@ export function PublicHeader() {
   const isHomePage = pathname === routes.home;
   const isLightHeader = !isHomePage;
   const hasSolidHeader = !isHomePage || hasScrolled;
+  const {
+    handleMobileMenuClose,
+    handleMobileMenuToggle,
+    handleOfferCategoriesToggle,
+    isOfferCategoriesOpen,
+    isMobileMenuOpen,
+    mobileMenuRef,
+  } = usePublicHeaderMobileMenu();
+  const getNavLinkClassName = (isActive: boolean) => {
+    const baseClassName =
+      "public-header__nav-link relative px-1 py-2 text-sm font-bold transition-[color,transform] duration-200 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:origin-center after:rounded-full after:transition-transform after:duration-200 focus:outline-none focus-visible:after:scale-x-100";
+
+    if (isLightHeader) {
+      return `${baseClassName} ${
+        isActive
+          ? "text-(--voyana-color-accent-teal-strong) after:scale-x-100 after:bg-(--voyana-color-accent-teal-strong)"
+          : "text-slate-700 after:scale-x-0 after:bg-(--voyana-color-text-strong) hover:-translate-y-0.5 hover:text-(--voyana-color-text-strong) hover:after:scale-x-100"
+      }`;
+    }
+
+    return `${baseClassName} ${
+      isActive
+        ? "text-(--voyana-color-white) after:scale-x-100 after:bg-(--voyana-color-white)"
+        : "text-[rgb(var(--voyana-rgb-white)/0.82)] after:scale-x-0 after:bg-(--voyana-color-white) hover:-translate-y-0.5 hover:text-(--voyana-color-white) hover:after:scale-x-100"
+    }`;
+  };
 
   useEffect(() => {
     const updateScrollState = () => {
@@ -38,7 +71,7 @@ export function PublicHeader() {
       data-header-style={isLightHeader ? "light" : "hero"}
       className={`public-header fixed inset-x-0 top-0 z-[100] border-b transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300 ${
         isLightHeader
-          ? "border-white bg-white shadow-none"
+          ? "border-[rgb(var(--voyana-rgb-border-subtle)/0.86)] bg-white shadow-[0_10px_30px_rgb(var(--voyana-rgb-text-strong)/0.045)]"
           : hasSolidHeader
             ? "border-[rgb(var(--voyana-rgb-white)/0.1)] bg-[rgb(var(--voyana-rgb-background-dark)/0.72)] shadow-[0_18px_44px_rgb(var(--voyana-rgb-black)/0.18)] backdrop-blur-xl"
             : "border-transparent bg-transparent shadow-none backdrop-blur-none"
@@ -64,19 +97,36 @@ export function PublicHeader() {
           className="hidden items-center gap-8 md:flex"
           aria-label="Primary navigation"
         >
-          {PUBLIC_NAV_ITEMS.map((item) => (
-            <RouterLink
-              key={item.label}
-              to={item.to}
-              className={`public-header__nav-link text-sm font-bold transition focus:outline-none focus:ring-4 focus:ring-[rgb(var(--voyana-rgb-accent-teal)/0.2)] ${
-                isLightHeader
-                  ? "text-slate-900 hover:text-(--voyana-color-text-strong)"
-                  : "text-(--voyana-color-white) hover:text-(--voyana-color-white)"
-              }`}
-            >
-              {item.label}
-            </RouterLink>
-          ))}
+          {PUBLIC_NAV_ITEMS.map((item) => {
+            const shouldUseExactMatch = item.to === routes.home;
+
+            if (item.label === "Offers") {
+              return (
+                <PublicHeaderOffersDropdown
+                  key={item.label}
+                  getNavLinkClassName={getNavLinkClassName}
+                  isLightHeader={isLightHeader}
+                />
+              );
+            }
+
+            return (
+              <NavLink
+                key={item.label}
+                to={item.to}
+                end={shouldUseExactMatch}
+                className={({ isActive }) =>
+                  getNavLinkClassName(
+                    isActive &&
+                      (item.label === "Home" ||
+                        item.label === "Destinations"),
+                  )
+                }
+              >
+                {item.label}
+              </NavLink>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-3">
@@ -125,6 +175,15 @@ export function PublicHeader() {
           >
             Start
           </RouterLink>
+          <PublicHeaderMobileMenu
+            isLightHeader={isLightHeader}
+            isOfferCategoriesOpen={isOfferCategoriesOpen}
+            isOpen={isMobileMenuOpen}
+            menuRef={mobileMenuRef}
+            onClose={handleMobileMenuClose}
+            onOfferCategoriesToggle={handleOfferCategoriesToggle}
+            onToggle={handleMobileMenuToggle}
+          />
         </div>
       </PublicContentContainer>
     </header>

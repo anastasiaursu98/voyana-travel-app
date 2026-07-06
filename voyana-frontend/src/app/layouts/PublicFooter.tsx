@@ -1,4 +1,5 @@
 import { Link as RouterLink } from "react-router-dom";
+import footerBackgroundImage from "../../assets/images/home/bora-bora-lagoon.webp";
 import { PublicContentContainer } from "../../shared/components/PublicContentContainer";
 import { VoyanaLogoMark } from "../../shared/components/VoyanaLogoMark";
 import { routes } from "../router/routes";
@@ -10,9 +11,19 @@ export function PublicFooter() {
   return (
     <footer
       id="footer"
-      className="bg-(--voyana-color-background-dark) py-12 text-(--voyana-color-white)"
+      className="relative isolate overflow-hidden bg-(--voyana-color-background-dark) py-12 text-(--voyana-color-white)"
     >
-      <PublicContentContainer className="grid gap-10 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_auto]">
+      <img
+        src={footerBackgroundImage}
+        alt=""
+        aria-hidden="true"
+        loading="lazy"
+        decoding="async"
+        className="absolute inset-0 -z-20 h-full w-full object-cover object-bottom"
+      />
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgb(var(--voyana-rgb-background-dark)/0.88)_0%,rgb(var(--voyana-rgb-background-dark)/0.94)_100%)]" />
+
+      <PublicContentContainer className="relative z-10 grid gap-10 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_auto]">
         <div className="max-w-md">
           <RouterLink
             to={routes.home}
@@ -54,7 +65,7 @@ export function PublicFooter() {
         </div>
       </PublicContentContainer>
 
-      <PublicContentContainer className="mt-10 flex flex-col gap-3 border-t border-[rgb(var(--voyana-rgb-text-inverse-muted)/0.16)] pt-6 text-sm font-bold text-[rgb(var(--voyana-rgb-text-inverse-muted)/0.62)] sm:flex-row sm:items-center sm:justify-between">
+      <PublicContentContainer className="relative z-10 mt-10 flex flex-col gap-3 border-t border-[rgb(var(--voyana-rgb-text-inverse-muted)/0.16)] pt-6 text-sm font-bold text-[rgb(var(--voyana-rgb-text-inverse-muted)/0.62)] sm:flex-row sm:items-center sm:justify-between">
         <p>© {currentYear} Voyana. All rights reserved.</p>
         <p>Travel planning made simpler.</p>
       </PublicContentContainer>

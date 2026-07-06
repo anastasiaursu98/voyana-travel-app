@@ -25,13 +25,21 @@ export function PopularDestinationsSection() {
     }
   }, [dispatch, status]);
   return (
-    <OnboardingSectionShell id="destinations">
-      <SectionHeader
-        title="Travel Destinations Available Worldwide"
-        description="We have compiled a list of top destinations across the globe, scoured the world for the most alluring and fascinating places to visit. From the beautiful beaches of the Caribbean to the majestic mountains of Europe and the vibrant cities of Asia, our destination list has something for everyone."
-        titleSize="display"
-        titleTransform="none"
-      />
+    <OnboardingSectionShell
+      id="destinations"
+      tone="white"
+      className="bg-[linear-gradient(180deg,rgb(var(--voyana-rgb-white))_0%,rgb(var(--voyana-rgb-background-section))_100%)]"
+    >
+      <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+        <SectionHeader
+          eyebrow="Popular destinations"
+          title="Popular destinations right now"
+          description="Explore places travelers are choosing for beach holidays, city breaks, and seasonal escapes."
+          className="lg:max-w-none lg:[&_h2]:whitespace-nowrap"
+          titleSize="large"
+          titleTransform="none"
+        />
+      </div>
 
       <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {status === "failed" ? (
@@ -61,10 +69,10 @@ export function PopularDestinationsSection() {
         <ViewMoreCard
           to={routes.destinations}
           aria-label="View all destinations"
-          actionLabel="Explore list"
-          eyebrow="More destinations"
+          actionLabel="Browse destinations"
+          eyebrow="More places"
           icon={<ExploreRoundedIcon fontSize="small" />}
-          title="View all travel destinations"
+          title="Browse destinations"
         />
       </div>
     </OnboardingSectionShell>

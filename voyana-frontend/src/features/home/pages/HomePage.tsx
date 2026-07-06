@@ -1,25 +1,22 @@
-import { CuratedCollectionsSection } from "../components/curated-collections/CuratedCollectionsSection";
+import { FinalCtaSection } from "../components/final-cta/FinalCtaSection";
 import { HeroSection } from "../components/hero/HeroSection";
+import { HowItWorksSection } from "../components/how-it-works/HowItWorksSection";
 import { FlexibleInspirationSection } from "../components/inspiration/FlexibleInspirationSection";
-import { OfferCategoriesSection } from "../components/offer-categories/OfferCategoriesSection";
 import { PopularDestinationsSection } from "../components/popular-destinations/PopularDestinationsSection";
-import { SeasonalCampaignsSection } from "../components/seasonal-campaigns/SeasonalCampaignsSection";
 import { SpecialOffersSection } from "../components/special-offers/SpecialOffersSection";
-import { TravelGuidesSection } from "../components/travel-guides/TravelGuidesSection";
-import { ReviewsTrustSection } from "../components/trust/ReviewsTrustSection";
+import { TripStyleSection } from "../components/trip-style/TripStyleSection";
 
 export function HomePage() {
   return (
     <>
       <HeroSection />
-      <SpecialOffersSection />
+      <TripStyleSection />
       <FlexibleInspirationSection />
+      <SpecialOffersSection />
+      <HowItWorksSection />
       <PopularDestinationsSection />
-      <OfferCategoriesSection />
-      <SeasonalCampaignsSection />
-      <CuratedCollectionsSection />
-      <ReviewsTrustSection />
-      <TravelGuidesSection />
+
+      <FinalCtaSection />
     </>
   );
 }

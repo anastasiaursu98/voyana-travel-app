@@ -73,5 +73,18 @@ export const useOffersFilters = () => {
     setSearchParams(nextParams);
   };
 
-  return { filters, handleCategoryChange, handlePriceRangeChange };
+  const handleFiltersReset = () => {
+    const nextParams = new URLSearchParams(searchParams);
+    nextParams.delete("category");
+    nextParams.delete("minPrice");
+    nextParams.delete("maxPrice");
+    setSearchParams(nextParams);
+  };
+
+  return {
+    filters,
+    handleCategoryChange,
+    handleFiltersReset,
+    handlePriceRangeChange,
+  };
 };

@@ -2,7 +2,6 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { RootState } from "../../../app/store/store";
 import { offersApi } from "../api/offersApi";
 import type { Offer, OfferFilters } from "../types/offer.types";
-import type { OfferCategory } from "../types/offerCategory.types";
 
 type OfferStatus = "idle" | "loading" | "succeeded" | "failed";
 type OffersState = {
@@ -18,10 +17,6 @@ type OffersState = {
   } | null;
 
   offerByIdError: string | null;
-
-  categories: Array<OfferCategory>;
-  categoriesStatus: OfferStatus;
-  categoriesError: string | null;
 };
 
 const initialState: OffersState = {
@@ -33,10 +28,6 @@ const initialState: OffersState = {
   offerByIdStatus: "idle",
   offerByIdRequest: null,
   offerByIdError: null,
-
-  categories: [],
-  categoriesStatus: "idle",
-  categoriesError: null,
 };
 
 export const fetchOffers = createAsyncThunk(
@@ -48,11 +39,6 @@ export const fetchOfferById = createAsyncThunk(
   "offers/fetchOfferById",
   async ({ offerId, offerCode }: { offerId: string; offerCode: string }) =>
     offersApi.getOfferById(offerId, offerCode),
-);
-
-export const fetchOfferCategories = createAsyncThunk(
-  "offers/fetchOfferCategories",
-  async () => offersApi.getOfferCategories(),
 );
 
 const offersSlice = createSlice({
@@ -85,18 +71,6 @@ const offersSlice = createSlice({
       .addCase(fetchOfferById.rejected, (state, action) => {
         state.offerByIdStatus = "failed";
         state.offerByIdError = action.error.message || "Something went wrong";
-      })
-      .addCase(fetchOfferCategories.pending, (state) => {
-        state.categoriesStatus = "loading";
-        state.categoriesError = null;
-      })
-      .addCase(fetchOfferCategories.fulfilled, (state, action) => {
-        state.categoriesStatus = "succeeded";
-        state.categories = action.payload;
-      })
-      .addCase(fetchOfferCategories.rejected, (state, action) => {
-        state.categoriesStatus = "failed";
-        state.categoriesError = action.error.message || "Something went wrong";
       });
   },
 });
@@ -117,12 +91,5 @@ export const selectOfferByIdError = (state: RootState) =>
   (state.offers as OffersState).offerByIdError;
 export const selectOfferByIdRequest = (state: RootState) =>
   (state.offers as OffersState).offerByIdRequest;
-
-export const selectOfferCategories = (state: RootState) =>
-  (state.offers as OffersState).categories;
-export const selectOfferCategoriesStatus = (state: RootState) =>
-  (state.offers as OffersState).categoriesStatus;
-export const selectOfferCategoriesError = (state: RootState) =>
-  (state.offers as OffersState).categoriesError;
 
 export default offersSlice.reducer;

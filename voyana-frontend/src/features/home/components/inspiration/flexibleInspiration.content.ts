@@ -1,17 +1,20 @@
 export const flexibleBudgetIdeas = [
   {
-    budget: "EUR 600",
-    title: "Last minute deals",
-    description: "Compact seasonal offers with flexible dates and visible savings.",
+    budget: "Under EUR 600",
+    title: "Short flexible escapes",
+    description:
+      "City breaks, last-minute deals, and short seasonal escapes.",
   },
   {
-    budget: "EUR 800",
-    title: "All inclusive resort",
-    description: "Beach holidays with meals, selected drinks, and transfer options.",
+    budget: "Around EUR 800",
+    title: "Beach and resort options",
+    description:
+      "Beach holidays, all-inclusive resorts, and flexible summer offers.",
   },
   {
-    budget: "EUR 1,200",
-    title: "Luxury or family package",
-    description: "Higher-comfort stays, family resorts, or upgraded travel packages.",
+    budget: "EUR 1,200+",
+    title: "Premium curated trips",
+    description:
+      "Luxury stays, family packages, and longer curated trips.",
   },
 ] as const;

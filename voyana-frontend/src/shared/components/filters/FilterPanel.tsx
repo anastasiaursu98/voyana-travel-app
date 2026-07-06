@@ -6,6 +6,7 @@ type FilterPanelProps = {
   "aria-label": string;
   children: ReactNode;
   description?: string;
+  onReset?: () => void;
   title?: string;
 };
 
@@ -13,6 +14,7 @@ export function FilterPanel({
   "aria-label": ariaLabel,
   children,
   description = "Narrow your preferences",
+  onReset,
   title = "Filters",
 }: FilterPanelProps) {
   return (
@@ -34,14 +36,17 @@ export function FilterPanel({
               ) : null}
             </div>
           </div>
-          <button
-            aria-label="Reset filters"
-            className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-[rgb(var(--voyana-rgb-border-subtle)/0.9)] text-(--voyana-color-text-muted) transition-colors hover:border-[rgb(var(--voyana-rgb-text-primary)/0.22)] hover:text-(--voyana-color-text-primary)"
-            title="Reset filters"
-            type="button"
-          >
-            <RestartAltRoundedIcon className="text-[1.15rem]" />
-          </button>
+          {onReset ? (
+            <button
+              aria-label="Reset filters"
+              className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-[rgb(var(--voyana-rgb-border-subtle)/0.9)] text-(--voyana-color-text-muted) transition-colors hover:border-[rgb(var(--voyana-rgb-text-primary)/0.22)] hover:text-(--voyana-color-text-primary)"
+              onClick={onReset}
+              title="Reset filters"
+              type="button"
+            >
+              <RestartAltRoundedIcon className="text-[1.15rem]" />
+            </button>
+          ) : null}
         </div>
 
         <div className="mt-5 grid gap-5">{children}</div>

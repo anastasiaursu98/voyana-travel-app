@@ -9,9 +9,21 @@ const ListViewOffersPage = lazy(() =>
   })),
 );
 
-const AllInclusiveBeachResortOfferDetailsPage = lazy(() =>
-  import("../pages/AllInclusiveBeachResortOfferDetailsPage").then((module) => ({
-    default: module.AllInclusiveBeachResortOfferDetailsPage,
+const AllInclusiveOfferDetailsPage = lazy(() =>
+  import("../pages/AllInclusiveOfferDetailsPage").then((module) => ({
+    default: module.AllInclusiveOfferDetailsPage,
+  })),
+);
+
+const OfferDetailsPage = lazy(() =>
+  import("../pages/OfferDetailsPage").then((module) => ({
+    default: module.OfferDetailsPage,
+  })),
+);
+
+const TourTemplateOfferDetailsPage = lazy(() =>
+  import("../pages/TourTemplateOfferDetailsPage").then((module) => ({
+    default: module.TourTemplateOfferDetailsPage,
   })),
 );
 
@@ -21,15 +33,17 @@ export const offersRoutes: RouteObject[] = [
     element: withRouteFallback(createElement(ListViewOffersPage)),
   },
   {
-    path: offersPaths.allInclusiveBeachResortOfferDetails,
+    path: offersPaths.tourTemplateOfferDetails,
+    element: withRouteFallback(createElement(TourTemplateOfferDetailsPage)),
+  },
+  {
+    path: offersPaths.allInclusiveOfferDetails,
     element: withRouteFallback(
-      createElement(AllInclusiveBeachResortOfferDetailsPage),
+      createElement(AllInclusiveOfferDetailsPage),
     ),
   },
   {
     path: offersPaths.offerDetails,
-    element: withRouteFallback(
-      createElement(AllInclusiveBeachResortOfferDetailsPage),
-    ),
+    element: withRouteFallback(createElement(OfferDetailsPage)),
   },
 ];

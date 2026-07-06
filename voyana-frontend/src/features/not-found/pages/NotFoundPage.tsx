@@ -73,7 +73,7 @@ export function NotFoundPage() {
           {/* Quick navigation cards */}
           <div className="mt-10 grid gap-3 sm:grid-cols-2">
             <RouterLink
-              to={`${routes.home}#offers`}
+              to={routes.offers}
               className="group flex min-h-24 items-center gap-4 rounded-lg border border-[rgb(var(--voyana-rgb-white)/0.1)] bg-[rgb(var(--voyana-rgb-white)/0.05)] p-4 backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-[rgb(var(--voyana-rgb-accent-teal)/0.52)] hover:bg-[rgb(var(--voyana-rgb-white)/0.09)] focus:outline-none focus:ring-4 focus:ring-[rgb(var(--voyana-rgb-accent-teal)/0.28)]"
             >
               <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[rgb(var(--voyana-rgb-accent-teal-strong)/0.72)] text-(--voyana-color-accent-teal) ring-1 ring-[rgb(var(--voyana-rgb-accent-teal)/0.32)] transition group-hover:bg-[rgb(var(--voyana-rgb-accent-teal-strong)/0.9)]">
@@ -90,7 +90,7 @@ export function NotFoundPage() {
             </RouterLink>
 
             <RouterLink
-              to={`${routes.home}#destinations`}
+              to={routes.destinations}
               className="group flex min-h-24 items-center gap-4 rounded-lg border border-[rgb(var(--voyana-rgb-white)/0.1)] bg-[rgb(var(--voyana-rgb-white)/0.05)] p-4 backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-[rgb(var(--voyana-rgb-accent-teal)/0.52)] hover:bg-[rgb(var(--voyana-rgb-white)/0.09)] focus:outline-none focus:ring-4 focus:ring-[rgb(var(--voyana-rgb-accent-teal)/0.28)]"
             >
               <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[rgb(var(--voyana-rgb-accent-teal-strong)/0.72)] text-(--voyana-color-accent-teal) ring-1 ring-[rgb(var(--voyana-rgb-accent-teal)/0.32)] transition group-hover:bg-[rgb(var(--voyana-rgb-accent-teal-strong)/0.9)]">

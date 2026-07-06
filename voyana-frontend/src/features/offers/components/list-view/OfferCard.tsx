@@ -34,7 +34,7 @@ export const OfferCard = ({ offer }: Props) => {
   return (
     <RouterLink
       to={offerPath}
-      className="group grid min-w-0 overflow-hidden rounded-lg border border-[rgb(var(--voyana-rgb-border-subtle)/0.92)] bg-white shadow-[0_18px_45px_rgb(var(--voyana-rgb-text-strong)/0.07)] transition duration-300 hover:-translate-y-0.5 hover:border-[rgb(var(--voyana-rgb-accent-teal)/0.38)] hover:shadow-[0_24px_60px_rgb(var(--voyana-rgb-text-strong)/0.12)] focus:outline-none focus:ring-4 focus:ring-[rgb(var(--voyana-rgb-accent-teal)/0.18)] md:grid-cols-[17rem_minmax(0,1fr)]"
+      className="group grid min-w-0 overflow-hidden rounded-lg border border-[rgb(var(--voyana-rgb-border-subtle)/0.92)] bg-white shadow-[0_18px_45px_rgb(var(--voyana-rgb-text-strong)/0.07)] transition duration-300 hover:-translate-y-0.5 hover:border-[rgb(var(--voyana-rgb-accent-teal)/0.38)] hover:shadow-[0_24px_60px_rgb(var(--voyana-rgb-text-strong)/0.12)] focus:outline-none focus:ring-4 focus:ring-[rgb(var(--voyana-rgb-accent-teal)/0.18)] md:h-80 md:grid-cols-[17rem_minmax(0,1fr)] lg:h-72"
     >
       <div className="relative h-60 min-w-0 overflow-hidden bg-(--voyana-color-background-section) md:h-full">
         <ResponsiveImage
@@ -51,8 +51,8 @@ export const OfferCard = ({ offer }: Props) => {
         </div>
       </div>
 
-      <div className="grid min-w-0 gap-5 p-4 sm:p-5 lg:grid-cols-[minmax(0,1fr)_12rem] lg:gap-6">
-        <div className="min-w-0">
+      <div className="grid min-h-0 min-w-0 gap-5 p-4 sm:p-5 md:h-full lg:grid-cols-[minmax(0,1fr)_12rem] lg:gap-6">
+        <div className="flex min-h-0 min-w-0 flex-col">
           <div className="flex flex-wrap items-center gap-2">
             <span className="rounded-full bg-[rgb(var(--voyana-rgb-accent-teal)/0.11)] px-3 py-1 text-xs font-black uppercase tracking-normal text-(--voyana-color-accent-teal-strong)">
               {offer.type.label}
@@ -65,11 +65,11 @@ export const OfferCard = ({ offer }: Props) => {
             ) : null}
           </div>
 
-          <h2 className="mt-3 text-xl font-black leading-tight text-(--voyana-color-text-strong)">
+          <h2 className="mt-3 line-clamp-2 text-xl font-black leading-tight text-(--voyana-color-text-strong)">
             {offer.name}
           </h2>
           <OfferMetaInfo
-            className="mt-3"
+            className="mt-3 md:flex-nowrap"
             location={offer.pageMetadata?.pageTitle ?? "Selected destination"}
             rating={offer.rating}
           />
@@ -78,7 +78,7 @@ export const OfferCard = ({ offer }: Props) => {
           </p>
         </div>
 
-        <div className="flex min-w-0 items-end justify-between gap-4 border-t border-[rgb(var(--voyana-rgb-border-subtle)/0.82)] pt-4 lg:flex-col lg:items-stretch lg:border-l lg:border-t-0 lg:pl-6 lg:pt-0">
+        <div className="flex min-w-0 items-end justify-between gap-4 border-t border-[rgb(var(--voyana-rgb-border-subtle)/0.82)] pt-4 lg:h-full lg:flex-col lg:items-stretch lg:border-l lg:border-t-0 lg:pl-6 lg:pt-0">
           <div className="min-w-0 lg:text-right">
             {offer.pricing.originalAmount ? (
               <p className="text-sm font-bold text-(--voyana-color-text-muted) line-through">

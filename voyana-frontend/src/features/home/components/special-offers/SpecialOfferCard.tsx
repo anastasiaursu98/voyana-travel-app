@@ -6,6 +6,7 @@ import { OnboardingPill } from "../shared/OnboardingPill";
 
 interface SpecialOfferCardProps {
   offer: Offer;
+  offerLabel: string;
 }
 
 const formatPrice = (amount: number, currency: Offer["pricing"]["currency"]) =>
@@ -34,7 +35,7 @@ const getOfferDetailsPath = (offer: Offer) => {
   });
 };
 
-export function SpecialOfferCard({ offer }: SpecialOfferCardProps) {
+export function SpecialOfferCard({ offer, offerLabel }: SpecialOfferCardProps) {
   const estimatedSavings =
     offer.pricing.originalAmount !== undefined
       ? Math.max(0, offer.pricing.originalAmount - offer.pricing.amount)
@@ -55,7 +56,7 @@ export function SpecialOfferCard({ offer }: SpecialOfferCardProps) {
           className="transition duration-500 group-hover:scale-[1.04]"
         />
         <div className="absolute left-3 top-3 rounded-full bg-[rgb(var(--voyana-rgb-accent-warm)/0.94)] px-3 py-1 text-xs font-black tracking-normal text-(--voyana-color-button-primary-text) shadow-[0_10px_26px_rgb(var(--voyana-rgb-background-dark)/0.2)]">
-          {offer.pricing.discountLabel ?? "Featured"}
+          {offer.pricing.discountLabel ?? offerLabel}
         </div>
         <div className="absolute bottom-3 left-3 rounded-full bg-[rgb(var(--voyana-rgb-background-dark)/0.78)] px-3 py-1 text-xs font-black text-(--voyana-color-white) backdrop-blur-md">
           Save {formatPrice(estimatedSavings, offer.pricing.currency)}

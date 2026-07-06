@@ -1,18 +1,10 @@
-import {
-  AmountSliderFilter,
-  CollapsibleFilterSection,
-  FilterCheckboxOption,
-  FilterPanel,
-} from "../../../../shared/components/filters";
-import { useOfferCategories } from "../../hooks/useOfferCategories";
-import {
-  OFFER_PRICE_FILTER_MAX,
-  OFFER_PRICE_FILTER_MIN,
-} from "../../hooks/useOffersFilters";
+import { FilterPanel } from "../../../../shared/components/filters";
+import { OffersFilterControls } from "./OffersFilterControls";
 
 interface OffersFilterPanelProps {
   onCategoryChange: (category: string) => void;
   onPriceRangeChange: (value: [number, number]) => void;
+  onReset: () => void;
   priceRange: [number, number];
   selectedCategories?: Array<string>;
 }
@@ -20,38 +12,22 @@ interface OffersFilterPanelProps {
 export function OffersFilterPanel({
   onCategoryChange,
   onPriceRangeChange,
+  onReset,
   priceRange,
   selectedCategories,
 }: OffersFilterPanelProps) {
-  const { categories } = useOfferCategories();
-
   return (
     <FilterPanel
       aria-label="Offer filters"
       description="Narrow your stay preferences"
+      onReset={onReset}
     >
-      <AmountSliderFilter
-        max={OFFER_PRICE_FILTER_MAX}
-        min={OFFER_PRICE_FILTER_MIN}
-        onChange={onPriceRangeChange}
-        title="Price"
-        value={priceRange}
+      <OffersFilterControls
+        onCategoryChange={onCategoryChange}
+        onPriceRangeChange={onPriceRangeChange}
+        priceRange={priceRange}
+        selectedCategories={selectedCategories}
       />
-
-      <CollapsibleFilterSection
-        // icon={<cate}
-        key={"Category"}
-        title={"Category"}
-      >
-        {categories?.map((option) => (
-          <FilterCheckboxOption
-            key={option.label}
-            checked={selectedCategories?.includes(option.value) ?? false}
-            {...option}
-            onChange={() => onCategoryChange(option.value)}
-          />
-        ))}
-      </CollapsibleFilterSection>
     </FilterPanel>
   );
 }

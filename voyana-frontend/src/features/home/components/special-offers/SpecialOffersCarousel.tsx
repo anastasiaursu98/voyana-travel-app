@@ -13,6 +13,14 @@ import { IconCircleButton } from "../shared/IconCircleButton";
 import { SpecialOfferCard } from "./SpecialOfferCard";
 
 const VISIBLE_OFFERS_COUNT = 4;
+const OFFER_CARD_LABELS = [
+  "Best value",
+  "Family friendly",
+  "All inclusive",
+  "Limited availability",
+  "Luxury pick",
+  "Last minute",
+] as const;
 
 type OfferCardMotionState = {
   direction: 1 | -1;
@@ -92,7 +100,7 @@ export function SpecialOffersCarousel({ offers }: SpecialOffersCarouselProps) {
 
   return (
     <div>
-      <div className="mb-5 flex items-center justify-end gap-3">
+      <div className="mb-5 mt-8 flex items-center justify-end gap-3">
         <IconCircleButton
           aria-label="Previous special offers"
           disabled={!hasMultipleItems}
@@ -134,7 +142,10 @@ export function SpecialOffersCarousel({ offers }: SpecialOffersCarouselProps) {
                 className={`min-w-0 will-change-transform ${getOfferVisibilityClass(position)}`}
                 transition={carouselCardTransition}
               >
-                <SpecialOfferCard offer={offer} />
+                <SpecialOfferCard
+                  offer={offer}
+                  offerLabel={OFFER_CARD_LABELS[position % OFFER_CARD_LABELS.length]}
+                />
               </motion.li>
             ))}
           </AnimatePresence>
