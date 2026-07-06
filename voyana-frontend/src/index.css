@@ -1,0 +1,152 @@
+@import "tailwindcss";
+@import "./shared/styles/design-tokens.css";
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  height: 100%;
+  min-height: 100%;
+  background: #fff !important;
+  scroll-behavior: smooth;
+  scrollbar-color: rgb(var(--voyana-rgb-text-muted) / 0.72)
+    #fff;
+  scrollbar-width: thin;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100%;
+  color: var(--voyana-color-text-primary);
+  background: #fff !important;
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-synthesis: none;
+  letter-spacing: 0;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+html::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+html::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+html::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: var(--voyana-radius-pill);
+  background: rgb(var(--voyana-rgb-text-muted) / 0.72);
+  background-clip: content-box;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--voyana-rgb-text-strong) / 0.68);
+  background-clip: content-box;
+}
+
+.voyana-scrollbar {
+  scrollbar-color: transparent transparent;
+  scrollbar-width: thin;
+}
+
+.voyana-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.voyana-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.voyana-scrollbar::-webkit-scrollbar-thumb {
+  border-radius: var(--voyana-radius-pill);
+  background: transparent;
+}
+
+.voyana-scrollbar:hover {
+  scrollbar-color: rgb(var(--voyana-rgb-text-muted) / 0.48) transparent;
+}
+
+.voyana-scrollbar:hover::-webkit-scrollbar-thumb {
+  background: rgb(var(--voyana-rgb-text-muted) / 0.48);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.public-header[data-header-style="light"] .public-header__brand {
+  color: rgb(var(--voyana-rgb-text-strong));
+}
+
+.public-header[data-header-style="light"] .public-header__nav-link {
+  color: rgb(var(--voyana-rgb-background-dark));
+}
+
+.public-header[data-header-style="light"] .public-header__start-link {
+  color: var(--voyana-color-text-strong);
+}
+
+.public-header[data-header-style="light"] .public-header__brand:hover,
+.public-header[data-header-style="light"] .public-header__nav-link:hover {
+  color: var(--voyana-color-text-strong);
+}
+
+.public-header[data-header-style="hero"] .public-header__brand {
+  color: var(--voyana-color-white);
+}
+
+.public-header[data-header-style="hero"] .public-header__nav-link {
+  color: var(--voyana-color-white);
+}
+
+.public-header[data-header-style="hero"] .public-header__start-link {
+  color: var(--voyana-color-white);
+}
+
+.public-header[data-header-style="hero"] .public-header__brand:hover,
+.public-header[data-header-style="hero"] .public-header__nav-link:hover {
+  color: var(--voyana-color-white);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+#root {
+  min-height: 100%;
+  background: #fff !important;
+}
+
+html:has(.voyana-all-inclusive-beach-resort-page),
+body:has(.voyana-all-inclusive-beach-resort-page),
+#root:has(.voyana-all-inclusive-beach-resort-page),
+body:has(.voyana-all-inclusive-beach-resort-page) main {
+  background: #fff !important;
+}
+
+body:has(.voyana-all-inclusive-beach-resort-page)
+  .public-header[data-header-style="light"] {
+  border-bottom-color: #fff !important;
+  background: #fff !important;
+  box-shadow: none !important;
+}

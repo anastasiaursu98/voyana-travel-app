@@ -1,0 +1,1 @@
+export { AllInclusiveBeachResortOfferDetails } from "./AllInclusiveBeachResortOfferDetails";

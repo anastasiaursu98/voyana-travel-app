@@ -1,0 +1,1 @@
+export { HeroSearchCard } from "./HeroSearchCard";

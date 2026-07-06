@@ -1,0 +1,113 @@
+:root {
+  --voyana-rgb-text-primary: 10 11 8;
+  --voyana-rgb-text-strong: 28 30 30;
+  --voyana-rgb-text-body: 115 123 123;
+  --voyana-rgb-text-muted: 92 99 99;
+  --voyana-rgb-text-inverse-muted: 214 222 220;
+
+  --voyana-rgb-background-dark: 4 17 23;
+  --voyana-rgb-background-dark-soft: 12 24 27;
+  --voyana-rgb-background-section: 245 247 247;
+  --voyana-rgb-background-card: 255 255 255;
+  --voyana-rgb-background-input: 241 244 244;
+
+  --voyana-rgb-border-subtle: 221 226 226;
+  --voyana-rgb-button-primary: 255 200 87;
+  --voyana-rgb-button-primary-hover: 255 213 112;
+  --voyana-rgb-button-primary-active: 239 181 58;
+  --voyana-rgb-accent-warm: 255 200 87;
+  --voyana-rgb-accent-teal: 89 171 174;
+  --voyana-rgb-accent-teal-strong: 18 90 83;
+  --voyana-rgb-white: 255 255 255;
+  --voyana-rgb-black: 0 0 0;
+
+  --voyana-color-text-primary: rgb(var(--voyana-rgb-text-primary));
+  --voyana-color-text-strong: rgb(var(--voyana-rgb-text-strong));
+  --voyana-color-text-body: rgb(var(--voyana-rgb-text-body));
+  --voyana-color-text-muted: rgb(var(--voyana-rgb-text-muted));
+  --voyana-color-text-inverse-muted: rgb(
+    var(--voyana-rgb-text-inverse-muted)
+  );
+
+  --voyana-color-background-dark: rgb(var(--voyana-rgb-background-dark));
+  --voyana-color-background-dark-soft: rgb(
+    var(--voyana-rgb-background-dark-soft)
+  );
+  --voyana-color-background-section: rgb(
+    var(--voyana-rgb-background-section)
+  );
+  --voyana-color-background-card: rgb(var(--voyana-rgb-background-card));
+  --voyana-color-background-input: rgb(var(--voyana-rgb-background-input));
+
+  --voyana-color-border-subtle: rgb(var(--voyana-rgb-border-subtle));
+  --voyana-color-button-primary: rgb(var(--voyana-rgb-button-primary));
+  --voyana-color-button-primary-text: rgb(
+    var(--voyana-rgb-background-dark)
+  );
+  --voyana-color-button-primary-hover: rgb(
+    var(--voyana-rgb-button-primary-hover)
+  );
+  --voyana-color-button-primary-active: rgb(
+    var(--voyana-rgb-button-primary-active)
+  );
+  --voyana-color-accent-warm: rgb(var(--voyana-rgb-accent-warm));
+  --voyana-color-accent-teal: rgb(var(--voyana-rgb-accent-teal));
+  --voyana-color-accent-teal-strong: rgb(
+    var(--voyana-rgb-accent-teal-strong)
+  );
+  --voyana-color-white: rgb(var(--voyana-rgb-white));
+
+  --voyana-radius-card: 8px;
+  --voyana-radius-pill: 999px;
+
+  --voyana-shadow-control: 0 12px 28px rgb(var(--voyana-rgb-black) / 0.16);
+  --voyana-shadow-auth-back: 0 16px 34px rgb(var(--voyana-rgb-black) / 0.22);
+  --voyana-shadow-text: 0 8px 26px rgb(var(--voyana-rgb-black) / 0.28);
+
+  --voyana-gradient-hero-horizontal: linear-gradient(
+    90deg,
+    rgb(var(--voyana-rgb-background-dark) / 0.68) 0%,
+    rgb(var(--voyana-rgb-background-dark) / 0.48) 30%,
+    rgb(var(--voyana-rgb-background-dark) / 0.1) 58%,
+    rgb(var(--voyana-rgb-background-dark) / 0.24) 100%
+  );
+  --voyana-gradient-hero-bottom: linear-gradient(
+    180deg,
+    rgb(var(--voyana-rgb-background-dark) / 0) 0%,
+    rgb(var(--voyana-rgb-background-dark) / 0.22) 58%,
+    rgb(var(--voyana-rgb-background-dark) / 0.5) 100%
+  );
+  --voyana-gradient-brand-tint: linear-gradient(
+    135deg,
+    rgb(var(--voyana-rgb-accent-teal) / 0.1) 0%,
+    rgb(var(--voyana-rgb-text-primary) / 0.08) 100%
+  );
+  --voyana-gradient-auth-image-vertical: linear-gradient(
+    180deg,
+    rgb(var(--voyana-rgb-background-dark) / 0) 0%,
+    rgb(var(--voyana-rgb-background-dark) / 0.16) 56%,
+    rgb(var(--voyana-rgb-background-dark) / 0.5) 100%
+  );
+  --voyana-gradient-auth-image-horizontal: linear-gradient(
+    90deg,
+    rgb(var(--voyana-rgb-background-dark) / 0.54) 0%,
+    rgb(var(--voyana-rgb-background-dark) / 0.12) 45%,
+    rgb(var(--voyana-rgb-background-dark) / 0.28) 100%
+  );
+  --voyana-gradient-auth-content: linear-gradient(
+    135deg,
+    rgb(var(--voyana-rgb-accent-teal) / 0.2) 0%,
+    rgb(var(--voyana-rgb-background-dark) / 1) 46%,
+    rgb(var(--voyana-rgb-text-primary) / 0.34) 100%
+  );
+  --voyana-gradient-auth-mobile-scrim: linear-gradient(
+    90deg,
+    rgb(var(--voyana-rgb-background-dark) / 0.78) 0%,
+    rgb(var(--voyana-rgb-background-dark) / 0.82) 100%
+  );
+  --voyana-gradient-auth-mobile-tint: linear-gradient(
+    135deg,
+    rgb(var(--voyana-rgb-accent-teal) / 0.2) 0%,
+    rgb(var(--voyana-rgb-text-primary) / 0.22) 100%
+  );
+}
