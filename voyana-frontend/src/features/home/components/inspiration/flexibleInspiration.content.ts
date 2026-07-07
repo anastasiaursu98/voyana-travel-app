@@ -9,7 +9,7 @@ export const flexibleBudgetIdeas = [
     budget: "Around EUR 800",
     title: "Beach and resort options",
     description:
-      "Beach holidays, all-inclusive resorts, and flexible summer offers.",
+      "Beach holidays, all-inclusive resorts, and flexible summer packages.",
   },
   {
     budget: "EUR 1,200+",

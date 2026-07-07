@@ -2,24 +2,24 @@ import { useEffect, useRef, useState } from "react";
 
 export function usePublicHeaderMobileMenu() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isOfferCategoriesOpen, setIsOfferCategoriesOpen] = useState(false);
+  const [isVacationCategoriesOpen, setIsVacationCategoriesOpen] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   const handleMobileMenuToggle = () => {
     if (isMobileMenuOpen) {
-      setIsOfferCategoriesOpen(false);
+      setIsVacationCategoriesOpen(false);
     }
 
     setIsMobileMenuOpen((currentValue) => !currentValue);
   };
 
   const handleMobileMenuClose = () => {
-    setIsOfferCategoriesOpen(false);
+    setIsVacationCategoriesOpen(false);
     setIsMobileMenuOpen(false);
   };
 
-  const handleOfferCategoriesToggle = () => {
-    setIsOfferCategoriesOpen((currentValue) => !currentValue);
+  const handleVacationCategoriesToggle = () => {
+    setIsVacationCategoriesOpen((currentValue) => !currentValue);
   };
 
   useEffect(() => {
@@ -41,14 +41,14 @@ export function usePublicHeaderMobileMenu() {
         mobileMenuRef.current &&
         !mobileMenuRef.current.contains(event.target as Node)
       ) {
-        setIsOfferCategoriesOpen(false);
+        setIsVacationCategoriesOpen(false);
         setIsMobileMenuOpen(false);
       }
     };
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        setIsOfferCategoriesOpen(false);
+        setIsVacationCategoriesOpen(false);
         setIsMobileMenuOpen(false);
         return;
       }
@@ -96,8 +96,8 @@ export function usePublicHeaderMobileMenu() {
   return {
     handleMobileMenuClose,
     handleMobileMenuToggle,
-    handleOfferCategoriesToggle,
-    isOfferCategoriesOpen,
+    handleVacationCategoriesToggle,
+    isVacationCategoriesOpen,
     isMobileMenuOpen,
     mobileMenuRef,
   };

@@ -2,7 +2,7 @@ export const seasonalCampaigns = [
   {
     title: "Summer specials",
     description: "Beach holidays, family resorts, and sun-first packages.",
-    tag: "Seasonal offer",
+    tag: "Seasonal package",
   },
   {
     title: "Winter escapes",

@@ -1,1 +1,0 @@
-export { TourTemplateOfferDetails } from "./TourTemplateOfferDetails";

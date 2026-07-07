@@ -3,7 +3,7 @@ import { routes } from "../../router/routes";
 export const PUBLIC_NAV_ITEMS = [
   { label: "Home", to: routes.home },
   { label: "Destinations", to: routes.destinations },
-  { label: "Offers", to: routes.offers },
+  { label: "Vacation packages", to: routes.vacationPackages },
   { label: "About", to: routes.home },
   { label: "Contact", to: routes.home },
 ] as const;
@@ -16,8 +16,8 @@ export const PUBLIC_FOOTER_LINKS = [
         label: "Destinations",
         to: routes.destinations,
       },
-      { label: "Special offers", to: routes.offers },
-      { label: "Travel deals", to: routes.offers },
+      { label: "Featured packages", to: routes.vacationPackages },
+      { label: "Travel deals", to: routes.vacationPackages },
     ],
   },
   {

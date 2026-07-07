@@ -2,7 +2,7 @@ import { Schema } from "mongoose";
 
 /**
  * Reusable image metadata for a single display image.
- * Used by destination cover images and offer media cover images.
+ * Used by destination cover images and vacation package media cover images.
  */
 export const imageSchema = new Schema(
   {
@@ -72,6 +72,44 @@ export const galleryImageSchema = new Schema(
 );
 
 /**
+ * Reusable external video metadata.
+ * Stores source information without forcing every record to host a local file.
+ */
+export const videoSchema = new Schema(
+  {
+    url: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    provider: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    title: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    caption: {
+      type: String,
+      trim: true,
+      default: "",
+    },
+    thumbnailUrl: {
+      type: String,
+      trim: true,
+    },
+    licenseUrl: {
+      type: String,
+      trim: true,
+    },
+  },
+  { _id: false },
+);
+
+/**
  * Public page metadata for records that can have their own landing/detail page.
  * This is intentionally product-facing, instead of using a generic "seo" name.
  */
@@ -97,7 +135,7 @@ type PublishingSchemaOptions = {
 
 /**
  * Shared publishing state for documents that can be shown or hidden publicly.
- * Priority is optional because offers need ordered merchandising, while
+ * Priority is optional because vacation packages need ordered merchandising, while
  * destinations only need active/featured flags for now.
  */
 export const createPublishingSchema = ({

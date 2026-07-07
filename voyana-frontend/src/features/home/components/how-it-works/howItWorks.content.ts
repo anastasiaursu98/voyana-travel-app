@@ -6,12 +6,12 @@ export const planningSteps = [
   },
   {
     description:
-      "Filter offers by price, timing, destination, and trip preferences.",
+      "Filter vacation packages by price, timing, destination, and trip preferences.",
     title: "Set your budget and dates",
   },
   {
     description:
-      "See what is included, what costs extra, and why each offer fits.",
+      "See what is included, what costs extra, and why each vacation package fits.",
     title: "Compare and book with confidence",
   },
 ] as const;

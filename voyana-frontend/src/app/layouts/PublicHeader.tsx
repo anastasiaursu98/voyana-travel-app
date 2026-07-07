@@ -12,7 +12,7 @@ import { routes } from "../router/routes";
 import { PUBLIC_NAV_ITEMS } from "./constants/publicLayout.constants";
 import { usePublicHeaderMobileMenu } from "./hooks/usePublicHeaderMobileMenu";
 import { PublicHeaderMobileMenu } from "./PublicHeaderMobileMenu";
-import { PublicHeaderOffersDropdown } from "./PublicHeaderOffersDropdown";
+import { PublicHeaderVacationPackagesDropdown } from "./PublicHeaderVacationPackagesDropdown";
 
 export function PublicHeader() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -25,8 +25,8 @@ export function PublicHeader() {
   const {
     handleMobileMenuClose,
     handleMobileMenuToggle,
-    handleOfferCategoriesToggle,
-    isOfferCategoriesOpen,
+    handleVacationCategoriesToggle,
+    isVacationCategoriesOpen,
     isMobileMenuOpen,
     mobileMenuRef,
   } = usePublicHeaderMobileMenu();
@@ -100,9 +100,9 @@ export function PublicHeader() {
           {PUBLIC_NAV_ITEMS.map((item) => {
             const shouldUseExactMatch = item.to === routes.home;
 
-            if (item.label === "Offers") {
+            if (item.label === "Vacation packages") {
               return (
-                <PublicHeaderOffersDropdown
+                <PublicHeaderVacationPackagesDropdown
                   key={item.label}
                   getNavLinkClassName={getNavLinkClassName}
                   isLightHeader={isLightHeader}
@@ -177,11 +177,11 @@ export function PublicHeader() {
           </RouterLink>
           <PublicHeaderMobileMenu
             isLightHeader={isLightHeader}
-            isOfferCategoriesOpen={isOfferCategoriesOpen}
+            isVacationCategoriesOpen={isVacationCategoriesOpen}
             isOpen={isMobileMenuOpen}
             menuRef={mobileMenuRef}
             onClose={handleMobileMenuClose}
-            onOfferCategoriesToggle={handleOfferCategoriesToggle}
+            onVacationCategoriesToggle={handleVacationCategoriesToggle}
             onToggle={handleMobileMenuToggle}
           />
         </div>

@@ -17,12 +17,12 @@ export const DestinationsList = () => {
   const status = useAppSelector(selectDestinationsStatus);
   const error = useAppSelector(selectDestinationsError);
 
-  const getDestinationOffersPath = (destinationSlug: string) => {
+  const getDestinationVacationPackagesPath = (destinationSlug: string) => {
     const params = new URLSearchParams({
       destination: destinationSlug,
     });
 
-    return `${routes.offers}?${params.toString()}`;
+    return `${routes.vacationPackages}?${params.toString()}`;
   };
 
   useEffect(() => {
@@ -101,7 +101,7 @@ export const DestinationsList = () => {
           {destinations.map((destination) => (
             <DestinationCard
               key={destination._id}
-              link={getDestinationOffersPath(destination.slug)}
+              link={getDestinationVacationPackagesPath(destination.slug)}
               description={destination.description}
               imageAlt={destination.coverImage.alt}
               imageUrl={destination.coverImage.url}

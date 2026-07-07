@@ -16,8 +16,8 @@ export function SeasonalCampaignsSection() {
     >
       <SectionHeader
         eyebrow="Seasonal campaigns"
-        title="Seasonal offers with clear timing"
-        description="Campaign cards mirror the seasonal offer types: last minute, early booking, summer specials, winter escapes, and holiday packages."
+        title="Seasonal packages with clear timing"
+        description="Campaign cards mirror the seasonal package types: last minute, early booking, summer specials, winter escapes, and holiday packages."
         inverse
         titleSize="large"
         descriptionSize="large"

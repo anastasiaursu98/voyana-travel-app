@@ -8,29 +8,29 @@ import {
 } from "react-router-dom";
 import { routes } from "../router/routes";
 import { PUBLIC_NAV_ITEMS } from "./constants/publicLayout.constants";
-import { usePublicOfferCategoryLinks } from "./hooks/usePublicOfferCategoryLinks";
+import { usePublicVacationCategoryLinks } from "./hooks/usePublicVacationCategoryLinks";
 
 type PublicHeaderMobileMenuProps = {
-  isOfferCategoriesOpen: boolean;
+  isVacationCategoriesOpen: boolean;
   isLightHeader: boolean;
   isOpen: boolean;
   menuRef: RefObject<HTMLDivElement | null>;
   onClose: () => void;
-  onOfferCategoriesToggle: () => void;
+  onVacationCategoriesToggle: () => void;
   onToggle: () => void;
 };
 
 export function PublicHeaderMobileMenu({
-  isOfferCategoriesOpen,
+  isVacationCategoriesOpen,
   isLightHeader,
   isOpen,
   menuRef,
   onClose,
-  onOfferCategoriesToggle,
+  onVacationCategoriesToggle,
   onToggle,
 }: PublicHeaderMobileMenuProps) {
-  const { categoriesError, categoriesStatus, offerCategoryLinks } =
-    usePublicOfferCategoryLinks();
+  const { categoriesError, categoriesStatus, vacationCategoryLinks } =
+    usePublicVacationCategoryLinks();
   const isLoading = categoriesStatus === "idle" || categoriesStatus === "loading";
 
   const getMobileLinkClassName = (isActive: boolean) =>
@@ -84,42 +84,42 @@ export function PublicHeaderMobileMenu({
               {PUBLIC_NAV_ITEMS.map((item) => {
                 const shouldUseExactMatch = item.to === routes.home;
 
-                if (item.label === "Offers") {
+                if (item.label === "Vacation packages") {
                   return (
                     <div key={item.label} className="grid gap-2">
                       <button
                         type="button"
-                        onClick={onOfferCategoriesToggle}
+                        onClick={onVacationCategoriesToggle}
                         className={getMobileLinkClassName(false)}
-                        aria-expanded={isOfferCategoriesOpen}
-                        aria-controls="mobile-offer-categories"
+                        aria-expanded={isVacationCategoriesOpen}
+                        aria-controls="mobile-vacation-categories"
                       >
                         <span>{item.label}</span>
                         <KeyboardArrowRightRoundedIcon
                           className={`text-[1.25rem] transition-transform ${
-                            isOfferCategoriesOpen ? "rotate-90" : ""
+                            isVacationCategoriesOpen ? "rotate-90" : ""
                           }`}
                         />
                       </button>
 
-                      {isOfferCategoriesOpen ? (
+                      {isVacationCategoriesOpen ? (
                         <div
-                          id="mobile-offer-categories"
+                          id="mobile-vacation-categories"
                           className="grid gap-1.5 rounded-lg bg-(--voyana-color-background-section) p-2"
                         >
                           <RouterLink
-                            to={routes.offers}
+                            to={routes.vacationPackages}
                             onClick={onClose}
                             className="flex min-h-11 items-center justify-between gap-3 rounded-md bg-white px-3 text-sm font-extrabold text-(--voyana-color-text-primary) transition hover:text-(--voyana-color-accent-teal-strong) focus:outline-none focus:ring-4 focus:ring-[rgb(var(--voyana-rgb-accent-teal)/0.16)]"
                           >
                             <span className="min-w-0 truncate">
-                              All offers
+                              All vacation packages
                             </span>
                             <KeyboardArrowRightRoundedIcon className="shrink-0 text-[1rem] text-(--voyana-color-text-muted)" />
                           </RouterLink>
 
-                          {offerCategoryLinks.length > 0 ? (
-                            offerCategoryLinks.map((category) => (
+                          {vacationCategoryLinks.length > 0 ? (
+                            vacationCategoryLinks.map((category) => (
                               <RouterLink
                                 key={category.value}
                                 to={category.to}
@@ -135,9 +135,9 @@ export function PublicHeaderMobileMenu({
                           ) : (
                             <p className="rounded-md bg-white px-3 py-2.5 text-sm font-bold text-(--voyana-color-text-muted)">
                               {isLoading
-                                ? "Loading offer categories..."
+                                ? "Loading vacation categories..."
                                 : categoriesError ??
-                                  "No offer categories available."}
+                                  "No vacation categories available."}
                             </p>
                           )}
                         </div>

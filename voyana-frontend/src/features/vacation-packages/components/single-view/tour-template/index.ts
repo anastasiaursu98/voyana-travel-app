@@ -1,0 +1,1 @@
+export { TourTemplateVacationPackageDetails } from "./TourTemplateVacationPackageDetails";

@@ -185,7 +185,7 @@ export const budgetOptions = [
   },
   {
     label: "Around EUR 800",
-    note: "Beach holidays, all-inclusive resorts, and flexible summer offers.",
+    note: "Beach holidays, all-inclusive resorts, and flexible summer packages.",
   },
   {
     label: "EUR 1,200+",
@@ -216,7 +216,7 @@ export const tripStyleOptions = [
   },
   {
     label: "Last-Minute Deals",
-    note: "Ready-to-book offers for flexible travelers.",
+    note: "Ready-to-book packages for flexible travelers.",
   },
 ] as const;
 

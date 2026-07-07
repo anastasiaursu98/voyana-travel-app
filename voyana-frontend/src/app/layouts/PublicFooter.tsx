@@ -38,7 +38,7 @@ export function PublicFooter() {
 
           <p className="mt-5 text-sm leading-6 text-[rgb(var(--voyana-rgb-text-inverse-muted)/0.82)]">
             Curated stays, flexible destination planning, and seasonal travel
-            offers for easier booking.
+            vacation packages for easier booking.
           </p>
         </div>
 

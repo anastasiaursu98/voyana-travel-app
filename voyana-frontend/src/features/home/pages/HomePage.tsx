@@ -3,7 +3,7 @@ import { HeroSection } from "../components/hero/HeroSection";
 import { HowItWorksSection } from "../components/how-it-works/HowItWorksSection";
 import { FlexibleInspirationSection } from "../components/inspiration/FlexibleInspirationSection";
 import { PopularDestinationsSection } from "../components/popular-destinations/PopularDestinationsSection";
-import { SpecialOffersSection } from "../components/special-offers/SpecialOffersSection";
+import { SpecialVacationPackagesSection } from "../components/special-vacation-packages/SpecialVacationPackagesSection";
 import { TripStyleSection } from "../components/trip-style/TripStyleSection";
 
 export function HomePage() {
@@ -12,7 +12,7 @@ export function HomePage() {
       <HeroSection />
       <TripStyleSection />
       <FlexibleInspirationSection />
-      <SpecialOffersSection />
+      <SpecialVacationPackagesSection />
       <HowItWorksSection />
       <PopularDestinationsSection />
 

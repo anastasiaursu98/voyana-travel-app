@@ -1,0 +1,13 @@
+export { VacationPackageActivities } from "./VacationPackageActivities";
+export { VacationPackageDescription } from "./VacationPackageDescription";
+export { VacationPackageDetailsTopBar } from "./VacationPackageDetailsTopBar";
+export { VacationPackageDetailList } from "./VacationPackageDetailList";
+export { VacationPackageFaq } from "./VacationPackageFaq";
+export { VacationPackageHighlights } from "./VacationPackageHighlights";
+export { VacationPackageIncludedExcluded } from "./VacationPackageIncludedExcluded";
+export { VacationPackageItinerary } from "./VacationPackageItinerary";
+export { VacationPackageMetaInfo } from "./VacationPackageMetaInfo";
+export { VacationPackagePolicies } from "./VacationPackagePolicies";
+export { VacationPackagePriceSummary } from "./VacationPackagePriceSummary";
+export { VacationPackageReviews } from "./VacationPackageReviews";
+export { VacationPackageSectionPanel } from "./VacationPackageSectionPanel";

@@ -11,8 +11,9 @@
     "test:watch": "jest --watch",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "seed:destinations": "ts-node-dev --transpile-only src/scripts/seedDestinations.ts",
-    "seed:offers": "ts-node-dev --transpile-only src/scripts/seedOffers.ts",
-    "seed:travel-data": "npm run seed:destinations && npm run seed:offers",
+    "seed:vacation-categories": "ts-node-dev --transpile-only src/scripts/seedVacationCategories.ts",
+    "seed:vacation-packages": "ts-node-dev --transpile-only src/scripts/seedVacationPackages.ts",
+    "seed:travel-data": "npm run seed:destinations && npm run seed:vacation-packages",
     "build": "tsc -p tsconfig.build.json",
     "start": "node dist/index.js"
   },

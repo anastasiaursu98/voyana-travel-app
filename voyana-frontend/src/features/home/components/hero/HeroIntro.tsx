@@ -2,7 +2,7 @@ export function HeroIntro() {
   return (
     <div className="w-full max-w-152 min-w-0 text-left">
       <div className="flex flex-wrap items-center justify-start gap-2 text-xs font-extrabold uppercase leading-none tracking-normal text-[rgb(var(--voyana-rgb-white)/0.92)] sm:text-sm">
-        <span>Curated offers</span>
+        <span>Curated vacation packages</span>
         <span className="h-3 w-px bg-[rgb(var(--voyana-rgb-white)/0.78)]" />
         <span>Clear prices</span>
         <span className="h-3 w-px bg-[rgb(var(--voyana-rgb-white)/0.78)]" />

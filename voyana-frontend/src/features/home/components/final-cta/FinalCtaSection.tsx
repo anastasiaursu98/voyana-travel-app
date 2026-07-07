@@ -24,7 +24,7 @@ export function FinalCtaSection() {
           narrow it down.
         </p>
         <RouterLink
-          to={routes.offers}
+          to={routes.vacationPackages}
           className="mt-8 inline-flex min-h-13 items-center justify-center gap-2 rounded-full bg-(--voyana-color-button-primary) px-7 text-sm font-black text-(--voyana-color-button-primary-text) no-underline shadow-[0_14px_32px_rgb(var(--voyana-rgb-button-primary)/0.28)] transition hover:-translate-y-0.5 hover:bg-(--voyana-color-button-primary-hover) focus:outline-none focus:ring-4 focus:ring-[rgb(var(--voyana-rgb-button-primary)/0.34)]"
         >
           Find my vacation

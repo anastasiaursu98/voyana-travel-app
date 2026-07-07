@@ -1,14 +1,14 @@
 import { Link as RouterLink } from "react-router-dom";
 import { SectionHeader } from "../../../../shared/components/SectionHeader";
 import { ResponsiveImage } from "../../../../shared/components/ResponsiveImage";
-import { useHomeOfferCategoryLinks } from "../../hooks/useHomeOfferCategoryLinks";
+import { useHomeVacationCategoryLinks } from "../../hooks/useHomeVacationCategoryLinks";
 import { homeImages } from "../../constants/homeImages";
 import { OnboardingCard } from "../shared/OnboardingCard";
 import { OnboardingSectionShell } from "../shared/OnboardingSectionShell";
 
 export function TripStyleSection() {
-  const { categoriesError, categoriesStatus, offerCategoryLinks } =
-    useHomeOfferCategoryLinks(6);
+  const { categoriesError, categoriesStatus, vacationCategoryLinks } =
+    useHomeVacationCategoryLinks(6);
   const isLoading = categoriesStatus === "idle" || categoriesStatus === "loading";
 
   return (
@@ -44,8 +44,8 @@ export function TripStyleSection() {
         </article>
 
         <div className="grid gap-4 sm:grid-cols-2">
-          {offerCategoryLinks.length > 0 ? (
-            offerCategoryLinks.map((category, index) => (
+          {vacationCategoryLinks.length > 0 ? (
+            vacationCategoryLinks.map((category, index) => (
               <OnboardingCard
                 key={category.value}
                 className="p-5 shadow-[0_12px_30px_rgb(var(--voyana-rgb-text-strong)/0.05)]"
@@ -82,8 +82,8 @@ export function TripStyleSection() {
           ) : (
             <p className="rounded-lg border border-[rgb(var(--voyana-rgb-border-subtle)/0.9)] bg-(--voyana-color-background-section) p-5 text-sm font-bold text-(--voyana-color-text-muted) sm:col-span-2">
               {isLoading
-                ? "Loading offer categories..."
-                : categoriesError ?? "No offer categories available."}
+                ? "Loading vacation categories..."
+                : categoriesError ?? "No vacation categories available."}
             </p>
           )}
         </div>

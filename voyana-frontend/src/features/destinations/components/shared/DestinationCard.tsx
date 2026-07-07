@@ -59,7 +59,7 @@ export function DestinationCard({
           </div>
           <div className="mt-auto flex items-center justify-between gap-3 border-t border-[rgb(var(--voyana-rgb-border-subtle)/0.78)] pt-4">
             <span className="text-sm font-black text-(--voyana-color-text-primary)">
-              View offers
+              View vacation packages
             </span>
             <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-(--voyana-color-background-dark) text-(--voyana-color-white) transition-colors group-hover:bg-(--voyana-color-accent-teal-strong)">
               <ArrowForwardRoundedIcon className="text-[1.1rem]" />

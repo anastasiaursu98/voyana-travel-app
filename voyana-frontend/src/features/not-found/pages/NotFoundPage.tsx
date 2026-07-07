@@ -1,7 +1,7 @@
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
+import CardTravelRoundedIcon from "@mui/icons-material/CardTravelRounded";
 import ExploreRoundedIcon from "@mui/icons-material/ExploreRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
-import LocalOfferRoundedIcon from "@mui/icons-material/LocalOfferRounded";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { routes } from "../../../app/router/routes";
 import { PublicContentContainer } from "../../../shared/components/PublicContentContainer";
@@ -47,7 +47,8 @@ export function NotFoundPage() {
           </h1>
 
           <p className="mt-5 max-w-lg text-base font-medium leading-7 text-[rgb(var(--voyana-rgb-text-inverse-muted)/0.82)] sm:text-lg">
-            The page may have moved, the link may be incomplete, or the offer is
+            The page may have moved, the link may be incomplete, or the
+            vacation package is
             no longer accessible. Let's get you back on track.
           </p>
 
@@ -73,15 +74,15 @@ export function NotFoundPage() {
           {/* Quick navigation cards */}
           <div className="mt-10 grid gap-3 sm:grid-cols-2">
             <RouterLink
-              to={routes.offers}
+              to={routes.vacationPackages}
               className="group flex min-h-24 items-center gap-4 rounded-lg border border-[rgb(var(--voyana-rgb-white)/0.1)] bg-[rgb(var(--voyana-rgb-white)/0.05)] p-4 backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-[rgb(var(--voyana-rgb-accent-teal)/0.52)] hover:bg-[rgb(var(--voyana-rgb-white)/0.09)] focus:outline-none focus:ring-4 focus:ring-[rgb(var(--voyana-rgb-accent-teal)/0.28)]"
             >
               <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[rgb(var(--voyana-rgb-accent-teal-strong)/0.72)] text-(--voyana-color-accent-teal) ring-1 ring-[rgb(var(--voyana-rgb-accent-teal)/0.32)] transition group-hover:bg-[rgb(var(--voyana-rgb-accent-teal-strong)/0.9)]">
-                <LocalOfferRoundedIcon fontSize="small" />
+                <CardTravelRoundedIcon fontSize="small" />
               </span>
               <span className="min-w-0">
                 <span className="block text-sm font-black text-(--voyana-color-white)">
-                  Current offers
+                  Vacation packages
                 </span>
                 <span className="mt-1 block text-sm font-medium leading-5 text-[rgb(var(--voyana-rgb-text-inverse-muted)/0.72)]">
                   Browse available travel deals
