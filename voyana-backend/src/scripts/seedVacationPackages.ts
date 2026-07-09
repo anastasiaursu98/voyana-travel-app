@@ -23,6 +23,11 @@ type SeedVacationPackageFact = {
   value?: string;
 };
 
+type SeedLabelValueOption = {
+  label: string;
+  value: string;
+};
+
 type SeedVacationPackageLogistics = {
   amenities?: SeedVacationPackageFact[];
   stayDetails?: SeedVacationPackageFact[];
@@ -67,6 +72,42 @@ const formatSeedLabel = (value: string) =>
     .filter(Boolean)
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join(" ");
+
+const formatSeedEnumLabel = (value: string) =>
+  formatSeedLabel(value.toLowerCase().replace(/_/g, "-"));
+
+const seedOptionLabelByValue: Record<string, string> = {
+  ACTIVITY_PLANNING: "Activity planning",
+  AIRPORT_TRANSFER: "Airport transfer",
+  ALL_INCLUSIVE: "All inclusive",
+  CRUISE: "Cruise",
+  EARLY_BOOKING: "Early Booking",
+  FLIGHT: "Flight",
+  GUIDED_TOURS: "Guided tours",
+  KIDS_CLUB: "Kids club",
+  LAST_MINUTE: "Last Minute",
+  LIMITED_AVAILABILITY: "Limited Availability",
+  LOCAL_SUPPORT: "Local support",
+  LOCAL_TRANSPORT: "Local transport",
+  SEASONAL_DEAL: "Seasonal Deal",
+  SKI_PASS_OPTION: "Ski pass option",
+  SPA_ACCESS: "Spa access",
+  SPECIAL_OFFER: "Special Offer",
+  STANDARD: "Standard",
+};
+
+const toSeedOption = (value: string): SeedLabelValueOption => ({
+  label: seedOptionLabelByValue[value] ?? formatSeedEnumLabel(value),
+  value,
+});
+
+const uniqueSeedOptions = (values: string[]) =>
+  Array.from(new Set(values)).map(toSeedOption);
+
+const hasSeedOption = (
+  options: SeedLabelValueOption[],
+  value: string,
+) => options.some((option) => option.value === value);
 
 const addDays = (date: Date, days: number) => {
   const nextDate = new Date(date);
@@ -247,14 +288,14 @@ const getSeedCommercial = (payload: Record<string, unknown>) => {
   ].filter((badge): badge is string => typeof badge === "string");
 
   return {
-    badges,
+    badges: uniqueSeedOptions(badges),
     bookingDeadline: travelPeriod?.startDate
       ? addDays(travelPeriod.startDate, isLastMinute ? -3 : -30)
       : undefined,
     campaignLabel:
       pricing?.discountLabel ??
-      (campaignType === "STANDARD" ? "Standard package" : formatSeedLabel(campaignType.toLowerCase())),
-    campaignType,
+      (campaignType === "STANDARD" ? "Standard package" : formatSeedEnumLabel(campaignType)),
+    campaignType: toSeedOption(campaignType),
   };
 };
 
@@ -307,8 +348,8 @@ const getSeedInclusions = (
 
   return {
     mealPlan: getSeedMealPlan(payload),
-    services: Array.from(new Set(services)),
-    transport: Array.from(new Set(transport)),
+    services: uniqueSeedOptions(services),
+    transport: uniqueSeedOptions(transport),
   };
 };
 
@@ -354,9 +395,9 @@ const getSeedTransport = (
     arrivalCity: formatSeedLabel(destinationSlug),
     departureCity: "Bucharest",
     included:
-      inclusions.transport.includes("FLIGHT") ||
-      inclusions.transport.includes("LOCAL_TRANSPORT") ||
-      inclusions.transport.includes("CRUISE"),
+      hasSeedOption(inclusions.transport, "FLIGHT") ||
+      hasSeedOption(inclusions.transport, "LOCAL_TRANSPORT") ||
+      hasSeedOption(inclusions.transport, "CRUISE"),
     types: inclusions.transport,
   };
 };

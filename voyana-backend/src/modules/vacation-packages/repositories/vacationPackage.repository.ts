@@ -1,23 +1,16 @@
 import type { Types } from "mongoose";
 import { destinationRepository } from "../../destinations/repositories/destination.repository";
+import "../models/VacationCategory.model";
+import VacationPackage from "../models/VacationPackage.model";
 import type {
   VacationPackageIdentity,
   VacationPackagesFilters,
 } from "../vacationPackage.types";
-import VacationPackage from "../models/VacationPackage.model";
-import "../models/VacationCategory.model";
 import { categoriesRepository } from "./vacationCategory.repository";
-
-const activeVacationPackageFilter = {
-  "publishing.isActive": true,
-} as const;
-
-const vacationPackagePopulation = [
-  {
-    path: "category",
-    select: "label value -_id",
-  },
-];
+import {
+  activeVacationPackageFilter,
+  vacationPackagePopulation,
+} from "./vacationPackage.repository.constants";
 
 export const vacationPackageRepository = {
   async findActiveVacationPackages({
@@ -25,6 +18,7 @@ export const vacationPackageRepository = {
     destination,
     maxPrice,
     minPrice,
+    campaignType,
   }: VacationPackagesFilters) {
     const filters: Record<string, unknown> = {
       ...activeVacationPackageFilter,
@@ -58,6 +52,9 @@ export const vacationPackageRepository = {
 
       filters.category = { $in: categoryIds };
     }
+    if (campaignType && campaignType.length > 0) {
+      filters["commercial.campaignType.value"] = { $in: campaignType };
+    }
 
     if (minPrice !== undefined || maxPrice !== undefined) {
       filters["pricing.amount"] = {
@@ -66,13 +63,13 @@ export const vacationPackageRepository = {
       };
     }
 
-    return VacationPackage.find(filters).populate(vacationPackagePopulation).sort(
-      {
+    return VacationPackage.find(filters)
+      .populate(vacationPackagePopulation)
+      .sort({
         "publishing.isFeatured": -1,
         "publishing.priority": 1,
         "travelPeriod.startDate": -1,
-      },
-    );
+      });
   },
 
   findActiveVacationPackageById(vacationPackageId: string) {

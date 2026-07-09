@@ -1,6 +1,9 @@
 import { isValidObjectId } from "mongoose";
 import { getRouteParam } from "../../shared/utils/request.utils";
-import type { VacationPackageIdentity, VacationPackagesFilters } from "./vacationPackage.types";
+import type {
+  VacationPackageIdentity,
+  VacationPackagesFilters,
+} from "./vacationPackage.types";
 
 type ValidationResult<T> =
   | {
@@ -25,6 +28,7 @@ export const getVacationPackagesFiltersFromQuery = (query: {
   category?: string | string[];
   maxPrice?: string | string[];
   minPrice?: string | string[];
+  campaignType?: string | string[];
 }): ValidationResult<VacationPackagesFilters> => {
   const errors: Record<string, string[]> = {};
   const destination = getRouteParam(query.destination);
@@ -33,6 +37,12 @@ export const getVacationPackagesFiltersFromQuery = (query: {
   const categoryRaw = query.category;
   const category = categoryRaw
     ? (Array.isArray(categoryRaw) ? categoryRaw : [categoryRaw])
+        .map((c) => c.trim())
+        .filter(Boolean)
+    : undefined;
+  const campaignTypeRaw = query.campaignType;
+  const campaignType = campaignTypeRaw
+    ? (Array.isArray(campaignTypeRaw) ? campaignTypeRaw : [campaignTypeRaw])
         .map((c) => c.trim())
         .filter(Boolean)
     : undefined;
@@ -47,7 +57,11 @@ export const getVacationPackagesFiltersFromQuery = (query: {
   if (category) {
     filters.category = Array.isArray(category) ? category : [category];
   }
-
+  if (campaignType) {
+    filters.campaignType = Array.isArray(campaignType)
+      ? campaignType
+      : [campaignType];
+  }
   if (minPriceRaw) {
     if (minPrice === undefined || !Number.isFinite(minPrice) || minPrice < 0) {
       addValidationError(
@@ -100,13 +114,25 @@ export const getVacationPackageIdentityFromParams = (params: {
   const vacationPackageCode = getRouteParam(params.vacationPackageCode);
 
   if (!vacationPackageId) {
-    addValidationError(errors, "vacationPackageId", "VacationPackage ID is required");
+    addValidationError(
+      errors,
+      "vacationPackageId",
+      "VacationPackage ID is required",
+    );
   } else if (!isValidObjectId(vacationPackageId)) {
-    addValidationError(errors, "vacationPackageId", "Invalid vacationPackage ID format");
+    addValidationError(
+      errors,
+      "vacationPackageId",
+      "Invalid vacationPackage ID format",
+    );
   }
 
   if (!vacationPackageCode) {
-    addValidationError(errors, "vacationPackageCode", "VacationPackage code is required");
+    addValidationError(
+      errors,
+      "vacationPackageCode",
+      "VacationPackage code is required",
+    );
   }
 
   if (Object.keys(errors).length > 0) {

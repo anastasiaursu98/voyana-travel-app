@@ -5,6 +5,11 @@ export type VacationPackageTaxonomyLookup = {
   value: string;
 };
 
+export type VacationPackageLabelValue = {
+  label: string;
+  value: string;
+};
+
 export type VacationCategory = VacationPackageTaxonomyLookup & {
   _id: string;
   description: string;
@@ -81,10 +86,12 @@ export type VacationPackageCategoryKind =
   | "TOURS_AND_ITINERARIES";
 
 export type VacationPackageCommercial = {
-  badges?: string[];
+  badges?: VacationPackageLabelValue[];
   bookingDeadline?: string;
   campaignLabel?: string;
-  campaignType?: VacationPackageCampaignType;
+  campaignType?: VacationPackageLabelValue & {
+    value: VacationPackageCampaignType;
+  };
 };
 
 export type VacationPackageAvailability = {
@@ -96,8 +103,8 @@ export type VacationPackageAvailability = {
 
 export type VacationPackageInclusions = {
   mealPlan?: VacationPackageMealPlan;
-  services?: string[];
-  transport?: string[];
+  services?: VacationPackageLabelValue[];
+  transport?: VacationPackageLabelValue[];
 };
 
 export type VacationPackageAccommodation = {
@@ -111,7 +118,7 @@ export type VacationPackageTransport = {
   arrivalCity?: string;
   departureCity?: string;
   included?: boolean;
-  types?: string[];
+  types?: VacationPackageLabelValue[];
 };
 
 export type VacationPackagePolicies = {
@@ -232,12 +239,4 @@ export type VacationPackage = {
     endDate: string;
     startDate: string;
   };
-};
-
-export type VacationPackageFilters = {
-  destination?: string;
-  category?: Array<string>;
-  minPrice?: number;
-  maxPrice?: number;
-  //   sort?: string;
 };

@@ -1,6 +1,26 @@
 import { Schema } from "mongoose";
 
 /**
+ * Reusable display option for enum-like fields exposed to the frontend.
+ * `value` stays stable for filters/storage logic, while `label` is ready for UI.
+ */
+export const labelValueSchema = new Schema(
+  {
+    label: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    value: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+  },
+  { _id: false },
+);
+
+/**
  * Reusable image metadata for a single display image.
  * Used by destination cover images and vacation package media cover images.
  */

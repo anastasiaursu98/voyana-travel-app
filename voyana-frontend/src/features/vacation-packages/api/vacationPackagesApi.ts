@@ -1,9 +1,13 @@
 import { axiosClient } from "../../../shared/services/axiosClient";
 import type { ApiSuccessResponse } from "../../../shared/types/api.types";
-import type { VacationPackage, VacationPackageFilters } from "../types/vacationPackage.types";
+import type { VacationPackageFilterOptions } from "../list-view/types/vacationPackageFilterOptions";
+import type { VacationPackageFilters } from "../list-view/types/vacationPackageFilters.types";
+import type { VacationPackage } from "../types/vacationPackage.types";
 
 export const vacationPackagesApi = {
-  async getVacationPackages(params?: VacationPackageFilters): Promise<VacationPackage[]> {
+  async getVacationPackages(
+    params?: VacationPackageFilters,
+  ): Promise<VacationPackage[]> {
     const searchParams = new URLSearchParams();
     Object.entries(params || {}).forEach(([key, value]) => {
       if (value === undefined) {
@@ -21,16 +25,33 @@ export const vacationPackagesApi = {
     });
     const query = searchParams.toString();
     const data = axiosClient
-      .get<ApiSuccessResponse<VacationPackage[]>>(`/vacation-packages${query ? `?${query}` : ""}`)
+      .get<
+        ApiSuccessResponse<VacationPackage[]>
+      >(`/vacation-packages${query ? `?${query}` : ""}`)
       .then((response) => response.data.data);
     return data;
   },
 
-  async getVacationPackageById(vacationPackageId: string, vacationPackageCode: string): Promise<VacationPackage> {
+  async getVacationPackageById(
+    vacationPackageId: string,
+    vacationPackageCode: string,
+  ): Promise<VacationPackage> {
     const data = axiosClient
-      .get<ApiSuccessResponse<VacationPackage>>(`/vacation-packages/${vacationPackageId}/${vacationPackageCode}`)
+      .get<
+        ApiSuccessResponse<VacationPackage>
+      >(`/vacation-packages/${vacationPackageId}/${vacationPackageCode}`)
       .then((response) => response.data.data);
     return data;
   },
 
+  async getVacationFiltersOptions(
+    destination?: string,
+  ): Promise<VacationPackageFilterOptions> {
+    const data = axiosClient
+      .get<
+        ApiSuccessResponse<VacationPackageFilterOptions>
+      >(`/vacation-packages/filter-options${destination ? `?destination=${destination}` : ""}`)
+      .then((response) => response.data.data);
+    return data;
+  },
 };

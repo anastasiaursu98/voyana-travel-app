@@ -1,27 +1,21 @@
 import { Schema } from "mongoose";
+import { labelValueSchema } from "../../../shared/schemas/common.schemas";
 
 export const vacationPackageCommercialSchema = new Schema(
   {
     campaignType: {
-      type: String,
-      enum: [
-        "STANDARD",
-        "LAST_MINUTE",
-        "EARLY_BOOKING",
-        "SEASONAL_DEAL",
-        "LIMITED_AVAILABILITY",
-        "SPECIAL_OFFER",
-      ],
-      trim: true,
-      default: "STANDARD",
-      index: true,
+      type: labelValueSchema,
+      default: {
+        label: "Standard",
+        value: "STANDARD",
+      },
     },
     campaignLabel: {
       type: String,
       trim: true,
     },
     badges: {
-      type: [String],
+      type: [labelValueSchema],
       default: [],
     },
     bookingDeadline: {

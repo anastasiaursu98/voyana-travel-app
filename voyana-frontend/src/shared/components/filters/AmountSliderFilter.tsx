@@ -1,4 +1,3 @@
-import AttachMoneyRoundedIcon from "@mui/icons-material/AttachMoneyRounded";
 import Slider from "@mui/material/Slider";
 import { CollapsibleFilterSection } from "./CollapsibleFilterSection";
 
@@ -31,9 +30,18 @@ export function AmountSliderFilter({
     onChange?.([nextValue[0], nextValue[1]]);
   };
 
+  const hasCustomRange = value[0] !== min || value[1] !== max;
+  const supportingText = `${currency} ${value[0].toLocaleString("en-US")} - ${currency} ${value[1].toLocaleString("en-US")}`;
+
   return (
-    <CollapsibleFilterSection icon={AttachMoneyRoundedIcon} title={title}>
-      <div className="grid gap-4 px-2 pb-1 pt-2">
+    <CollapsibleFilterSection
+      activeLabel="Custom"
+      defaultOpen
+      selectedCount={hasCustomRange ? 1 : 0}
+      supportingText={supportingText}
+      title={title}
+    >
+      <div className="grid gap-4 px-1 pb-1 pt-2">
         <div className="flex items-center justify-between gap-3 text-sm font-black text-(--voyana-color-text-primary)">
           <span>
             {currency} {value[0].toLocaleString("en-US")}

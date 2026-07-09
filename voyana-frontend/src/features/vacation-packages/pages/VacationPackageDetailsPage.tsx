@@ -1,5 +1,5 @@
 import { PublicPageShell } from "../../../shared/components/PublicPageShell";
-import { VacationPackageDetails } from "../components/single-view";
+import { VacationPackageDetails } from "../single-view";
 
 export function VacationPackageDetailsPage() {
   return (

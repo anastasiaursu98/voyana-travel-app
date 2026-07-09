@@ -1,7 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { RootState } from "../../../app/store/store";
 import { vacationPackagesApi } from "../api/vacationPackagesApi";
-import type { VacationPackage, VacationPackageFilters } from "../types/vacationPackage.types";
+import type { VacationPackageFilterOptions } from "../list-view/types/vacationPackageFilterOptions";
+import type { VacationPackageFilters } from "../list-view/types/vacationPackageFilters.types";
+import type { VacationPackage } from "../types/vacationPackage.types";
 
 type VacationPackageStatus = "idle" | "loading" | "succeeded" | "failed";
 type VacationPackagesState = {
@@ -15,8 +17,11 @@ type VacationPackagesState = {
     vacationPackageCode: string;
     vacationPackageId: string;
   } | null;
-
   vacationPackageByIdError: string | null;
+
+  filterOptions: VacationPackageFilterOptions | null;
+  filterOptionsStatus: VacationPackageStatus;
+  filterOptionsError: string | null;
 };
 
 const initialState: VacationPackagesState = {
@@ -28,19 +33,38 @@ const initialState: VacationPackagesState = {
   vacationPackageByIdStatus: "idle",
   vacationPackageByIdRequest: null,
   vacationPackageByIdError: null,
+
+  filterOptions: null,
+  filterOptionsStatus: "idle",
+  filterOptionsError: null,
 };
 
 export const fetchVacationPackages = createAsyncThunk(
   "vacationPackages/fetchVacationPackages",
-  async (params?: VacationPackageFilters) => vacationPackagesApi.getVacationPackages(params),
+  async (params?: VacationPackageFilters) =>
+    vacationPackagesApi.getVacationPackages(params),
 );
 
 export const fetchVacationPackageById = createAsyncThunk(
   "vacationPackages/fetchVacationPackageById",
-  async ({ vacationPackageId, vacationPackageCode }: { vacationPackageId: string; vacationPackageCode: string }) =>
-    vacationPackagesApi.getVacationPackageById(vacationPackageId, vacationPackageCode),
+  async ({
+    vacationPackageId,
+    vacationPackageCode,
+  }: {
+    vacationPackageId: string;
+    vacationPackageCode: string;
+  }) =>
+    vacationPackagesApi.getVacationPackageById(
+      vacationPackageId,
+      vacationPackageCode,
+    ),
 );
 
+export const fetchVacationFiltersOptions = createAsyncThunk(
+  "vacationPackages/fetchVacationFiltersOptions",
+  async (destination?: string) =>
+    vacationPackagesApi.getVacationFiltersOptions(destination),
+);
 const vacationPackagesSlice = createSlice({
   name: "vacationPackages",
   initialState,
@@ -70,7 +94,21 @@ const vacationPackagesSlice = createSlice({
       })
       .addCase(fetchVacationPackageById.rejected, (state, action) => {
         state.vacationPackageByIdStatus = "failed";
-        state.vacationPackageByIdError = action.error.message || "Something went wrong";
+        state.vacationPackageByIdError =
+          action.error.message || "Something went wrong";
+      })
+      .addCase(fetchVacationFiltersOptions.pending, (state) => {
+        state.filterOptionsStatus = "loading";
+        state.filterOptionsError = null;
+      })
+      .addCase(fetchVacationFiltersOptions.fulfilled, (state, action) => {
+        state.filterOptionsStatus = "succeeded";
+        state.filterOptions = action.payload;
+      })
+      .addCase(fetchVacationFiltersOptions.rejected, (state, action) => {
+        state.filterOptionsStatus = "failed";
+        state.filterOptionsError =
+          action.error.message || "Something went wrong";
       });
   },
 });
@@ -91,5 +129,12 @@ export const selectVacationPackageByIdError = (state: RootState) =>
   (state.vacationPackages as VacationPackagesState).vacationPackageByIdError;
 export const selectVacationPackageByIdRequest = (state: RootState) =>
   (state.vacationPackages as VacationPackagesState).vacationPackageByIdRequest;
+
+export const selectVacationFiltersOptions = (state: RootState) =>
+  (state.vacationPackages as VacationPackagesState).filterOptions;
+export const selectVacationFiltersOptionsStatus = (state: RootState) =>
+  (state.vacationPackages as VacationPackagesState).filterOptionsStatus;
+export const selectVacationFiltersOptionsError = (state: RootState) =>
+  (state.vacationPackages as VacationPackagesState).filterOptionsError;
 
 export default vacationPackagesSlice.reducer;

@@ -1,4 +1,4 @@
-import { ListViewVacationPackages } from "../components/list-view/ListViewVacationPackages";
+import { ListViewVacationPackages } from "../list-view/components/ListViewVacationPackages";
 
 export const VacationPackagesPage = () => {
   return <ListViewVacationPackages />;

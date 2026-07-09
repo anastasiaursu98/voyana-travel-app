@@ -190,6 +190,6 @@ vacationPackageSchema.index({
 });
 
 vacationPackageSchema.index({
-  "commercial.campaignType": 1,
+  "commercial.campaignType.value": 1,
   "availability.status": 1,
 });

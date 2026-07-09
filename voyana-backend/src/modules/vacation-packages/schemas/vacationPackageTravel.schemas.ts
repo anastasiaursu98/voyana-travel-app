@@ -1,4 +1,5 @@
 import { Schema } from "mongoose";
+import { labelValueSchema } from "../../../shared/schemas/common.schemas";
 
 export const vacationPackageInclusionsSchema = new Schema(
   {
@@ -17,11 +18,11 @@ export const vacationPackageInclusionsSchema = new Schema(
       index: true,
     },
     transport: {
-      type: [String],
+      type: [labelValueSchema],
       default: [],
     },
     services: {
-      type: [String],
+      type: [labelValueSchema],
       default: [],
     },
   },
@@ -76,7 +77,7 @@ export const vacationPackageTransportSchema = new Schema(
       default: false,
     },
     types: {
-      type: [String],
+      type: [labelValueSchema],
       default: [],
     },
   },
