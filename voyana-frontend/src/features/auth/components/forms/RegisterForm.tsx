@@ -2,12 +2,15 @@ import { Box, Divider, Link, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import { routes } from "../../../../app/router/routes";
 import {
+  designTokens,
+  tokenAlpha,
+} from "../../../../shared/constants/designTokens";
+import {
   AppButton,
   AppPasswordField,
   AppTextField,
   GoogleButton,
 } from "../../../../shared/ui";
-import { designTokens, tokenAlpha } from "../../../../shared/constants/designTokens";
 import type { RegisterFormModel } from "../../hooks/useRegisterForm";
 import { FormErrorAlert } from "../ui/FormErrorAlert";
 
@@ -102,7 +105,7 @@ export function RegisterForm({
           underline="none"
           sx={{ fontWeight: 800 }}
         >
-          Sign in
+          Log in
         </Link>
       </Box>
     </Box>

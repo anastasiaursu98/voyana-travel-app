@@ -85,6 +85,23 @@ export const userSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
+    accessToken: {
+      type: String,
+      select: false,
+    },
+    accessTokenExpiresAt: {
+      type: Date,
+      select: false,
+    },
+
+    refreshToken: {
+      type: String,
+      select: false,
+    },
+    refreshTokenExpiresAt: {
+      type: Date,
+      select: false,
+    },
   },
   {
     timestamps: true,

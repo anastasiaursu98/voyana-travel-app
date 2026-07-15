@@ -1,26 +1,26 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export function usePublicHeaderMobileMenu() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isVacationCategoriesOpen, setIsVacationCategoriesOpen] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
-  const handleMobileMenuToggle = () => {
+  const handleMobileMenuClose = useCallback(() => {
+    setIsVacationCategoriesOpen(false);
+    setIsMobileMenuOpen(false);
+  }, []);
+
+  const handleMobileMenuToggle = useCallback(() => {
     if (isMobileMenuOpen) {
       setIsVacationCategoriesOpen(false);
     }
 
     setIsMobileMenuOpen((currentValue) => !currentValue);
-  };
+  }, [isMobileMenuOpen]);
 
-  const handleMobileMenuClose = () => {
-    setIsVacationCategoriesOpen(false);
-    setIsMobileMenuOpen(false);
-  };
-
-  const handleVacationCategoriesToggle = () => {
+  const handleVacationCategoriesToggle = useCallback(() => {
     setIsVacationCategoriesOpen((currentValue) => !currentValue);
-  };
+  }, []);
 
   useEffect(() => {
     if (!isMobileMenuOpen) {
@@ -28,8 +28,11 @@ export function usePublicHeaderMobileMenu() {
     }
 
     const previouslyFocusedElement = document.activeElement;
+    const previousBodyOverflow = document.body.style.overflow;
     const focusableSelector =
       "#public-mobile-navigation a[href], #public-mobile-navigation button:not([disabled])";
+
+    document.body.style.overflow = "hidden";
 
     window.requestAnimationFrame(() => {
       const menuPanel = document.getElementById("public-mobile-navigation");
@@ -41,15 +44,13 @@ export function usePublicHeaderMobileMenu() {
         mobileMenuRef.current &&
         !mobileMenuRef.current.contains(event.target as Node)
       ) {
-        setIsVacationCategoriesOpen(false);
-        setIsMobileMenuOpen(false);
+        handleMobileMenuClose();
       }
     };
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        setIsVacationCategoriesOpen(false);
-        setIsMobileMenuOpen(false);
+        handleMobileMenuClose();
         return;
       }
 
@@ -86,12 +87,13 @@ export function usePublicHeaderMobileMenu() {
     return () => {
       document.removeEventListener("pointerdown", handlePointerDown);
       document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = previousBodyOverflow;
 
       if (previouslyFocusedElement instanceof HTMLElement) {
         previouslyFocusedElement.focus();
       }
     };
-  }, [isMobileMenuOpen]);
+  }, [handleMobileMenuClose, isMobileMenuOpen]);
 
   return {
     handleMobileMenuClose,

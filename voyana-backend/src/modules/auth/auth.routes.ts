@@ -1,5 +1,7 @@
 import express from "express";
+import { requireAuth } from "../../shared/middleware/requireAuth";
 import {
+  getCurrentUser,
   loginUser,
   registerUser,
   resendEmailOTp,
@@ -7,6 +9,8 @@ import {
 } from "./auth.controllers";
 
 const router = express.Router();
+
+router.get("/current-user", requireAuth, getCurrentUser);
 
 router.post("/register", registerUser);
 

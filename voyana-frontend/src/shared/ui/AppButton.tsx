@@ -3,7 +3,7 @@ import { Button } from "@mui/material";
 import type { ElementType } from "react";
 import { designTokens, tokenAlpha } from "../constants/designTokens";
 
-export type AppButtonIntent = "primary" | "secondary";
+export type AppButtonIntent = "primary" | "secondary" | "text";
 
 export type AppButtonProps = ButtonProps & {
   component?: ElementType;
@@ -49,11 +49,34 @@ const buttonIntentSx: Record<AppButtonIntent, SxProps<Theme>> = {
     bgcolor: "transparent",
     boxShadow: "none",
   },
+  text: {
+    minHeight: "auto",
+    borderRadius: designTokens.radius.pill,
+    bgcolor: "transparent",
+    boxShadow: "none",
+    px: 0.5,
+    py: 0.25,
+    "&:hover": {
+      bgcolor: "transparent",
+      boxShadow: "none",
+      textDecoration: "underline",
+      textUnderlineOffset: "0.18em",
+      transform: "none",
+    },
+    "&:active": {
+      bgcolor: "transparent",
+    },
+    "&.Mui-disabled": {
+      bgcolor: "transparent",
+      boxShadow: "none",
+    },
+  },
 };
 
 const defaultVariantByIntent: Record<AppButtonIntent, ButtonProps["variant"]> = {
   primary: "contained",
   secondary: "outlined",
+  text: "text",
 };
 
 export function AppButton({
@@ -94,6 +117,26 @@ export function AppButton({
             bgcolor: "transparent",
           },
         };
+  const textSurfaceSx: SxProps<Theme> =
+    surface === "light"
+      ? {
+          color: designTokens.colors.textStrong,
+          "&:hover": {
+            color: designTokens.colors.textPrimary,
+          },
+          "&.Mui-disabled": {
+            color: tokenAlpha(designTokens.rgb.textStrong, 0.38),
+          },
+        }
+      : {
+          color: designTokens.colors.textInverse,
+          "&:hover": {
+            color: designTokens.colors.textInverseMuted,
+          },
+          "&.Mui-disabled": {
+            color: tokenAlpha(designTokens.rgb.white, 0.38),
+          },
+        };
 
   return (
     <Button
@@ -103,6 +146,7 @@ export function AppButton({
         baseButtonSx,
         buttonIntentSx[intent],
         intent === "secondary" ? secondarySurfaceSx : null,
+        intent === "text" ? textSurfaceSx : null,
         ...sxList,
       ] as SxProps<Theme>}
       {...props}

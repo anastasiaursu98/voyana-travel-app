@@ -1,29 +1,26 @@
-import type { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { sendError } from "../utils/apiResponse";
+
+import type { NextFunction, Request, Response } from "express";
 
 export const requireAuth = (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
-  const authHeader = req.headers.authorization;
+  const token = req.cookies?.accessToken;
 
-  if (!authHeader?.startsWith("Bearer ")) {
+  if (!token) {
     return sendError(res, 401, "UNAUTHORIZED", "Missing access token");
   }
 
-  const token = authHeader.slice("Bearer ".length);
-  const secret = process.env.JWT_ACCESS_SECRET;
-
-  if (!secret) {
-    return sendError(res, 500, "INTERNAL_SERVER_ERROR", "JWT secret missing");
-  }
-
   try {
-    jwt.verify(token, secret);
+    const payload = jwt.verify(token, process.env.JWT_ACCESS_SECRET!);
+
+    res.locals.auth = payload;
+
     return next();
   } catch {
-    return sendError(res, 401, "UNAUTHORIZED", "Invalid or expired token");
+    return sendError(res, 401, "UNAUTHORIZED", "Invalid token");
   }
 };

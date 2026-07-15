@@ -1,6 +1,9 @@
 import { Box, Typography } from "@mui/material";
 import type { ReactNode } from "react";
-import { designTokens, tokenAlpha } from "../../../../shared/constants/designTokens";
+import {
+  designTokens,
+  tokenAlpha,
+} from "../../../../shared/constants/designTokens";
 
 type AuthFormShellProps = {
   title: string;

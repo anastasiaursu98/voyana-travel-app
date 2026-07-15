@@ -1,6 +1,6 @@
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
-import { Link as RouterLink, NavLink } from "react-router-dom";
-import { routes } from "../router/routes";
+import { NavLink, Link as RouterLink } from "react-router-dom";
+import { routes } from "../../router/routes";
 import { usePublicVacationCategoryLinks } from "./hooks/usePublicVacationCategoryLinks";
 
 type PublicHeaderVacationPackagesDropdownProps = {
@@ -14,7 +14,8 @@ export function PublicHeaderVacationPackagesDropdown({
 }: PublicHeaderVacationPackagesDropdownProps) {
   const { categoriesError, categoriesStatus, vacationCategoryLinks } =
     usePublicVacationCategoryLinks();
-  const isLoading = categoriesStatus === "idle" || categoriesStatus === "loading";
+  const isLoading =
+    categoriesStatus === "idle" || categoriesStatus === "loading";
   const hasCategories = vacationCategoryLinks.length > 0;
 
   return (
@@ -83,7 +84,7 @@ export function PublicHeaderVacationPackagesDropdown({
             >
               {isLoading
                 ? "Loading vacation categories..."
-                : categoriesError ?? "No vacation categories available."}
+                : (categoriesError ?? "No vacation categories available.")}
             </p>
           )}
         </div>

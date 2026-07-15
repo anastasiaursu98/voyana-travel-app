@@ -1,8 +1,8 @@
-import { CssBaseline, ThemeProvider } from '@mui/material'
-import type { PropsWithChildren } from 'react'
-import { Provider } from 'react-redux'
-import { store } from '../store/store'
-import { theme } from './theme'
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { type PropsWithChildren } from "react";
+import { Provider } from "react-redux";
+import { store } from "../store/store";
+import { theme } from "./theme";
 
 export function AppProviders({ children }: PropsWithChildren) {
   return (
@@ -12,5 +12,5 @@ export function AppProviders({ children }: PropsWithChildren) {
         {children}
       </ThemeProvider>
     </Provider>
-  )
+  );
 }

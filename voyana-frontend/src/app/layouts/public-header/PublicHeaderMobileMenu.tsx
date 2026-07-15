@@ -2,12 +2,9 @@ import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import type { RefObject } from "react";
-import {
-  Link as RouterLink,
-  NavLink,
-} from "react-router-dom";
-import { routes } from "../router/routes";
-import { PUBLIC_NAV_ITEMS } from "./constants/publicLayout.constants";
+import { NavLink, Link as RouterLink } from "react-router-dom";
+import { routes } from "../../router/routes";
+import { PUBLIC_NAV_ITEMS } from "./constants/publicHeader.constants";
 import { usePublicVacationCategoryLinks } from "./hooks/usePublicVacationCategoryLinks";
 
 type PublicHeaderMobileMenuProps = {
@@ -31,7 +28,8 @@ export function PublicHeaderMobileMenu({
 }: PublicHeaderMobileMenuProps) {
   const { categoriesError, categoriesStatus, vacationCategoryLinks } =
     usePublicVacationCategoryLinks();
-  const isLoading = categoriesStatus === "idle" || categoriesStatus === "loading";
+  const isLoading =
+    categoriesStatus === "idle" || categoriesStatus === "loading";
 
   const getMobileLinkClassName = (isActive: boolean) =>
     `flex min-h-12 items-center justify-between rounded-lg px-4 text-base font-black transition focus:outline-none focus:ring-4 focus:ring-[rgb(var(--voyana-rgb-accent-teal)/0.18)] ${
@@ -136,8 +134,8 @@ export function PublicHeaderMobileMenu({
                             <p className="rounded-md bg-white px-3 py-2.5 text-sm font-bold text-(--voyana-color-text-muted)">
                               {isLoading
                                 ? "Loading vacation categories..."
-                                : categoriesError ??
-                                  "No vacation categories available."}
+                                : (categoriesError ??
+                                  "No vacation categories available.")}
                             </p>
                           )}
                         </div>

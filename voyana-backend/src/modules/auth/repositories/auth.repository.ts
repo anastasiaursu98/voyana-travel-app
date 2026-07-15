@@ -10,7 +10,7 @@ import {
   createEmailVerificationCode,
   sendEmailVerificationCode,
 } from "../auth.otp.service";
-import { generateAccessToken } from "../auth.tokens";
+
 import type {
   LoginInput,
   RegisterInput,
@@ -18,12 +18,34 @@ import type {
   VerifyEmailOtpInput,
 } from "../auth.types";
 import User from "../models/User.model";
+import {
+  generateAccessToken,
+  generateRefreshToken,
+} from "../utils/auth.tokens";
 
 export const authRepository = {
   async register({ firstName, lastName, email, password }: RegisterInput) {
-    const existingUser = await User.findOne({ email }).select("email");
+    const existingUser = await User.findOne({ email }).select(
+      "+emailVerificationTokenHash +emailVerificationExpiresAt firstName lastName email isEmailVerified",
+    );
 
     if (existingUser) {
+      if (!existingUser.isEmailVerified) {
+        const { code, hashedVerificationCode, emailVerificationExpiresAt } =
+          await createEmailVerificationCode();
+
+        existingUser.emailVerificationTokenHash = hashedVerificationCode;
+        existingUser.emailVerificationExpiresAt = emailVerificationExpiresAt;
+        await existingUser.save();
+
+        await sendEmailVerificationCode({
+          email: existingUser.email,
+          firstName: existingUser.firstName,
+          verificationCode: code,
+        });
+
+        return toPublicAuthUser(existingUser);
+      }
       throw new AuthError(409, "CONFLICT", "User already exists", {
         email: ["Email is already in use"],
       });
@@ -175,7 +197,20 @@ export const authRepository = {
     }
 
     if (!user.isEmailVerified) {
-      throw new AuthError(401, "UNAUTHORIZED", "Email is not verified");
+      const { code, hashedVerificationCode, emailVerificationExpiresAt } =
+        await createEmailVerificationCode();
+
+      user.emailVerificationTokenHash = hashedVerificationCode;
+      user.emailVerificationExpiresAt = emailVerificationExpiresAt;
+      await user.save();
+
+      await sendEmailVerificationCode({
+        email: user.email,
+        firstName: user.firstName,
+        verificationCode: code,
+      });
+
+      throw new AuthError(403, "EMAIL_NOT_VERIFIED", "Email is not verified");
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
@@ -185,10 +220,11 @@ export const authRepository = {
     }
 
     const accessToken = generateAccessToken(user);
+    const refreshToken = generateRefreshToken(user);
 
     user.lastLoginAt = new Date();
     await user.save();
 
-    return { accessToken, user: toPublicAuthUser(user) };
+    return { accessToken, refreshToken, user: toPublicAuthUser(user) };
   },
 };

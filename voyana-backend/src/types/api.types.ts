@@ -5,6 +5,7 @@ export type ApiErrorCode =
   | "NOT_FOUND"
   | "CONFLICT"
   | "BAD_REQUEST"
+  | "EMAIL_NOT_VERIFIED"
   | "INTERNAL_SERVER_ERROR";
 
 export type ApiErrorResponse = {
@@ -23,3 +24,9 @@ export type ApiSuccessResponse<T> = {
 };
 
 export type ApiResponse<T> = ApiSuccessResponse<T> | ApiErrorResponse;
+
+export type AuthTokenUser = {
+  _id: unknown;
+  email: string;
+  role: string;
+};
