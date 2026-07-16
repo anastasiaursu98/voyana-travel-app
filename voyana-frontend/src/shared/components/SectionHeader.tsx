@@ -1,12 +1,15 @@
+import type { SxProps, Theme } from "@mui/material";
+import { AppTypography, type AppTypographyVariant } from "../ui";
+
 type SectionHeaderProps = {
   eyebrow?: string;
   title: string;
-  description: string;
+  description?: string;
   inverse?: boolean;
   align?: "left" | "center" | "responsiveCenter";
   descriptionSize?: "default" | "large";
   titleAs?: "h1" | "h2" | "h3";
-  titleSize?: "default" | "large" | "display";
+  titleSize?: "small" | "default" | "large" | "display";
   titleTransform?: "uppercase" | "none";
   className?: string;
 };
@@ -23,16 +26,41 @@ const centeredContentClasses = {
   responsiveCenter: "sm:mx-auto",
 } as const;
 
-const titleSizeClasses = {
-  default: "text-3xl leading-[1.05] sm:text-4xl lg:text-5xl",
-  display: "text-4xl leading-[1.05] sm:text-5xl lg:text-6xl",
-  large: "text-[2.35rem] leading-[1.05] sm:text-[3rem] lg:text-[3.35rem]",
-} as const;
+const titleSizeSx: Record<
+  NonNullable<SectionHeaderProps["titleSize"]>,
+  SxProps<Theme>
+> = {
+  small: {
+    fontSize: "clamp(1.35rem, 2.2vw, 1.9rem)",
+    lineHeight: 1.16,
+  },
+  default: {
+    fontSize: "clamp(1.7rem, 3vw, 2.45rem)",
+    lineHeight: 1.12,
+  },
+  large: {
+    fontSize: "clamp(1.95rem, 3.4vw, 2.75rem)",
+    lineHeight: 1.1,
+  },
+  display: {
+    fontSize: "clamp(2.35rem, 5vw, 4rem)",
+    lineHeight: 1.04,
+  },
+};
 
-const descriptionSizeClasses = {
-  default: "mt-4 text-sm leading-6 sm:text-base sm:leading-7",
-  large: "mt-5 text-base leading-8 sm:text-lg sm:leading-9",
-} as const;
+const descriptionSizeSx: Record<
+  NonNullable<SectionHeaderProps["descriptionSize"]>,
+  SxProps<Theme>
+> = {
+  default: {
+    fontSize: "clamp(0.95rem, 1.4vw, 1.05rem)",
+    lineHeight: 1.7,
+  },
+  large: {
+    fontSize: "clamp(1rem, 1.5vw, 1.12rem)",
+    lineHeight: 1.75,
+  },
+};
 
 export function SectionHeader({
   eyebrow,
@@ -41,26 +69,34 @@ export function SectionHeader({
   inverse = false,
   align = "left",
   descriptionSize = "default",
-  titleAs: TitleTag = "h2",
+  titleAs = "h2",
   titleSize = "default",
   titleTransform = "uppercase",
   className = "",
 }: SectionHeaderProps) {
+  const titleVariant: AppTypographyVariant =
+    titleSize === "display" || titleAs === "h1" ? "pageTitle" : "sectionTitle";
+
   return (
-    <div className={`max-w-4xl font-sans ${alignClasses[align]} ${className}`}>
+    <div className={`max-w-4xl ${alignClasses[align]} ${className}`}>
       {eyebrow ? (
-        <p
-          className={`text-xs font-black uppercase leading-none tracking-normal ${
+        <AppTypography
+          variant="label"
+          component="p"
+          className={`uppercase leading-none ${
             inverse
               ? "text-[rgb(var(--voyana-rgb-accent-warm)/0.92)]"
               : "text-(--voyana-color-text-muted)"
           }`}
         >
           {eyebrow}
-        </p>
+        </AppTypography>
       ) : null}
-      <TitleTag
-        className={`${eyebrow ? "mt-3" : ""} max-w-4xl font-bold tracking-normal ${titleSizeClasses[titleSize]} ${
+      <AppTypography
+        variant={titleVariant}
+        component={titleAs}
+        sx={titleSizeSx[titleSize]}
+        className={`${eyebrow ? "mt-4" : ""} max-w-4xl ${
           titleTransform === "uppercase" ? "uppercase" : ""
         } ${centeredContentClasses[align]} ${
           inverse
@@ -69,16 +105,21 @@ export function SectionHeader({
         }`}
       >
         {title}
-      </TitleTag>
-      <p
-        className={`max-w-4xl font-medium ${descriptionSizeClasses[descriptionSize]} ${centeredContentClasses[align]} ${
-          inverse
-            ? "text-[rgb(var(--voyana-rgb-white)/0.84)]"
-            : "text-(--voyana-color-text-body)"
-        }`}
-      >
-        {description}
-      </p>
+      </AppTypography>
+      {description ? (
+        <AppTypography
+          variant="body"
+          component="p"
+          sx={descriptionSizeSx[descriptionSize]}
+          className={`max-w-3xl ${descriptionSize === "large" ? "mt-6" : "mt-5"} ${centeredContentClasses[align]} ${
+            inverse
+              ? "text-[rgb(var(--voyana-rgb-white)/0.84)]"
+              : "text-(--voyana-color-text-body)"
+          }`}
+        >
+          {description}
+        </AppTypography>
+      ) : null}
     </div>
   );
 }

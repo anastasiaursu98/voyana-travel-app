@@ -26,7 +26,7 @@ export function VacationPackageMetaInfo({
       </span>
       {shouldShowRating ? (
         <>
-          <span className="h-1 w-1 shrink-0 rounded-full bg-[rgb(var(--voyana-rgb-text-muted)/0.34)]" />
+          <span className="h-1 w-1 shrink-0 rounded-(--voyana-radius-pill) bg-[rgb(var(--voyana-rgb-text-muted)/0.34)]" />
           <span className="inline-flex shrink-0 items-center gap-1.5 text-(--voyana-color-text-primary)">
             <StarRoundedIcon className="text-[1.1rem] text-(--voyana-color-accent-warm)" />
             {ratingLabel ?? rating?.toFixed(1)}

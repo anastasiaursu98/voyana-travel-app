@@ -1,3 +1,4 @@
+import { AppTypography } from "../../../../shared/ui";
 import { SectionHeader } from "../../../../shared/components/SectionHeader";
 import { homeImages } from "../../constants/homeImages";
 import { OnboardingCard } from "../shared/OnboardingCard";
@@ -27,12 +28,12 @@ export function HowItWorksSection() {
             tone="darkGlass"
             className="p-5 sm:p-6"
           >
-            <span className="grid size-11 place-items-center rounded-full bg-[rgb(var(--voyana-rgb-accent-warm)/0.94)] text-base font-black text-(--voyana-color-button-primary-text)">
+            <span className="grid size-11 place-items-center rounded-(--voyana-radius-pill) bg-[rgb(var(--voyana-rgb-accent-warm)/0.94)] text-base font-black text-(--voyana-color-button-primary-text)">
               {index + 1}
             </span>
-            <h3 className="mt-5 text-xl font-black text-(--voyana-color-white)">
+            <AppTypography variant="cardTitle" className="mt-5 text-(--voyana-color-white)">
               {step.title}
-            </h3>
+            </AppTypography>
             <p className="mt-3 text-sm leading-6 text-[rgb(var(--voyana-rgb-white)/0.78)]">
               {step.description}
             </p>

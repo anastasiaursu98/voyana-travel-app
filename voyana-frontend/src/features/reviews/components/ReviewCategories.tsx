@@ -1,3 +1,4 @@
+import { AppTypography } from "../../../shared/ui";
 import type {
   ReviewCategoryScore,
   ReviewSummary,
@@ -19,7 +20,7 @@ const layoutClasses = {
 
 const surfaceClasses = {
   bare: "",
-  card: "rounded-xl border border-(--voyana-color-border-subtle) bg-white p-5 shadow-none sm:p-6",
+  card: "rounded-(--voyana-radius-panel) border border-(--voyana-color-border-subtle) bg-(--voyana-color-background-card) p-5 shadow-none sm:p-6",
 } as const;
 
 export function ReviewCategories({
@@ -41,13 +42,13 @@ export function ReviewCategories({
       >
         {showSummary ? (
           <div className="flex shrink-0 items-center gap-4 lg:w-72">
-            <div className="grid size-16 place-items-center rounded-lg bg-(--voyana-color-text-primary) text-2xl font-semibold text-(--voyana-color-white)">
+            <div className="grid size-16 place-items-center rounded-(--voyana-radius-card) bg-(--voyana-color-text-primary) text-2xl font-semibold text-(--voyana-color-white)">
               {summary.score.toFixed(1)}
             </div>
             <div>
-              <h3 className="text-xl font-semibold leading-tight text-(--voyana-color-text-primary)">
+              <AppTypography variant="cardTitle" className=" leading-tight text-(--voyana-color-text-primary)">
                 {summary.label}
-              </h3>
+              </AppTypography>
               <p className="mt-1 text-sm font-medium text-(--voyana-color-text-muted)">
                 {summary.reviewCount} verified reviews
               </p>
@@ -66,9 +67,9 @@ export function ReviewCategories({
                   {category.score.toFixed(1)}
                 </p>
               </div>
-              <div className="h-1.5 overflow-hidden rounded-full bg-[rgb(var(--voyana-rgb-border-subtle)/0.76)]">
+              <div className="h-1.5 overflow-hidden rounded-(--voyana-radius-pill) bg-[rgb(var(--voyana-rgb-border-subtle)/0.76)]">
                 <div
-                  className="h-full rounded-full bg-(--voyana-color-text-primary)"
+                  className="h-full rounded-(--voyana-radius-pill) bg-(--voyana-color-text-primary)"
                   style={{ width: `${category.score * 10}%` }}
                 />
               </div>

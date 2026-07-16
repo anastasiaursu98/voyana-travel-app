@@ -4,13 +4,12 @@ import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
 import {
   Box,
-  ButtonBase,
-  IconButton,
   Popover,
   Typography,
 } from "@mui/material";
 import { useState } from "react";
 import { designTokens, tokenAlpha } from "../constants/designTokens";
+import { AppButton } from "./AppButton";
 
 export type AppGuestsValue = {
   adults: number;
@@ -101,12 +100,42 @@ export function AppGuestsDropdown({
 
   return (
     <>
-      <ButtonBase
+      <AppButton
+        intent="control"
         onClick={(event) => setAnchorElement(event.currentTarget)}
+        endIcon={
+          <KeyboardArrowDownRoundedIcon
+            sx={{
+              color: designTokens.colors.textMuted,
+              flexShrink: 0,
+            }}
+          />
+        }
+        startIcon={
+          <Box
+            sx={{
+              alignItems: "center",
+              bgcolor: isCompact
+                ? "transparent"
+                : tokenAlpha(designTokens.rgb.backgroundInput, 0.9),
+              borderRadius: isCompact ? 0 : 1.5,
+              color: isCompact
+                ? designTokens.colors.textMuted
+                : designTokens.colors.textStrong,
+              display: "grid",
+              flexShrink: 0,
+              height: isCompact ? 28 : 42,
+              placeItems: "center",
+              width: isCompact ? 28 : 42,
+            }}
+          >
+            <PersonRoundedIcon fontSize="small" />
+          </Box>
+        }
         sx={{
           alignItems: "center",
           border: `1px solid ${tokenAlpha(designTokens.rgb.borderSubtle, 0.95)}`,
-          borderRadius: 2,
+          borderRadius: designTokens.radius.card,
           display: "flex",
           gap: isCompact ? 1.25 : 1.5,
           justifyContent: "flex-start",
@@ -119,36 +148,20 @@ export function AppGuestsDropdown({
             "border-color 0.2s ease-out, box-shadow 0.2s ease-out, transform 0.2s ease-out",
           "&:hover": {
             borderColor: tokenAlpha(designTokens.rgb.textStrong, 0.28),
-            boxShadow: `0 12px 28px ${tokenAlpha(designTokens.rgb.textStrong, 0.07)}`,
+            boxShadow: designTokens.shadows.search,
             transform: "translateY(-1px)",
+          },
+          "& .MuiButton-endIcon": {
+            ml: "auto",
           },
         }}
       >
-        <Box
-          sx={{
-            alignItems: "center",
-            bgcolor: isCompact
-              ? "transparent"
-              : tokenAlpha(designTokens.rgb.backgroundInput, 0.9),
-            borderRadius: isCompact ? 0 : 1.5,
-            color: isCompact
-              ? designTokens.colors.textMuted
-              : designTokens.colors.textStrong,
-            display: "grid",
-            flexShrink: 0,
-            height: isCompact ? 28 : 42,
-            placeItems: "center",
-            width: isCompact ? 28 : 42,
-          }}
-        >
-          <PersonRoundedIcon fontSize="small" />
-        </Box>
         <Box sx={{ minWidth: 0 }}>
           <Typography
             sx={{
               color: designTokens.colors.textMuted,
               fontSize: isCompact ? 11 : 12,
-              fontWeight: isCompact ? 650 : 800,
+              fontWeight: designTokens.typography.labelWeight,
               lineHeight: 1.1,
             }}
           >
@@ -159,7 +172,7 @@ export function AppGuestsDropdown({
             sx={{
               color: designTokens.colors.textPrimary,
               fontSize: isCompact ? 15 : 16,
-              fontWeight: isCompact ? 650 : 800,
+              fontWeight: designTokens.typography.labelWeight,
               lineHeight: 1.25,
               mt: isCompact ? 0.45 : 0.75,
             }}
@@ -167,14 +180,7 @@ export function AppGuestsDropdown({
             {displayValue ?? getGuestsLabel(value)}
           </Typography>
         </Box>
-        <KeyboardArrowDownRoundedIcon
-          sx={{
-            color: designTokens.colors.textMuted,
-            flexShrink: 0,
-            ml: "auto",
-          }}
-        />
-      </ButtonBase>
+      </AppButton>
 
       <Popover
         open={isOpen}
@@ -187,8 +193,8 @@ export function AppGuestsDropdown({
             sx: {
               bgcolor: designTokens.colors.backgroundCard,
               border: `1px solid ${tokenAlpha(designTokens.rgb.borderSubtle, 0.9)}`,
-              borderRadius: 3,
-              boxShadow: `0 24px 70px ${tokenAlpha(designTokens.rgb.textStrong, 0.14)}`,
+              borderRadius: "var(--voyana-radius-panel)",
+              boxShadow: designTokens.shadows.popover,
               color: designTokens.colors.textPrimary,
               mt: 1,
               overflow: "hidden",
@@ -218,7 +224,7 @@ export function AppGuestsDropdown({
                     sx={{
                       color: designTokens.colors.textPrimary,
                       fontSize: 16,
-                      fontWeight: 850,
+                      fontWeight: designTokens.typography.headingWeight,
                     }}
                   >
                     {row.label}
@@ -227,7 +233,7 @@ export function AppGuestsDropdown({
                     sx={{
                       color: designTokens.colors.textMuted,
                       fontSize: 14,
-                      fontWeight: 600,
+                      fontWeight: designTokens.typography.regularWeight,
                       mt: 0.25,
                     }}
                   >
@@ -236,10 +242,12 @@ export function AppGuestsDropdown({
                 </Box>
 
                 <Box sx={{ alignItems: "center", display: "flex", gap: 1.25 }}>
-                  <IconButton
+                  <AppButton
+                    intent="icon"
                     aria-label={`Decrease ${row.label.toLowerCase()}`}
                     disabled={!canDecrease}
                     onClick={() => handleCounterChange(row.key, -1)}
+                    icon={<RemoveRoundedIcon fontSize="small" />}
                     sx={{
                       bgcolor: tokenAlpha(designTokens.rgb.backgroundInput, 0.9),
                       color: designTokens.colors.textStrong,
@@ -250,23 +258,23 @@ export function AppGuestsDropdown({
                         ),
                       },
                     }}
-                  >
-                    <RemoveRoundedIcon fontSize="small" />
-                  </IconButton>
+                  />
                   <Typography
                     sx={{
                       color: designTokens.colors.textPrimary,
                       fontSize: 16,
-                      fontWeight: 850,
+                      fontWeight: designTokens.typography.labelWeight,
                       minWidth: 20,
                       textAlign: "center",
                     }}
                   >
                     {currentValue}
                   </Typography>
-                  <IconButton
+                  <AppButton
+                    intent="icon"
                     aria-label={`Increase ${row.label.toLowerCase()}`}
                     onClick={() => handleCounterChange(row.key, 1)}
+                    icon={<AddRoundedIcon fontSize="small" />}
                     sx={{
                       bgcolor: tokenAlpha(designTokens.rgb.backgroundInput, 0.9),
                       color: designTokens.colors.textStrong,
@@ -277,9 +285,7 @@ export function AppGuestsDropdown({
                         ),
                       },
                     }}
-                  >
-                    <AddRoundedIcon fontSize="small" />
-                  </IconButton>
+                  />
                 </Box>
               </Box>
             );

@@ -1,3 +1,4 @@
+import { AppTypography } from "../../../shared/ui";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import CardTravelRoundedIcon from "@mui/icons-material/CardTravelRounded";
 import ExploreRoundedIcon from "@mui/icons-material/ExploreRounded";
@@ -41,10 +42,10 @@ export function NotFoundPage() {
             </span>
           </div>
 
-          <h1 className="mt-1 text-4xl font-black leading-[1.06] text-(--voyana-color-white) sm:text-5xl lg:text-[3.5rem]">
+          <AppTypography variant="pageTitle" className="mt-1 leading-[1.06] text-(--voyana-color-white)">
             This destination
             <br className="hidden sm:block" /> doesn't exist
-          </h1>
+          </AppTypography>
 
           <p className="mt-5 max-w-lg text-base font-medium leading-7 text-[rgb(var(--voyana-rgb-text-inverse-muted)/0.82)] sm:text-lg">
             The page may have moved, the link may be incomplete, or the
@@ -75,9 +76,9 @@ export function NotFoundPage() {
           <div className="mt-10 grid gap-3 sm:grid-cols-2">
             <RouterLink
               to={routes.vacationPackages}
-              className="group flex min-h-24 items-center gap-4 rounded-lg border border-[rgb(var(--voyana-rgb-white)/0.1)] bg-[rgb(var(--voyana-rgb-white)/0.05)] p-4 backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-[rgb(var(--voyana-rgb-accent-teal)/0.52)] hover:bg-[rgb(var(--voyana-rgb-white)/0.09)] focus:outline-none focus:ring-4 focus:ring-[rgb(var(--voyana-rgb-accent-teal)/0.28)]"
+              className="group flex min-h-24 items-center gap-4 rounded-(--voyana-radius-card) border border-[rgb(var(--voyana-rgb-white)/0.1)] bg-[rgb(var(--voyana-rgb-white)/0.05)] p-4 backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-[rgb(var(--voyana-rgb-accent-teal)/0.52)] hover:bg-[rgb(var(--voyana-rgb-white)/0.09)] focus:outline-none focus:ring-4 focus:ring-[rgb(var(--voyana-rgb-accent-teal)/0.28)]"
             >
-              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[rgb(var(--voyana-rgb-accent-teal-strong)/0.72)] text-(--voyana-color-accent-teal) ring-1 ring-[rgb(var(--voyana-rgb-accent-teal)/0.32)] transition group-hover:bg-[rgb(var(--voyana-rgb-accent-teal-strong)/0.9)]">
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-(--voyana-radius-pill) bg-[rgb(var(--voyana-rgb-accent-teal-strong)/0.72)] text-(--voyana-color-accent-teal) ring-1 ring-[rgb(var(--voyana-rgb-accent-teal)/0.32)] transition group-hover:bg-[rgb(var(--voyana-rgb-accent-teal-strong)/0.9)]">
                 <CardTravelRoundedIcon fontSize="small" />
               </span>
               <span className="min-w-0">
@@ -92,9 +93,9 @@ export function NotFoundPage() {
 
             <RouterLink
               to={routes.destinations}
-              className="group flex min-h-24 items-center gap-4 rounded-lg border border-[rgb(var(--voyana-rgb-white)/0.1)] bg-[rgb(var(--voyana-rgb-white)/0.05)] p-4 backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-[rgb(var(--voyana-rgb-accent-teal)/0.52)] hover:bg-[rgb(var(--voyana-rgb-white)/0.09)] focus:outline-none focus:ring-4 focus:ring-[rgb(var(--voyana-rgb-accent-teal)/0.28)]"
+              className="group flex min-h-24 items-center gap-4 rounded-(--voyana-radius-card) border border-[rgb(var(--voyana-rgb-white)/0.1)] bg-[rgb(var(--voyana-rgb-white)/0.05)] p-4 backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-[rgb(var(--voyana-rgb-accent-teal)/0.52)] hover:bg-[rgb(var(--voyana-rgb-white)/0.09)] focus:outline-none focus:ring-4 focus:ring-[rgb(var(--voyana-rgb-accent-teal)/0.28)]"
             >
-              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[rgb(var(--voyana-rgb-accent-teal-strong)/0.72)] text-(--voyana-color-accent-teal) ring-1 ring-[rgb(var(--voyana-rgb-accent-teal)/0.32)] transition group-hover:bg-[rgb(var(--voyana-rgb-accent-teal-strong)/0.9)]">
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-(--voyana-radius-pill) bg-[rgb(var(--voyana-rgb-accent-teal-strong)/0.72)] text-(--voyana-color-accent-teal) ring-1 ring-[rgb(var(--voyana-rgb-accent-teal)/0.32)] transition group-hover:bg-[rgb(var(--voyana-rgb-accent-teal-strong)/0.9)]">
                 <ExploreRoundedIcon fontSize="small" />
               </span>
               <span className="min-w-0">

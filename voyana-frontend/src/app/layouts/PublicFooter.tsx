@@ -1,3 +1,4 @@
+import { AppTypography } from "../../shared/ui";
 import { Link as RouterLink } from "react-router-dom";
 import footerBackgroundImage from "../../assets/images/home/bora-bora-lagoon.webp";
 import { PublicContentContainer } from "../../shared/components/PublicContentContainer";
@@ -45,9 +46,9 @@ export function PublicFooter() {
         <div className="grid gap-8 sm:grid-cols-2">
           {PUBLIC_FOOTER_LINKS.map((group) => (
             <div key={group.title}>
-              <h2 className="text-sm font-black uppercase tracking-normal text-(--voyana-color-white)">
+              <AppTypography variant="label" className=" uppercase tracking-normal text-(--voyana-color-white)">
                 {group.title}
-              </h2>
+              </AppTypography>
               <ul className="mt-4 space-y-3">
                 {group.links.map((link) => (
                   <li key={link.label}>

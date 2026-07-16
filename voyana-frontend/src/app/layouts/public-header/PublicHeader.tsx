@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import { PublicContentContainer } from "../../../shared/components/PublicContentContainer";
+import { AppButton } from "../../../shared/ui";
 import { selectAuthUser } from "../../../features/auth/store/authSlice";
 import { routes } from "../../router/routes";
 import { useAppSelector } from "../../store/hooks";
@@ -30,13 +31,13 @@ export function PublicHeader() {
 
   const getNavLinkClassName = (isActive: boolean) => {
     const baseClassName =
-      "public-header__nav-link relative px-1 py-2 text-sm font-bold transition-[color,transform] duration-200 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:origin-center after:rounded-full after:transition-transform after:duration-200 focus:outline-none focus-visible:after:scale-x-100";
+      "public-header__nav-link relative px-1 py-2 text-sm font-bold transition-[color,transform] duration-200 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:origin-center after:rounded-(--voyana-radius-pill) after:transition-transform after:duration-200 focus:outline-none focus-visible:after:scale-x-100";
 
     if (isLightHeader) {
       return `${baseClassName} ${
         isActive
           ? "!text-(--voyana-color-accent-teal-strong) after:scale-x-100 after:bg-(--voyana-color-accent-teal-strong)"
-          : "text-slate-700 after:scale-x-0 after:bg-(--voyana-color-text-strong) hover:-translate-y-0.5 hover:text-(--voyana-color-text-strong) hover:after:scale-x-100"
+          : "text-(--voyana-color-text-muted) after:scale-x-0 after:bg-(--voyana-color-text-strong) hover:-translate-y-0.5 hover:text-(--voyana-color-text-strong) hover:after:scale-x-100"
       }`;
     }
 
@@ -78,9 +79,9 @@ export function PublicHeader() {
       data-header-style={isLightHeader ? "light" : "hero"}
       className={`public-header fixed inset-x-0 top-0 z-[100] border-b transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300 ${
         isLightHeader
-          ? "border-[rgb(var(--voyana-rgb-border-subtle)/0.86)] bg-white shadow-[0_10px_30px_rgb(var(--voyana-rgb-text-strong)/0.045)]"
+          ? "border-[rgb(var(--voyana-rgb-border-subtle)/0.86)] bg-(--voyana-color-background-card) shadow-(--voyana-shadow-search)"
           : hasSolidHeader
-            ? "border-[rgb(var(--voyana-rgb-white)/0.1)] bg-[rgb(var(--voyana-rgb-background-dark)/0.72)] shadow-[0_18px_44px_rgb(var(--voyana-rgb-black)/0.18)] backdrop-blur-xl"
+            ? "border-[rgb(var(--voyana-rgb-white)/0.1)] bg-[rgb(var(--voyana-rgb-background-dark)/0.72)] shadow-(--voyana-shadow-control) backdrop-blur-xl"
             : "border-transparent bg-transparent shadow-none backdrop-blur-none"
       }`}
     >
@@ -101,19 +102,18 @@ export function PublicHeader() {
             onToggle={() => setIsSearchOpen((current) => !current)}
           />
           {!user ? (
-            <RouterLink
+            <AppButton
+              component={RouterLink}
+              intent="secondary"
+              surface={isLightHeader ? "light" : "dark"}
               to={routes.login}
-              className={`public-header__start-link hidden h-11 items-center justify-center rounded-2xl px-5 text-sm font-black transition hover:-translate-y-0.5 focus:outline-none focus:ring-4 sm:inline-flex ${
-                isLightHeader
-                  ? "border-2 border-[rgb(var(--voyana-rgb-text-strong)/0.28)] bg-transparent text-(--voyana-color-text-strong) hover:border-[rgb(var(--voyana-rgb-text-strong)/0.52)] focus:ring-[rgb(var(--voyana-rgb-text-strong)/0.14)]"
-                  : "border-2 border-[rgb(var(--voyana-rgb-white)/0.82)] bg-transparent text-(--voyana-color-white) hover:border-(--voyana-color-white) focus:ring-[rgb(var(--voyana-rgb-white)/0.18)]"
-              }`}
+              className="public-header__start-link hidden min-h-11 px-5 sm:inline-flex"
             >
               Start
-            </RouterLink>
+            </AppButton>
           ) : (
             <div
-              className={`hidden max-w-44 items-center rounded-full px-4 py-2 text-sm font-black sm:flex ${
+              className={`hidden max-w-44 items-center rounded-(--voyana-radius-pill) px-4 py-2 text-sm font-black sm:flex ${
                 isLightHeader
                   ? "bg-(--voyana-color-background-section) text-(--voyana-color-text-strong)"
                   : "bg-[rgb(var(--voyana-rgb-white)/0.14)] text-(--voyana-color-white)"

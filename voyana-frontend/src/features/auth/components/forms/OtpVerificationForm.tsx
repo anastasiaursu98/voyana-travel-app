@@ -41,13 +41,13 @@ export function OtpVerificationForm({
           <>
             <Typography
               className="text-(--voyana-color-text-inverse-muted)"
-              sx={{ fontSize: 15, fontWeight: 650 }}
+              sx={{ fontSize: 15, fontWeight: 700 }}
             >
               Resend code in
             </Typography>
             <Typography
               className="shrink-0 text-(--voyana-color-white)"
-              sx={{ fontSize: 16, fontWeight: 850 }}
+              sx={{ fontSize: 16, fontWeight: 800 }}
             >
               00:{formattedSeconds}
             </Typography>

@@ -22,7 +22,7 @@ export function PublicPageShell({
 }: PublicPageShellProps) {
   return (
     <section
-      className={`min-h-screen overflow-hidden bg-white text-(--voyana-color-text-primary) ${spacingClasses[spacing]} ${className}`}
+      className={`min-h-screen overflow-hidden bg-(--voyana-color-background-card) text-(--voyana-color-text-primary) ${spacingClasses[spacing]} ${className}`}
     >
       <PublicContentContainer className={containerClassName}>
         {children}

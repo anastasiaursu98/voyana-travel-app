@@ -1,3 +1,4 @@
+import { AppButton } from "../../../../shared/ui";
 import BookmarkRoundedIcon from "@mui/icons-material/BookmarkRounded";
 import type { DashboardDestination } from "../../../destinations/types/destination.types";
 
@@ -26,7 +27,7 @@ export function HeroCarouselCard({
     destination.coverImage;
 
   return (
-    <div className="relative h-[clamp(13.5rem,54vw,16.5rem)] w-[clamp(8rem,40vw,10rem)] shrink-0 overflow-hidden rounded-2xl sm:h-[290px] sm:w-[190px] sm:rounded-[18px] md:h-[310px] md:w-[198px] lg:h-[330px] lg:w-[206px] xl:h-[340px] xl:w-[212px] 2xl:h-[360px] 2xl:w-[228px]">
+    <div className="relative h-[clamp(13.5rem,54vw,16.5rem)] w-[clamp(8rem,40vw,10rem)] shrink-0 overflow-hidden rounded-(--voyana-radius-modal) sm:h-[290px] sm:w-[190px] sm:rounded-(--voyana-radius-carousel-card) md:h-[310px] md:w-[198px] lg:h-[330px] lg:w-[206px] xl:h-[340px] xl:w-[212px] 2xl:h-[360px] 2xl:w-[228px]">
       <img
         src={previewImage.url}
         alt={previewImage.alt}
@@ -41,13 +42,13 @@ export function HeroCarouselCard({
             const isSelected = selectedGalleryImageIndex === index;
 
             return (
-              <button
+              <AppButton intent="control"
                 onClick={() => onGalleryImageClick(destination, index)}
                 key={`${destination._id}-${galleryImage.id || index}`}
                 type="button"
                 aria-label={`Show ${galleryImage.alt}`}
                 aria-pressed={isSelected}
-                className={`h-1.5 w-1.5 shrink-0 rounded-full transition-[transform,background-color,box-shadow,opacity] hover:scale-125 hover:bg-(--voyana-color-white) focus:outline-none focus:ring-2 focus:ring-[rgb(var(--voyana-rgb-accent-warm)/0.7)] ${
+                className={`h-1.5 w-1.5 shrink-0 rounded-(--voyana-radius-pill) transition-[transform,background-color,box-shadow,opacity] hover:scale-125 hover:bg-(--voyana-color-white) focus:outline-none focus:ring-2 focus:ring-[rgb(var(--voyana-rgb-accent-warm)/0.7)] ${
                   isSelected
                     ? "bg-(--voyana-color-accent-warm) opacity-100 shadow-[0_0_14px_rgb(var(--voyana-rgb-accent-warm)/0.72)]"
                     : "bg-[rgb(var(--voyana-rgb-white)/0.58)] opacity-80 shadow-[0_0_10px_rgb(var(--voyana-rgb-white)/0.24)]"
@@ -57,13 +58,12 @@ export function HeroCarouselCard({
           })}
         </div>
       </div>
-      <button
+      <AppButton intent="control"
         type="button"
         aria-label={`Save ${destination.name}`}
-        className="absolute right-3 top-3 grid h-9 w-9 place-items-center rounded-full bg-[rgb(var(--voyana-rgb-white)/0.9)] text-[rgb(var(--voyana-rgb-background-dark)/0.54)] shadow-[0_12px_30px_rgb(var(--voyana-rgb-background-dark)/0.22)] transition hover:-translate-y-0.5 hover:bg-(--voyana-color-white) hover:text-[rgb(var(--voyana-rgb-background-dark)/0.82)] focus:outline-none focus:ring-2 focus:ring-[rgb(var(--voyana-rgb-accent-warm)/0.7)] sm:right-4 sm:top-4 sm:h-10 sm:w-10"
-      >
-        <BookmarkRoundedIcon fontSize="small" />
-      </button>
+        icon={<BookmarkRoundedIcon fontSize="small" />}
+        className="absolute right-3 top-3 grid h-9 w-9 place-items-center rounded-(--voyana-radius-pill) bg-[rgb(var(--voyana-rgb-white)/0.9)] text-[rgb(var(--voyana-rgb-background-dark)/0.54)] shadow-[0_12px_30px_rgb(var(--voyana-rgb-background-dark)/0.22)] transition hover:-translate-y-0.5 hover:bg-(--voyana-color-white) hover:text-[rgb(var(--voyana-rgb-background-dark)/0.82)] focus:outline-none focus:ring-2 focus:ring-[rgb(var(--voyana-rgb-accent-warm)/0.7)] sm:right-4 sm:top-4 sm:h-10 sm:w-10"
+      />
     </div>
   );
 }

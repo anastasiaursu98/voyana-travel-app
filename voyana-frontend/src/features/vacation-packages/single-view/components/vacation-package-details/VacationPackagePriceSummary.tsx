@@ -13,7 +13,7 @@ export function VacationPackagePriceSummary({
   onReserve,
 }: VacationPackagePriceSummaryProps) {
   return (
-    <aside className="w-full min-w-0 rounded-lg border border-[rgb(var(--voyana-rgb-border-subtle)/0.96)] bg-white p-4 shadow-none sm:p-5 xl:sticky xl:top-24 xl:self-start">
+    <aside className="w-full min-w-0 rounded-(--voyana-radius-card) border border-[rgb(var(--voyana-rgb-border-subtle)/0.96)] bg-(--voyana-color-background-card) p-4 shadow-none sm:p-5 xl:sticky xl:top-24 xl:self-start">
       {children}
 
       <div className="mt-4 w-full">

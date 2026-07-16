@@ -1,3 +1,5 @@
+import { AppTypography } from "../../../../shared/ui";
+import { AppButton } from "../../../../shared/ui";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import TuneRoundedIcon from "@mui/icons-material/TuneRounded";
 import type { RefObject, ReactNode } from "react";
@@ -21,7 +23,7 @@ export function VacationPackagesMobileFilterDrawer({
 
   return (
     <div className="lg:hidden">
-      <button
+      <AppButton intent="control"
         type="button"
         onClick={onClose}
         className="fixed inset-0 z-[119] bg-[rgb(var(--voyana-rgb-background-dark)/0.42)] opacity-100 transition-opacity"
@@ -31,35 +33,34 @@ export function VacationPackagesMobileFilterDrawer({
         ref={panelRef}
         aria-labelledby="mobile-vacation-package-filters-title"
         aria-modal="true"
-        className="fixed inset-x-3 bottom-3 z-[120] max-h-[calc(100dvh-2rem)] translate-y-0 overflow-hidden rounded-lg bg-white opacity-100 shadow-[0_26px_80px_rgb(var(--voyana-rgb-background-dark)/0.28)] transition duration-300"
+        className="fixed inset-x-3 bottom-3 z-[120] max-h-[calc(100dvh-2rem)] translate-y-0 overflow-hidden rounded-(--voyana-radius-card) bg-(--voyana-color-background-card) opacity-100 shadow-[0_26px_80px_rgb(var(--voyana-rgb-background-dark)/0.28)] transition duration-300"
         role="dialog"
         tabIndex={-1}
       >
         <div className="flex items-center justify-between gap-4 border-b border-[rgb(var(--voyana-rgb-border-subtle)/0.86)] px-4 py-3">
           <div className="flex min-w-0 items-center gap-3">
-            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-(--voyana-color-background-dark) text-(--voyana-color-white)">
+            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-(--voyana-radius-pill) bg-(--voyana-color-background-dark) text-(--voyana-color-white)">
               <TuneRoundedIcon className="text-[1.2rem]" />
             </span>
             <div className="min-w-0">
-              <h2
+              <AppTypography variant="cardTitle"
                 id="mobile-vacation-package-filters-title"
                 className="text-base font-black uppercase leading-tight text-(--voyana-color-text-primary)"
               >
                 Filters
-              </h2>
+              </AppTypography>
               <p className="text-xs font-bold text-(--voyana-color-text-muted)">
                 Narrow your vacation package search
               </p>
             </div>
           </div>
-          <button
+          <AppButton intent="control"
             type="button"
             onClick={onClose}
-            className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-[rgb(var(--voyana-rgb-border-subtle)/0.9)] text-(--voyana-color-text-primary) transition hover:bg-(--voyana-color-background-section) focus:outline-none focus:ring-4 focus:ring-[rgb(var(--voyana-rgb-accent-teal)/0.18)]"
+            icon={<CloseRoundedIcon fontSize="small" />}
+            className="grid h-10 w-10 shrink-0 place-items-center rounded-(--voyana-radius-pill) border border-[rgb(var(--voyana-rgb-border-subtle)/0.9)] text-(--voyana-color-text-primary) transition hover:bg-(--voyana-color-background-section) focus:outline-none focus:ring-4 focus:ring-[rgb(var(--voyana-rgb-accent-teal)/0.18)]"
             aria-label="Close filters"
-          >
-            <CloseRoundedIcon fontSize="small" />
-          </button>
+          />
         </div>
         <div className="voyana-scrollbar max-h-[calc(100dvh-8rem)] overflow-y-auto p-4">
           {children}

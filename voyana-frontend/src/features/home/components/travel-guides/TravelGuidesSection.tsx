@@ -1,3 +1,4 @@
+import { AppTypography } from "../../../../shared/ui";
 import { ResponsiveImage } from "../../../../shared/components/ResponsiveImage";
 import { SectionHeader } from "../../../../shared/components/SectionHeader";
 import { OnboardingCard } from "../shared/OnboardingCard";
@@ -22,9 +23,9 @@ export function TravelGuidesSection() {
               <ResponsiveImage src={guide.imageUrl} alt={guide.title} />
             </div>
             <div className="p-5">
-              <h3 className="text-xl font-black text-(--voyana-color-text-strong)">
+              <AppTypography variant="cardTitle" className=" text-(--voyana-color-text-strong)">
                 {guide.title}
-              </h3>
+              </AppTypography>
               <p className="mt-3 text-sm leading-6 text-[rgb(var(--voyana-rgb-text-muted)/0.92)]">
                 {guide.description}
               </p>

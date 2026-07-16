@@ -1,3 +1,4 @@
+import { AppTypography } from "../../../../shared/ui";
 import { Link as RouterLink } from "react-router-dom";
 import { ResponsiveImage } from "../../../../shared/components/ResponsiveImage";
 import { getVacationPackageDetailsPath, type VacationPackage } from "../../../vacation-packages";
@@ -38,7 +39,7 @@ export function SpecialVacationPackageCard({ vacationPackage, vacationPackageLab
   return (
     <RouterLink
       to={vacationPackagePath}
-      className="group flex h-full min-w-0 flex-col overflow-hidden rounded-lg border border-[rgb(var(--voyana-rgb-border-subtle)/0.92)] bg-(--voyana-color-white) no-underline shadow-[0_18px_45px_rgb(var(--voyana-rgb-text-strong)/0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_58px_rgb(var(--voyana-rgb-text-strong)/0.14)] focus:outline-none focus:ring-4 focus:ring-[rgb(var(--voyana-rgb-accent-teal)/0.18)]"
+      className="group flex h-full min-w-0 flex-col overflow-hidden rounded-(--voyana-radius-card) border border-[rgb(var(--voyana-rgb-border-subtle)/0.92)] bg-(--voyana-color-white) no-underline shadow-(--voyana-shadow-card) transition duration-300 hover:-translate-y-1 hover:shadow-(--voyana-shadow-panel) focus:outline-none focus:ring-4 focus:ring-[rgb(var(--voyana-rgb-accent-teal)/0.18)]"
     >
       <div className="relative aspect-[4/3] w-full overflow-hidden">
         <ResponsiveImage
@@ -46,19 +47,19 @@ export function SpecialVacationPackageCard({ vacationPackage, vacationPackageLab
           alt={coverImage.alt}
           className="transition duration-500 group-hover:scale-[1.04]"
         />
-        <div className="absolute left-3 top-3 rounded-full bg-[rgb(var(--voyana-rgb-accent-warm)/0.94)] px-3 py-1 text-xs font-black tracking-normal text-(--voyana-color-button-primary-text) shadow-[0_10px_26px_rgb(var(--voyana-rgb-background-dark)/0.2)]">
+        <div className="absolute left-3 top-3 rounded-(--voyana-radius-pill) bg-[rgb(var(--voyana-rgb-accent-warm)/0.94)] px-3 py-1 text-xs font-black tracking-normal text-(--voyana-color-button-primary-text) shadow-[0_10px_26px_rgb(var(--voyana-rgb-background-dark)/0.2)]">
           {vacationPackage.pricing.discountLabel ?? vacationPackageLabel}
         </div>
-        <div className="absolute bottom-3 left-3 rounded-full bg-[rgb(var(--voyana-rgb-background-dark)/0.78)] px-3 py-1 text-xs font-black text-(--voyana-color-white) backdrop-blur-md">
+        <div className="absolute bottom-3 left-3 rounded-(--voyana-radius-pill) bg-[rgb(var(--voyana-rgb-background-dark)/0.78)] px-3 py-1 text-xs font-black text-(--voyana-color-white) backdrop-blur-md">
           Save {formatPrice(estimatedSavings, vacationPackage.pricing.currency)}
         </div>
       </div>
 
       <div className="flex flex-1 flex-col gap-4 p-4 sm:p-5">
         <div className="min-w-0">
-          <h3 className="text-lg font-black leading-tight text-(--voyana-color-text-strong)">
+          <AppTypography variant="cardTitle" className=" leading-tight text-(--voyana-color-text-strong)">
             {vacationPackage.name}
-          </h3>
+          </AppTypography>
           <p className="mt-2 text-sm leading-6 text-[rgb(var(--voyana-rgb-text-muted)/0.94)]">
             {vacationPackage.description}
           </p>

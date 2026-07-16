@@ -1,23 +1,33 @@
 import type { ButtonProps, SxProps, Theme } from "@mui/material";
 import { Button } from "@mui/material";
-import type { ElementType } from "react";
+import { createElement, type ElementType } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { designTokens, tokenAlpha } from "../constants/designTokens";
 
-export type AppButtonIntent = "primary" | "secondary" | "text";
+export type AppButtonIntent =
+  | "primary"
+  | "secondary"
+  | "dark"
+  | "text"
+  | "control"
+  | "icon";
 
 export type AppButtonProps = ButtonProps & {
   component?: ElementType;
+  icon?: ReactNode;
   intent?: AppButtonIntent;
   surface?: "dark" | "light";
   to?: string;
 };
 
 const baseButtonSx: SxProps<Theme> = {
-  minHeight: 52,
-  borderRadius: designTokens.radius.card,
-  px: 3.5,
-  fontSize: 15,
-  fontWeight: 850,
+  minHeight: 48,
+  borderRadius: designTokens.radius.pill,
+  px: 3,
+  fontFamily: "var(--voyana-font-family)",
+  fontSize: 14,
+  fontWeight: designTokens.typography.actionWeight,
+  lineHeight: 1,
   letterSpacing: 0,
   textTransform: "none",
   transition:
@@ -31,6 +41,7 @@ const buttonIntentSx: Record<AppButtonIntent, SxProps<Theme>> = {
   primary: {
     bgcolor: designTokens.colors.buttonPrimary,
     color: designTokens.colors.buttonPrimaryText,
+    fontWeight: designTokens.typography.actionWeight,
     boxShadow: `0 14px 30px ${tokenAlpha(designTokens.rgb.buttonPrimary, 0.28)}`,
     "&:hover": {
       bgcolor: designTokens.colors.buttonPrimaryHover,
@@ -48,6 +59,18 @@ const buttonIntentSx: Record<AppButtonIntent, SxProps<Theme>> = {
   secondary: {
     bgcolor: "transparent",
     boxShadow: "none",
+  },
+  dark: {
+    bgcolor: designTokens.colors.backgroundDark,
+    color: designTokens.colors.textInverse,
+    boxShadow: `0 12px 28px ${tokenAlpha(designTokens.rgb.backgroundDark, 0.18)}`,
+    "&:hover": {
+      bgcolor: designTokens.colors.accentTealStrong,
+      boxShadow: `0 16px 34px ${tokenAlpha(designTokens.rgb.backgroundDark, 0.22)}`,
+    },
+    "&:active": {
+      bgcolor: designTokens.colors.textStrong,
+    },
   },
   text: {
     minHeight: "auto",
@@ -71,22 +94,114 @@ const buttonIntentSx: Record<AppButtonIntent, SxProps<Theme>> = {
       boxShadow: "none",
     },
   },
+  control: {
+    minHeight: "auto",
+    minWidth: 0,
+    borderRadius: designTokens.radius.control,
+    bgcolor: "transparent",
+    boxShadow: "none",
+    color: "inherit",
+    p: 0,
+    "&:hover": {
+      bgcolor: "transparent",
+      boxShadow: "none",
+      transform: "none",
+    },
+  },
+  icon: {
+    width: 40,
+    height: 40,
+    minHeight: 40,
+    minWidth: 40,
+    borderRadius: designTokens.radius.pill,
+    bgcolor: "transparent",
+    boxShadow: "none",
+    color: "inherit",
+    p: 0,
+    "&:hover": {
+      bgcolor: tokenAlpha(designTokens.rgb.backgroundInput, 0.85),
+      boxShadow: "none",
+      transform: "none",
+    },
+  },
 };
 
 const defaultVariantByIntent: Record<AppButtonIntent, ButtonProps["variant"]> = {
   primary: "contained",
   secondary: "outlined",
+  dark: "contained",
   text: "text",
+  control: "text",
+  icon: "text",
 };
 
+function renderButtonContent({
+  children,
+  endIcon,
+  icon,
+  startIcon,
+}: {
+  children: ReactNode;
+  endIcon?: ReactNode;
+  icon?: ReactNode;
+  startIcon?: ReactNode;
+}) {
+  if (icon) {
+    return (
+      <>
+        {children}
+        <span className="app-button__icon">{icon}</span>
+      </>
+    );
+  }
+
+  if (!startIcon && !endIcon) {
+    return children;
+  }
+
+  return (
+    <>
+      {startIcon ? <span className="app-button__icon">{startIcon}</span> : null}
+      {children}
+      {endIcon ? <span className="app-button__icon">{endIcon}</span> : null}
+    </>
+  );
+}
+
 export function AppButton({
+  children,
+  component,
+  endIcon,
+  fullWidth,
+  icon,
   intent = "primary",
   surface = "dark",
+  startIcon,
+  style,
   sx,
   variant,
   ...props
 }: AppButtonProps) {
   const sxList = Array.isArray(sx) ? sx : [sx];
+  const hasCustomSx = sxList.some(Boolean);
+
+  if ((intent === "control" || intent === "icon") && !hasCustomSx) {
+    const controlStyle = {
+      ...(fullWidth ? { width: "100%" } : null),
+      ...style,
+    } satisfies CSSProperties;
+
+    return createElement(
+      component ?? "button",
+      {
+        type: component ? undefined : "button",
+        ...props,
+        style: controlStyle,
+      },
+      renderButtonContent({ children, endIcon, icon, startIcon }),
+    );
+  }
+
   const secondarySurfaceSx: SxProps<Theme> =
     surface === "light"
       ? {
@@ -140,7 +255,11 @@ export function AppButton({
 
   return (
     <Button
+      component={component ?? "button"}
       disableElevation
+      endIcon={endIcon}
+      fullWidth={fullWidth}
+      startIcon={startIcon}
       variant={variant ?? defaultVariantByIntent[intent]}
       sx={[
         baseButtonSx,
@@ -150,6 +269,8 @@ export function AppButton({
         ...sxList,
       ] as SxProps<Theme>}
       {...props}
-    />
+    >
+      {icon ?? children}
+    </Button>
   );
 }

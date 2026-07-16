@@ -68,7 +68,7 @@ const fieldSxByTone: Record<AppTextFieldTone, SxProps<Theme>> = {
       minHeight: 54,
       borderRadius: designTokens.radius.card,
       bgcolor: designTokens.colors.backgroundCard,
-      boxShadow: `0 10px 26px ${tokenAlpha(designTokens.rgb.textStrong, 0.05)}`,
+      boxShadow: designTokens.shadows.search,
       transition:
         "background-color 0.2s ease-out, box-shadow 0.2s ease-out, border-color 0.2s ease-out",
       "& .MuiOutlinedInput-notchedOutline": {
@@ -95,8 +95,8 @@ const fieldSxByTone: Record<AppTextFieldTone, SxProps<Theme>> = {
       lineHeight: 1.2,
       caretColor: designTokens.colors.textStrong,
       "&::placeholder": {
-        color: designTokens.colors.textMuted,
-        opacity: 0.76,
+        color: designTokens.colors.textSoft,
+        opacity: 1,
       },
     },
   },
@@ -122,7 +122,7 @@ export function AppTextField({
                 ? designTokens.colors.textInverseMuted
                 : designTokens.colors.textStrong,
             fontSize: 14,
-            fontWeight: 700,
+            fontWeight: designTokens.typography.labelWeight,
             lineHeight: 1.3,
             position: "static",
             transform: "none",

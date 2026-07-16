@@ -1,3 +1,4 @@
+import { AppButton } from "../../../../shared/ui";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../app/store/hooks";
 import { PublicPageShell } from "../../../../shared/components/PublicPageShell";
@@ -64,10 +65,10 @@ export const ListViewVacationPackages = () => {
             className="max-w-3xl"
           />
           <div className="flex flex-wrap gap-2">
-            <span className="rounded-full bg-(--voyana-color-background-section) px-4 py-2 text-sm font-black text-(--voyana-color-text-primary)">
+            <span className="rounded-(--voyana-radius-pill) bg-(--voyana-color-background-section) px-4 py-2 text-sm font-black text-(--voyana-color-text-primary)">
               {vacationPackages.length} packages
             </span>
-            <span className="rounded-full bg-[rgb(var(--voyana-rgb-accent-teal)/0.11)] px-4 py-2 text-sm font-black text-(--voyana-color-accent-teal-strong)">
+            <span className="rounded-(--voyana-radius-pill) bg-[rgb(var(--voyana-rgb-accent-teal)/0.11)] px-4 py-2 text-sm font-black text-(--voyana-color-accent-teal-strong)">
               Curated deals
             </span>
           </div>
@@ -86,19 +87,19 @@ export const ListViewVacationPackages = () => {
               <p className="text-sm font-bold text-(--voyana-color-text-muted)">
                 Refine vacation packages by price and category.
               </p>
-              <button
+              <AppButton intent="control"
                 type="button"
                 onClick={handleMobileFiltersOpen}
-                className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-(--voyana-color-background-dark) px-4 text-sm font-black text-(--voyana-color-white) shadow-[0_14px_28px_rgb(var(--voyana-rgb-background-dark)/0.16)] transition hover:-translate-y-0.5 hover:bg-(--voyana-color-text-strong) focus:outline-none focus:ring-4 focus:ring-[rgb(var(--voyana-rgb-accent-teal)/0.22)]"
+                className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-(--voyana-radius-pill) bg-(--voyana-color-background-dark) px-4 text-sm font-black text-(--voyana-color-white) shadow-[0_14px_28px_rgb(var(--voyana-rgb-background-dark)/0.16)] transition hover:-translate-y-0.5 hover:bg-(--voyana-color-text-strong) focus:outline-none focus:ring-4 focus:ring-[rgb(var(--voyana-rgb-accent-teal)/0.22)]"
                 aria-expanded={isMobileFiltersOpen}
                 aria-controls="mobile-vacation-package-filters"
               >
                 Filters
-              </button>
+              </AppButton>
             </div>
 
             {vacationPackagesStatus === "failed" ? (
-              <p className="rounded-lg border border-[rgb(var(--voyana-rgb-border-subtle)/0.92)] bg-(--voyana-color-background-section) p-5 text-sm font-bold text-(--voyana-color-text-muted)">
+              <p className="rounded-(--voyana-radius-card) border border-[rgb(var(--voyana-rgb-border-subtle)/0.92)] bg-(--voyana-color-background-section) p-5 text-sm font-bold text-(--voyana-color-text-muted)">
                 {vacationPackagesError ??
                   "Vacation packages could not be loaded."}
               </p>
@@ -112,7 +113,7 @@ export const ListViewVacationPackages = () => {
                 ))}
               </div>
             ) : (
-              <p className="rounded-lg border border-[rgb(var(--voyana-rgb-border-subtle)/0.92)] bg-(--voyana-color-background-section) p-5 text-sm font-bold text-(--voyana-color-text-muted)">
+              <p className="rounded-(--voyana-radius-card) border border-[rgb(var(--voyana-rgb-border-subtle)/0.92)] bg-(--voyana-color-background-section) p-5 text-sm font-bold text-(--voyana-color-text-muted)">
                 {vacationPackagesStatus === "loading"
                   ? "Loading vacation packages..."
                   : "No vacation packages available"}

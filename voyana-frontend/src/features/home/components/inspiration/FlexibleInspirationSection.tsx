@@ -2,6 +2,7 @@ import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 import { Link as RouterLink } from "react-router-dom";
 import { routes } from "../../../../app/router/routes";
 import { SectionHeader } from "../../../../shared/components/SectionHeader";
+import { AppButton, AppTypography } from "../../../../shared/ui";
 import { homeImages } from "../../constants/homeImages";
 import { OnboardingCard } from "../shared/OnboardingCard";
 import { OnboardingSectionShell } from "../shared/OnboardingSectionShell";
@@ -25,13 +26,14 @@ export function FlexibleInspirationSection() {
           inverse
         />
 
-        <RouterLink
+        <AppButton
+          component={RouterLink}
           to={routes.vacationPackages}
-          className="inline-flex min-h-12 w-fit items-center justify-center gap-2 rounded-full bg-(--voyana-color-button-primary) px-6 text-sm font-black text-(--voyana-color-button-primary-text) no-underline shadow-[0_14px_32px_rgb(var(--voyana-rgb-button-primary)/0.28)] transition hover:-translate-y-0.5 hover:bg-(--voyana-color-button-primary-hover) focus:outline-none focus:ring-4 focus:ring-[rgb(var(--voyana-rgb-button-primary)/0.34)]"
+          className="w-fit"
+          endIcon={<ArrowForwardRoundedIcon fontSize="small" />}
         >
           Explore by budget
-          <ArrowForwardRoundedIcon fontSize="small" />
-        </RouterLink>
+        </AppButton>
       </div>
 
       <div className="mt-9 grid gap-4 md:grid-cols-3">
@@ -53,9 +55,12 @@ export function FlexibleInspirationSection() {
             >
               {idea.budget}
             </p>
-            <h3 className="mt-3 text-xl font-black text-(--voyana-color-white)">
+            <AppTypography
+              variant="cardTitle"
+              className="mt-3 text-(--voyana-color-white)"
+            >
               {idea.title}
-            </h3>
+            </AppTypography>
             <p className="mt-3 text-sm leading-6 text-[rgb(var(--voyana-rgb-white)/0.78)]">
               {idea.description}
             </p>

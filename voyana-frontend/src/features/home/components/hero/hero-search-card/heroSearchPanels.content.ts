@@ -74,9 +74,9 @@ export const destinationSuggestions = [
     title: "Sibiu, Romania",
   },
   {
-    accent: "rgb(255 111 97 / 0.12)",
+    accent: "rgb(var(--voyana-rgb-destination-coral-surface) / 0.12)",
     icon: "church",
-    iconColor: "rgb(220 66 55)",
+    iconColor: "rgb(var(--voyana-rgb-destination-coral))",
     subtitle: "For sights like Trevi Fountain",
     title: "Rome, Italy",
   },

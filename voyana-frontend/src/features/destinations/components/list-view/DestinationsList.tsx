@@ -51,14 +51,14 @@ export const DestinationsList = () => {
             description="Explore curated places with handpicked stays, experiences, and travel deals."
             className="max-w-3xl"
           />
-          <span className="w-fit rounded-full bg-(--voyana-color-background-section) px-4 py-2 text-sm font-black text-(--voyana-color-text-muted)">
+          <span className="w-fit rounded-(--voyana-radius-pill) bg-(--voyana-color-background-section) px-4 py-2 text-sm font-black text-(--voyana-color-text-muted)">
             Loading destinations
           </span>
         </div>
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {[0, 1, 2].map((item) => (
             <div
-              className="min-h-96 animate-pulse rounded-lg border border-[rgb(var(--voyana-rgb-border-subtle)/0.9)] bg-(--voyana-color-background-section)"
+              className="min-h-96 animate-pulse rounded-(--voyana-radius-card) border border-[rgb(var(--voyana-rgb-border-subtle)/0.9)] bg-(--voyana-color-background-section)"
               key={item}
             />
           ))}
@@ -79,21 +79,21 @@ export const DestinationsList = () => {
           className="max-w-3xl"
         />
         <div className="flex flex-wrap gap-2">
-          <span className="rounded-full bg-(--voyana-color-background-section) px-4 py-2 text-sm font-black text-(--voyana-color-text-primary)">
+          <span className="rounded-(--voyana-radius-pill) bg-(--voyana-color-background-section) px-4 py-2 text-sm font-black text-(--voyana-color-text-primary)">
             {activeDestinationsCount} destinations
           </span>
-          <span className="rounded-full bg-[rgb(var(--voyana-rgb-accent-teal)/0.11)] px-4 py-2 text-sm font-black text-(--voyana-color-accent-teal-strong)">
+          <span className="rounded-(--voyana-radius-pill) bg-[rgb(var(--voyana-rgb-accent-teal)/0.11)] px-4 py-2 text-sm font-black text-(--voyana-color-accent-teal-strong)">
             Curated stays
           </span>
         </div>
       </div>
 
       {status === "failed" ? (
-        <p className="mt-8 rounded-lg border border-[rgb(var(--voyana-rgb-border-subtle)/0.92)] bg-(--voyana-color-background-section) p-5 text-sm font-bold text-(--voyana-color-text-muted)">
+        <p className="mt-8 rounded-(--voyana-radius-card) border border-[rgb(var(--voyana-rgb-border-subtle)/0.92)] bg-(--voyana-color-background-section) p-5 text-sm font-bold text-(--voyana-color-text-muted)">
           {error ?? "Destinations could not be loaded."}
         </p>
       ) : destinations.length === 0 ? (
-        <p className="mt-8 rounded-lg border border-[rgb(var(--voyana-rgb-border-subtle)/0.92)] bg-(--voyana-color-background-section) p-5 text-sm font-bold text-(--voyana-color-text-muted)">
+        <p className="mt-8 rounded-(--voyana-radius-card) border border-[rgb(var(--voyana-rgb-border-subtle)/0.92)] bg-(--voyana-color-background-section) p-5 text-sm font-bold text-(--voyana-color-text-muted)">
           No destinations available.
         </p>
       ) : (

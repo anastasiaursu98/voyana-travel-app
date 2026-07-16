@@ -1,3 +1,4 @@
+import { AppTypography } from "../../../shared/ui";
 import { useState } from "react";
 import { RatingSummaryBadge } from "../../../shared/components/RatingSummaryBadge";
 import { AppButton } from "../../../shared/ui";
@@ -37,9 +38,9 @@ export function ReviewsSection({
           <p className="text-xs font-black uppercase leading-none tracking-normal text-(--voyana-color-text-muted)">
             {eyebrow}
           </p>
-          <h2 className="mt-3 text-3xl font-medium leading-tight tracking-normal text-(--voyana-color-text-primary) sm:text-4xl">
+          <AppTypography variant="sectionTitle" className="mt-3 leading-tight tracking-normal text-(--voyana-color-text-primary)">
             {title}
-          </h2>
+          </AppTypography>
           <p className="mt-4 max-w-2xl text-sm font-medium leading-7 text-(--voyana-color-text-body) sm:text-base">
             {description}
           </p>
@@ -61,11 +62,11 @@ export function ReviewsSection({
         ))}
       </div>
 
-      <div className="mt-8 flex flex-col gap-4 rounded-xl border border-(--voyana-color-border-subtle) bg-white p-5 shadow-none sm:flex-row sm:items-center sm:justify-between sm:p-6">
+      <div className="mt-8 flex flex-col gap-4 rounded-(--voyana-radius-panel) border border-(--voyana-color-border-subtle) bg-(--voyana-color-background-card) p-5 shadow-none sm:flex-row sm:items-center sm:justify-between sm:p-6">
         <div>
-          <h3 className="text-xl font-semibold text-(--voyana-color-text-primary)">
+          <AppTypography variant="cardTitle" className=" text-(--voyana-color-text-primary)">
             Read all reviews
-          </h3>
+          </AppTypography>
           <p className="mt-2 max-w-2xl text-sm font-medium leading-6 text-(--voyana-color-text-body)">
             Browse every verified guest review, filter by category, and compare
             feedback before choosing this destination package.
@@ -76,7 +77,7 @@ export function ReviewsSection({
           intent="secondary"
           surface="light"
           onClick={() => setIsReviewsModalOpen(true)}
-          sx={{ borderRadius: 999, flexShrink: 0 }}
+          sx={{ borderRadius: "var(--voyana-radius-pill)", flexShrink: 0 }}
         >
           Read all reviews
         </AppButton>

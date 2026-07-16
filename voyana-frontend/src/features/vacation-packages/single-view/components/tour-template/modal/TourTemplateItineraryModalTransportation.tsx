@@ -1,3 +1,4 @@
+import { AppTypography } from "../../../../../../shared/ui";
 import type { VacationPackageItineraryDay } from "../../../../types/vacationPackage.types";
 
 type TourTemplateItineraryModalTransportationProps = {
@@ -26,17 +27,17 @@ export function TourTemplateItineraryModalTransportation({
   day,
 }: TourTemplateItineraryModalTransportationProps) {
   return (
-    <section className="overflow-hidden rounded-lg border border-[rgb(var(--voyana-rgb-border-subtle)/0.86)] bg-white">
+    <section className="overflow-hidden rounded-(--voyana-radius-card) border border-[rgb(var(--voyana-rgb-border-subtle)/0.86)] bg-(--voyana-color-background-card)">
       <div className="flex items-center justify-between gap-3 border-b border-[rgb(var(--voyana-rgb-border-subtle)/0.76)] bg-(--voyana-color-background-section) px-4 py-3">
         <div className="flex min-w-0 items-center gap-3">
-          <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-(--voyana-color-accent-warm) text-(--voyana-color-white)">
+          <div className="grid h-10 w-10 shrink-0 place-items-center rounded-(--voyana-radius-card) bg-(--voyana-color-accent-warm) text-(--voyana-color-button-primary-text)">
             <span className="text-xs font-black">
               {getTransportLabel(day.transportation.type)}
             </span>
           </div>
-          <h3 className="truncate text-lg font-semibold text-(--voyana-color-text-primary)">
+          <AppTypography variant="cardTitle" className="truncate text-(--voyana-color-text-primary)">
             Transportation
-          </h3>
+          </AppTypography>
         </div>
         <p className="shrink-0 text-sm font-black text-(--voyana-color-text-primary)">
           {day.transportation.luggage ?? "Standard luggage"}
@@ -53,7 +54,7 @@ export function TourTemplateItineraryModalTransportation({
               {day.transportation.route ?? day.location}
             </p>
           </div>
-          <p className="rounded-full bg-(--voyana-color-background-section) px-3 py-1 text-xs font-black text-(--voyana-color-text-primary)">
+          <p className="rounded-(--voyana-radius-pill) bg-(--voyana-color-background-section) px-3 py-1 text-xs font-black text-(--voyana-color-text-primary)">
             {day.transportation.duration ?? "Planned timing"}
           </p>
         </div>

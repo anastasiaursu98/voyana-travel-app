@@ -1,3 +1,5 @@
+import { AppTypography } from "../../../../../../shared/ui";
+import { AppButton } from "../../../../../../shared/ui";
 import { DialogTitle } from "@mui/material";
 
 import type { VacationPackageItineraryDay } from "../../../../types/vacationPackage.types";
@@ -22,7 +24,7 @@ export function TourTemplateItineraryModalHeader({
       }}
     >
       <div className="flex min-w-0 gap-3">
-        <div className="grid h-14 w-14 shrink-0 place-items-center rounded-lg bg-(--voyana-color-accent-warm) text-center text-xs font-black leading-tight text-(--voyana-color-white)">
+        <div className="grid h-14 w-14 shrink-0 place-items-center rounded-(--voyana-radius-card) bg-(--voyana-color-accent-warm) text-center text-xs font-black leading-tight text-(--voyana-color-button-primary-text)">
           <span>
             {day.day}
             <br />
@@ -33,19 +35,19 @@ export function TourTemplateItineraryModalHeader({
           <p className="text-xs font-black uppercase tracking-normal text-(--voyana-color-text-muted)">
             {day.location} / {day.stayLabel}
           </p>
-          <h2 className="mt-1 text-2xl font-semibold leading-tight text-(--voyana-color-text-primary)">
+          <AppTypography variant="cardTitle" className="mt-1 leading-tight text-(--voyana-color-text-primary)">
             {day.title}
-          </h2>
+          </AppTypography>
         </div>
       </div>
-      <button
+      <AppButton intent="control"
         type="button"
         aria-label="Close day details"
-        className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-xl font-semibold text-(--voyana-color-text-muted) transition-colors hover:bg-(--voyana-color-background-section) hover:text-(--voyana-color-text-primary)"
+        className="grid h-9 w-9 shrink-0 place-items-center rounded-(--voyana-radius-pill) text-xl font-semibold text-(--voyana-color-text-muted) transition-colors hover:bg-(--voyana-color-background-section) hover:text-(--voyana-color-text-primary)"
         onClick={onClose}
       >
         x
-      </button>
+      </AppButton>
     </DialogTitle>
   );
 }

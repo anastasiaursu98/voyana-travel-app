@@ -13,9 +13,9 @@ export function PublicLayout() {
   }, [dispatch]);
 
   return (
-    <div className="min-h-screen bg-white" style={{ backgroundColor: "#fff" }}>
+    <div className="min-h-screen bg-(--voyana-color-background-card)">
       <PublicHeader />
-      <main className="min-h-screen overflow-hidden bg-white">
+      <main className="min-h-screen overflow-hidden bg-(--voyana-color-background-card)">
         <Outlet />
       </main>
       <PublicFooter />

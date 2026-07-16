@@ -24,9 +24,9 @@ export function RatingSummaryBadge({
 
   return (
     <div
-      className={`flex w-full max-w-72 items-center gap-4 rounded-xl border border-(--voyana-color-border-subtle) bg-white p-4 shadow-none ${className}`}
+      className={`flex w-full max-w-72 items-center gap-4 rounded-(--voyana-radius-panel) border border-(--voyana-color-border-subtle) bg-(--voyana-color-background-card) p-4 shadow-none ${className}`}
     >
-      <div className="grid size-12 shrink-0 place-items-center rounded-lg bg-(--voyana-color-text-primary)">
+      <div className="grid size-12 shrink-0 place-items-center rounded-(--voyana-radius-card) bg-(--voyana-color-text-primary)">
         <RateReviewOutlinedIcon className="text-(--voyana-color-white)" />
       </div>
       <div className="min-w-0">

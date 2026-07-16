@@ -1,3 +1,4 @@
+import { AppTypography } from "../../../../shared/ui";
 import { SectionHeader } from "../../../../shared/components/SectionHeader";
 import { homeImages } from "../../constants/homeImages";
 import { OnboardingCard } from "../shared/OnboardingCard";
@@ -30,9 +31,9 @@ export function SeasonalCampaignsSection() {
             <OnboardingPill tone="sun" className="uppercase">
               {campaign.tag}
             </OnboardingPill>
-            <h3 className="mt-5 text-2xl font-black text-(--voyana-color-white)">
+            <AppTypography variant="cardTitle" className="mt-5 text-(--voyana-color-white)">
               {campaign.title}
-            </h3>
+            </AppTypography>
             <p className="mt-3 text-sm leading-6 text-[rgb(var(--voyana-rgb-text-inverse-muted)/0.9)]">
               {campaign.description}
             </p>

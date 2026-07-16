@@ -1,3 +1,4 @@
+import { AppTypography } from "../../../../../../shared/ui";
 import type { VacationPackageItineraryDay } from "../../../../types/vacationPackage.types";
 
 type TourTemplateItineraryModalAccommodationProps = {
@@ -8,15 +9,15 @@ export function TourTemplateItineraryModalAccommodation({
   day,
 }: TourTemplateItineraryModalAccommodationProps) {
   return (
-    <section className="overflow-hidden rounded-lg border border-[rgb(var(--voyana-rgb-border-subtle)/0.86)] bg-white">
+    <section className="overflow-hidden rounded-(--voyana-radius-card) border border-[rgb(var(--voyana-rgb-border-subtle)/0.86)] bg-(--voyana-color-background-card)">
       <div className="flex items-center justify-between gap-3 border-b border-[rgb(var(--voyana-rgb-border-subtle)/0.76)] bg-(--voyana-color-background-section) px-4 py-3">
         <div className="flex min-w-0 items-center gap-3">
-          <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-(--voyana-color-accent-warm) text-(--voyana-color-white)">
+          <div className="grid h-10 w-10 shrink-0 place-items-center rounded-(--voyana-radius-card) bg-(--voyana-color-accent-warm) text-(--voyana-color-button-primary-text)">
             <span className="text-xs font-black">HT</span>
           </div>
-          <h3 className="truncate text-lg font-semibold text-(--voyana-color-text-primary)">
+          <AppTypography variant="cardTitle" className="truncate text-(--voyana-color-text-primary)">
             Accommodation
-          </h3>
+          </AppTypography>
         </div>
         <p className="shrink-0 text-sm font-black text-(--voyana-color-text-primary)">
           {day.accommodation.nights}
@@ -28,7 +29,7 @@ export function TourTemplateItineraryModalAccommodation({
           <img
             src={day.accommodation.imageUrl}
             alt={day.accommodation.title}
-            className="h-36 w-full rounded-lg object-cover sm:h-full"
+            className="h-36 w-full rounded-(--voyana-radius-card) object-cover sm:h-full"
           />
         ) : null}
 
@@ -47,7 +48,7 @@ export function TourTemplateItineraryModalAccommodation({
             {day.accommodation.highlights.map((highlight) => (
               <span
                 key={highlight}
-                className="rounded-full bg-[rgb(var(--voyana-rgb-accent-teal)/0.12)] px-3 py-1 text-xs font-bold text-(--voyana-color-accent-teal-strong)"
+                className="rounded-(--voyana-radius-pill) bg-[rgb(var(--voyana-rgb-accent-teal)/0.12)] px-3 py-1 text-xs font-bold text-(--voyana-color-accent-teal-strong)"
               >
                 {highlight}
               </span>

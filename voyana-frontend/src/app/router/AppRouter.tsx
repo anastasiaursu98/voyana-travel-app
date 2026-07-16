@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { authRoutes } from "../../features/auth/routes/auth.routes";
 import { destinationsRoutes } from "../../features/destinations/routes/destinations.routes";
 import { homeRoutes } from "../../features/home/routes/home.routes";
+import { managementRoutes } from "../../features/management/routes/management.routes";
 import { vacationPackagesRoutes } from "../../features/vacation-packages/routes/vacationPackages.routes";
 import { routes } from "./routes";
 import { withRouteFallback } from "./withRouteFallback";
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
       ...homeRoutes,
       ...vacationPackagesRoutes,
       ...destinationsRoutes,
+      ...managementRoutes,
       {
         path: "*",
         element: withRouteFallback(createElement(NotFoundPage)),

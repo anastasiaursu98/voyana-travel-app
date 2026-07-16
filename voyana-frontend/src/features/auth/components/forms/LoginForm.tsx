@@ -55,7 +55,7 @@ export function LoginForm({
             "& .MuiFormControlLabel-label": {
               color: designTokens.colors.textInverseMuted,
               fontSize: 15,
-              fontWeight: 650,
+              fontWeight: 700,
             },
           }}
         />

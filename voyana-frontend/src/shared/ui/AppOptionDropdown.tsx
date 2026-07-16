@@ -1,9 +1,10 @@
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
-import { Box, ButtonBase, Popover, Typography } from "@mui/material";
+import { Box, Popover, Typography } from "@mui/material";
 import type { ReactNode } from "react";
 import { useState } from "react";
 import { designTokens, tokenAlpha } from "../constants/designTokens";
+import { AppButton } from "./AppButton";
 
 export type AppOptionDropdownOption<TValue extends string = string> = {
   description?: string;
@@ -14,22 +15,31 @@ export type AppOptionDropdownOption<TValue extends string = string> = {
 type AppOptionDropdownProps<TValue extends string = string> = {
   icon: ReactNode;
   label: string;
+  minHeight?: number;
   onChange: (value: TValue) => void;
   options: readonly AppOptionDropdownOption<TValue>[];
+  placeholder?: string;
+  showIcon?: boolean;
+  showLabel?: boolean;
   value: TValue;
 };
 
 export function AppOptionDropdown<TValue extends string = string>({
   icon,
   label,
+  minHeight = 62,
   onChange,
   options,
+  placeholder = "Select option",
+  showIcon = true,
+  showLabel = true,
   value,
 }: AppOptionDropdownProps<TValue>) {
   const [anchorElement, setAnchorElement] = useState<HTMLElement | null>(null);
   const isOpen = Boolean(anchorElement);
   const selectedOption =
     options.find((option) => option.value === value) ?? options[0];
+  const hasSelectedValue = options.some((option) => option.value === value);
 
   const handleSelect = (nextValue: TValue) => {
     onChange(nextValue);
@@ -38,76 +48,88 @@ export function AppOptionDropdown<TValue extends string = string>({
 
   return (
     <>
-      <ButtonBase
+      <AppButton
+        intent="control"
         onClick={(event) => setAnchorElement(event.currentTarget)}
+        endIcon={
+          <KeyboardArrowDownRoundedIcon
+            sx={{
+              color: designTokens.colors.textMuted,
+              flexShrink: 0,
+            }}
+          />
+        }
+        startIcon={
+          showIcon ? (
+          <Box
+            sx={{
+              alignItems: "center",
+              color: designTokens.colors.textMuted,
+              display: "grid",
+              flexShrink: 0,
+              height: 28,
+              placeItems: "center",
+              width: 28,
+            }}
+          >
+            {icon}
+          </Box>
+          ) : undefined
+        }
         sx={{
           alignItems: "center",
           border: `1px solid ${tokenAlpha(designTokens.rgb.borderSubtle, 0.95)}`,
-          borderRadius: 2,
+          borderRadius: designTokens.radius.card,
           display: "flex",
           gap: 1.25,
+          height: showLabel ? "auto" : minHeight,
           justifyContent: "flex-start",
-          minHeight: 62,
-          px: 1.25,
-          py: 1.1,
+          minHeight,
+          px: showLabel ? 1.25 : 1.75,
+          py: showLabel ? 1.1 : 0,
           textAlign: "left",
           width: "100%",
           transition:
             "border-color 0.2s ease-out, box-shadow 0.2s ease-out, transform 0.2s ease-out",
           "&:hover": {
             borderColor: tokenAlpha(designTokens.rgb.textStrong, 0.28),
-            boxShadow: `0 12px 28px ${tokenAlpha(designTokens.rgb.textStrong, 0.07)}`,
+            boxShadow: designTokens.shadows.search,
             transform: "translateY(-1px)",
+          },
+          "& .MuiButton-endIcon": {
+            ml: "auto",
           },
         }}
       >
-        <Box
-          sx={{
-            alignItems: "center",
-            color: designTokens.colors.textMuted,
-            display: "grid",
-            flexShrink: 0,
-            height: 28,
-            placeItems: "center",
-            width: 28,
-          }}
-        >
-          {icon}
-        </Box>
-
         <Box sx={{ minWidth: 0 }}>
-          <Typography
-            sx={{
-              color: designTokens.colors.textMuted,
-              fontSize: 11,
-              fontWeight: 650,
-              lineHeight: 1.1,
-            }}
-          >
-            {label}
-          </Typography>
+          {showLabel ? (
+            <Typography
+              sx={{
+                color: designTokens.colors.textMuted,
+                fontSize: 11,
+                fontWeight: designTokens.typography.labelWeight,
+                lineHeight: 1.1,
+              }}
+            >
+              {label}
+            </Typography>
+          ) : null}
           <Typography
             noWrap
             sx={{
-              color: designTokens.colors.textPrimary,
+              color: hasSelectedValue
+                ? designTokens.colors.textMuted
+                : designTokens.colors.textSoft,
               fontSize: 15,
-              fontWeight: 650,
+              fontWeight: designTokens.typography.regularWeight,
               lineHeight: 1.25,
-              mt: 0.45,
+              mt: showLabel ? 0.45 : 0,
             }}
           >
-            {selectedOption.label}
+            {hasSelectedValue ? selectedOption.label : placeholder}
           </Typography>
         </Box>
-
-        <KeyboardArrowDownRoundedIcon
-          sx={{
-            color: designTokens.colors.textMuted,
-            flexShrink: 0,
-            ml: "auto",
-          }}
-        />
-      </ButtonBase>
+      </AppButton>
 
       <Popover
         open={isOpen}
@@ -120,8 +142,8 @@ export function AppOptionDropdown<TValue extends string = string>({
             sx: {
               bgcolor: designTokens.colors.backgroundCard,
               border: `1px solid ${tokenAlpha(designTokens.rgb.borderSubtle, 0.9)}`,
-              borderRadius: 3,
-              boxShadow: `0 24px 70px ${tokenAlpha(designTokens.rgb.textStrong, 0.14)}`,
+              borderRadius: "var(--voyana-radius-panel)",
+              boxShadow: designTokens.shadows.popover,
               color: designTokens.colors.textPrimary,
               mt: 1,
               overflow: "hidden",
@@ -136,12 +158,23 @@ export function AppOptionDropdown<TValue extends string = string>({
             const isSelected = option.value === value;
 
             return (
-              <ButtonBase
+              <AppButton
+                intent="control"
                 key={option.value}
                 onClick={() => handleSelect(option.value)}
+                endIcon={
+                  isSelected ? (
+                    <CheckRoundedIcon
+                      sx={{
+                        color: designTokens.colors.accentTealStrong,
+                        flexShrink: 0,
+                      }}
+                    />
+                  ) : undefined
+                }
                 sx={{
                   alignItems: "center",
-                  borderRadius: 2,
+                  borderRadius: designTokens.radius.control,
                   display: "flex",
                   gap: 1.5,
                   justifyContent: "space-between",
@@ -159,7 +192,7 @@ export function AppOptionDropdown<TValue extends string = string>({
                     sx={{
                       color: designTokens.colors.textPrimary,
                       fontSize: 14,
-                      fontWeight: 800,
+                      fontWeight: designTokens.typography.labelWeight,
                       lineHeight: 1.2,
                     }}
                   >
@@ -170,7 +203,7 @@ export function AppOptionDropdown<TValue extends string = string>({
                       sx={{
                         color: designTokens.colors.textMuted,
                         fontSize: 12,
-                        fontWeight: 600,
+                        fontWeight: designTokens.typography.regularWeight,
                         lineHeight: 1.4,
                         mt: 0.45,
                       }}
@@ -179,16 +212,7 @@ export function AppOptionDropdown<TValue extends string = string>({
                     </Typography>
                   ) : null}
                 </Box>
-
-                {isSelected ? (
-                  <CheckRoundedIcon
-                    sx={{
-                      color: designTokens.colors.accentTealStrong,
-                      flexShrink: 0,
-                    }}
-                  />
-                ) : null}
-              </ButtonBase>
+              </AppButton>
             );
           })}
         </Box>

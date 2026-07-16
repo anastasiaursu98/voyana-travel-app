@@ -16,8 +16,8 @@ export function FormErrorAlert({ message }: FormErrorAlertProps) {
       sx={{
         mb: 2.5,
         borderRadius: 2,
-        border: '1px solid rgb(255 124 124 / 0.42)',
-        bgcolor: 'rgb(92 18 28 / 0.5)',
+        border: `1px solid ${tokenAlpha(designTokens.rgb.danger, 0.42)}`,
+        bgcolor: designTokens.colors.errorInverseSurface,
         color: designTokens.colors.textInverse,
         fontWeight: 700,
         alignItems: 'center',
@@ -26,7 +26,7 @@ export function FormErrorAlert({ message }: FormErrorAlertProps) {
         boxShadow: `0 14px 30px ${tokenAlpha(designTokens.rgb.black, 0.22)}`,
         backdropFilter: 'blur(10px)',
         '& .MuiAlert-icon': {
-          color: 'rgb(255 145 145)',
+          color: designTokens.colors.errorInverse,
           opacity: 1,
           p: 0,
           mr: 1.5,

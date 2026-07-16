@@ -71,7 +71,7 @@ function VacationPackageDetailsBody({
         coverImage={vacationPackage.media.coverImage}
         galleryImages={vacationPackage.media.galleryImages}
       />
-      <div className="grid w-full min-w-0 gap-6 bg-white py-8 xl:grid-cols-[minmax(0,1fr)_minmax(20rem,24rem)] xl:items-start xl:gap-6">
+      <div className="grid w-full min-w-0 gap-6 bg-(--voyana-color-background-card) py-8 xl:grid-cols-[minmax(0,1fr)_minmax(20rem,24rem)] xl:items-start xl:gap-6">
         <VacationPackageDetailsContent
           amenities={amenities}
           vacationPackage={vacationPackage}
@@ -120,7 +120,7 @@ export function VacationPackageDetails({
       />
 
       {isLoading || currentVacationPackage === null ? (
-        <div className="grid h-64 w-full place-items-center rounded-lg border border-[rgb(var(--voyana-rgb-border-subtle)/0.96)] bg-white text-sm font-medium text-(--voyana-color-text-muted) sm:h-80 md:h-96 xl:h-120">
+        <div className="grid h-64 w-full place-items-center rounded-(--voyana-radius-card) border border-[rgb(var(--voyana-rgb-border-subtle)/0.96)] bg-(--voyana-color-background-card) text-sm font-medium text-(--voyana-color-text-muted) sm:h-80 md:h-96 xl:h-120">
           {loadingMessage}
         </div>
       ) : (

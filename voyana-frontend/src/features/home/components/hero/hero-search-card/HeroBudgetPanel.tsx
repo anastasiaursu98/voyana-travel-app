@@ -1,3 +1,4 @@
+import { AppButton } from "../../../../../shared/ui";
 import { budgetOptions } from "./heroSearchPanels.content";
 
 export function HeroBudgetPanel() {
@@ -9,10 +10,10 @@ export function HeroBudgetPanel() {
 
       <div className="mt-3 space-y-2">
         {budgetOptions.map((option) => (
-          <button
+          <AppButton intent="control"
             key={option.label}
             type="button"
-            className="block w-full rounded-2xl border border-[rgb(var(--voyana-rgb-border-subtle)/0.78)] p-4 text-left transition hover:border-[rgb(var(--voyana-rgb-accent-teal)/0.5)] hover:bg-[rgb(var(--voyana-rgb-background-input)/0.72)] focus:outline-none focus:ring-4 focus:ring-[rgb(var(--voyana-rgb-accent-teal)/0.2)]"
+            className="block w-full rounded-(--voyana-radius-modal) border border-[rgb(var(--voyana-rgb-border-subtle)/0.78)] p-4 text-left transition hover:border-[rgb(var(--voyana-rgb-accent-teal)/0.5)] hover:bg-[rgb(var(--voyana-rgb-background-input)/0.72)] focus:outline-none focus:ring-4 focus:ring-[rgb(var(--voyana-rgb-accent-teal)/0.2)]"
           >
             <span className="block text-sm font-black text-(--voyana-color-text-primary)">
               {option.label}
@@ -20,7 +21,7 @@ export function HeroBudgetPanel() {
             <span className="mt-1 block text-sm leading-6 text-(--voyana-color-text-muted)">
               {option.note}
             </span>
-          </button>
+          </AppButton>
         ))}
       </div>
     </div>

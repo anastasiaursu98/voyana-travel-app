@@ -1,9 +1,10 @@
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-import { IconButton, InputAdornment } from "@mui/material";
+import { InputAdornment } from "@mui/material";
 import { designTokens, tokenAlpha } from "../constants/designTokens";
 import { AppTextField } from "./AppTextField";
 import type { AppTextFieldProps } from "./AppTextField";
+import { AppButton } from "./AppButton";
 
 export type AppPasswordFieldProps = Omit<
   AppTextFieldProps,
@@ -26,10 +27,17 @@ export function AppPasswordField({
         input: {
           endAdornment: (
             <InputAdornment position="end">
-              <IconButton
+              <AppButton
+                intent="icon"
                 aria-label={isVisible ? "Hide password" : "Show password"}
-                edge="end"
                 onClick={onToggleVisibility}
+                icon={
+                  isVisible ? (
+                    <VisibilityOffOutlinedIcon />
+                  ) : (
+                    <VisibilityOutlinedIcon />
+                  )
+                }
                 sx={{
                   mr: -0.5,
                   color: isVisible
@@ -50,13 +58,7 @@ export function AppPasswordField({
                     color: designTokens.colors.buttonPrimary,
                   },
                 }}
-              >
-                {isVisible ? (
-                  <VisibilityOffOutlinedIcon />
-                ) : (
-                  <VisibilityOutlinedIcon />
-                )}
-              </IconButton>
+              />
             </InputAdornment>
           ),
         },

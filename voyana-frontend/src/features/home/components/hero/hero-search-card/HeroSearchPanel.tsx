@@ -1,3 +1,5 @@
+import { AppTypography } from "../../../../../shared/ui";
+import { AppButton } from "../../../../../shared/ui";
 import ApartmentRoundedIcon from "@mui/icons-material/ApartmentRounded";
 import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
@@ -46,7 +48,7 @@ const panelWidthClasses = {
 export function HeroSearchPanel({ activePanel }: HeroSearchPanelProps) {
   return (
     <div
-      className={`voyana-scrollbar max-h-[min(34rem,calc(100vh-9rem))] w-full overflow-y-auto overflow-x-hidden rounded-[32px] bg-(--voyana-color-white) text-(--voyana-color-text-primary) shadow-[0_22px_60px_rgb(var(--voyana-rgb-background-dark)/0.2)] ring-1 ring-[rgb(var(--voyana-rgb-border-subtle)/0.72)] ${panelWidthClasses[activePanel]}`}
+      className={`voyana-scrollbar max-h-[min(34rem,calc(100vh-9rem))] w-full overflow-y-auto overflow-x-hidden rounded-(--voyana-radius-search-panel) bg-(--voyana-color-white) text-(--voyana-color-text-primary) shadow-[0_22px_60px_rgb(var(--voyana-rgb-background-dark)/0.2)] ring-1 ring-[rgb(var(--voyana-rgb-border-subtle)/0.72)] ${panelWidthClasses[activePanel]}`}
     >
       {activePanel === "where" ? <WherePanel /> : null}
       {activePanel === "when" ? <CalendarPanel /> : null}
@@ -72,17 +74,19 @@ function WherePanel() {
           } satisfies CSSProperties;
 
           return (
-            <button
+            <AppButton intent="control"
               key={destination.title}
               type="button"
-              className="flex w-full items-center gap-3 rounded-2xl p-1 text-left transition hover:bg-[rgb(var(--voyana-rgb-background-input)/0.78)] focus:outline-none focus:ring-4 focus:ring-[rgb(var(--voyana-rgb-button-primary)/0.22)]"
+              startIcon={
+                <span
+                  className="grid size-11 shrink-0 place-items-center rounded-(--voyana-radius-panel)"
+                  style={iconStyle}
+                >
+                  <Icon fontSize="small" />
+                </span>
+              }
+              className="flex w-full items-center gap-3 rounded-(--voyana-radius-modal) p-1 text-left transition hover:bg-[rgb(var(--voyana-rgb-background-input)/0.78)] focus:outline-none focus:ring-4 focus:ring-[rgb(var(--voyana-rgb-button-primary)/0.22)]"
             >
-              <span
-                className="grid size-11 shrink-0 place-items-center rounded-xl"
-                style={iconStyle}
-              >
-                <Icon fontSize="small" />
-              </span>
               <span className="min-w-0">
                 <span className="block truncate text-sm font-black text-(--voyana-color-text-primary)">
                   {destination.title}
@@ -91,7 +95,7 @@ function WherePanel() {
                   {destination.subtitle}
                 </span>
               </span>
-            </button>
+            </AppButton>
           );
         })}
       </div>
@@ -102,19 +106,19 @@ function WherePanel() {
 function CalendarPanel() {
   return (
     <div className="p-5 sm:p-7">
-      <div className="mx-auto grid max-w-76 grid-cols-2 rounded-full bg-[rgb(var(--voyana-rgb-border-subtle)/0.5)] p-1">
+      <div className="mx-auto grid max-w-76 grid-cols-2 rounded-(--voyana-radius-pill) bg-[rgb(var(--voyana-rgb-border-subtle)/0.5)] p-1">
         {calendarTabs.map((tab, tabIndex) => (
-          <button
+          <AppButton intent="control"
             key={tab}
             type="button"
-            className={`h-9 rounded-full text-sm font-black transition ${
+            className={`h-9 rounded-(--voyana-radius-pill) text-sm font-black transition ${
               tabIndex === 0
                 ? "bg-(--voyana-color-white) text-(--voyana-color-text-primary) shadow-[0_5px_18px_rgb(var(--voyana-rgb-background-dark)/0.12)]"
                 : "text-[rgb(var(--voyana-rgb-text-primary)/0.72)] hover:bg-[rgb(var(--voyana-rgb-white)/0.48)]"
             }`}
           >
             {tab}
-          </button>
+          </AppButton>
         ))}
       </div>
 
@@ -122,29 +126,27 @@ function CalendarPanel() {
         {calendarMonths.map((month, monthIndex) => (
           <div key={month.title}>
             <div className="mb-5 flex items-center justify-between">
-              <button
+              <AppButton intent="control"
                 type="button"
                 aria-label="Previous month"
-                className={`grid size-9 place-items-center rounded-full text-(--voyana-color-text-primary) transition hover:bg-[rgb(var(--voyana-rgb-background-input)/0.85)] ${
+                icon={<ChevronLeftRoundedIcon fontSize="small" />}
+                className={`grid size-9 place-items-center rounded-(--voyana-radius-pill) text-(--voyana-color-text-primary) transition hover:bg-[rgb(var(--voyana-rgb-background-input)/0.85)] ${
                   monthIndex === 0 ? "" : "invisible"
                 }`}
-              >
-                <ChevronLeftRoundedIcon fontSize="small" />
-              </button>
+              />
 
-              <h3 className="text-base font-black text-(--voyana-color-text-primary)">
+              <AppTypography variant="cardTitle" className=" text-(--voyana-color-text-primary)">
                 {month.title}
-              </h3>
+              </AppTypography>
 
-              <button
+              <AppButton intent="control"
                 type="button"
                 aria-label="Next month"
-                className={`grid size-9 place-items-center rounded-full text-(--voyana-color-text-primary) transition hover:bg-[rgb(var(--voyana-rgb-background-input)/0.85)] ${
+                icon={<ChevronRightRoundedIcon fontSize="small" />}
+                className={`grid size-9 place-items-center rounded-(--voyana-radius-pill) text-(--voyana-color-text-primary) transition hover:bg-[rgb(var(--voyana-rgb-background-input)/0.85)] ${
                   monthIndex === calendarMonths.length - 1 ? "" : "invisible"
                 }`}
-              >
-                <ChevronRightRoundedIcon fontSize="small" />
-              </button>
+              />
             </div>
 
             <div className="grid grid-cols-7 gap-y-3 text-center text-xs font-bold text-[rgb(var(--voyana-rgb-text-primary)/0.58)]">
@@ -156,17 +158,17 @@ function CalendarPanel() {
             <div className="mt-4 grid grid-cols-7 gap-y-3 text-center">
               {month.days.map((day, dayIndex) =>
                 day ? (
-                  <button
+                  <AppButton intent="control"
                     key={`${month.title}-${day.label}-${dayIndex}`}
                     type="button"
-                    className={`mx-auto grid size-9 place-items-center rounded-full text-sm font-black transition hover:bg-(--voyana-color-button-primary) hover:text-(--voyana-color-button-primary-text) ${
+                    className={`mx-auto grid size-9 place-items-center rounded-(--voyana-radius-pill) text-sm font-black transition hover:bg-(--voyana-color-button-primary) hover:text-(--voyana-color-button-primary-text) ${
                       day.muted
                         ? "text-[rgb(var(--voyana-rgb-text-primary)/0.26)]"
                         : "text-(--voyana-color-text-primary)"
                     }`}
                   >
                     {day.label}
-                  </button>
+                  </AppButton>
                 ) : (
                   <span
                     key={`${month.title}-empty-${dayIndex}`}
@@ -182,17 +184,17 @@ function CalendarPanel() {
 
       <div className="mt-7 flex flex-wrap gap-2">
         {flexibleDateOptions.map((option, optionIndex) => (
-          <button
+          <AppButton intent="control"
             key={option}
             type="button"
-            className={`rounded-full border px-4 py-2 text-xs font-black transition ${
+            className={`rounded-(--voyana-radius-pill) border px-4 py-2 text-xs font-black transition ${
               optionIndex === 0
                 ? "border-(--voyana-color-text-primary) text-(--voyana-color-text-primary)"
                 : "border-[rgb(var(--voyana-rgb-border-subtle)/0.9)] text-[rgb(var(--voyana-rgb-text-primary)/0.76)] hover:border-(--voyana-color-button-primary)"
             }`}
           >
             {option}
-          </button>
+          </AppButton>
         ))}
       </div>
     </div>

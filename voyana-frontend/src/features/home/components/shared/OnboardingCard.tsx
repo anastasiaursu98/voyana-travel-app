@@ -22,7 +22,7 @@ export function OnboardingCard({
 }: OnboardingCardProps) {
   return (
     <article
-      className={`rounded-lg border transition hover:-translate-y-0.5 ${toneClasses[tone]} ${className}`}
+      className={`rounded-(--voyana-radius-card) border transition hover:-translate-y-0.5 ${toneClasses[tone]} ${className}`}
       {...props}
     >
       {children}

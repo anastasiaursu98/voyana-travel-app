@@ -12,7 +12,7 @@ export function PublicHeaderBrand({ isLightHeader }: PublicHeaderBrandProps) {
       to={routes.home}
       className={`public-header__brand flex items-center gap-3 transition focus:outline-none focus:ring-4 focus:ring-[rgb(var(--voyana-rgb-accent-teal)/0.25)] ${
         isLightHeader
-          ? "text-slate-950 hover:text-(--voyana-color-text-strong)"
+          ? "text-(--voyana-color-text-strong) hover:text-(--voyana-color-text-strong)"
           : "text-(--voyana-color-white) hover:text-(--voyana-color-text-inverse-muted)"
       }`}
       aria-label="Voyana home"

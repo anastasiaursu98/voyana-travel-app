@@ -41,7 +41,7 @@ export function HeroSection() {
       >
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-[linear-gradient(110deg,rgb(193_135_77/0.78)_0%,rgb(193_135_77/0.58)_36%,rgb(var(--voyana-rgb-accent-teal-strong)/0.36)_58%,rgb(var(--voyana-rgb-background-dark)/0.46)_100%)]"
+          className="absolute inset-0 bg-[linear-gradient(110deg,rgb(var(--voyana-rgb-hero-warm)/0.78)_0%,rgb(var(--voyana-rgb-hero-warm)/0.58)_36%,rgb(var(--voyana-rgb-accent-teal-strong)/0.36)_58%,rgb(var(--voyana-rgb-background-dark)/0.46)_100%)]"
         />
         <HomeContentContainer className="relative z-20 flex min-h-0 items-center pb-8 pt-24 sm:pt-28 md:pb-12 lg:min-h-screen lg:pb-52 xl:pb-56 xl:pt-24">
           <div className="w-full max-w-152">
@@ -66,7 +66,7 @@ export function HeroSection() {
       </div>
       <div
         aria-hidden="true"
-        className="absolute inset-0 z-10 bg-[linear-gradient(100deg,rgb(197_137_78/0.76)_0%,rgb(197_137_78/0.58)_33%,rgb(var(--voyana-rgb-accent-teal-strong)/0.26)_49%,rgb(var(--voyana-rgb-background-dark)/0.06)_68%,rgb(var(--voyana-rgb-background-dark)/0.2)_100%)]"
+        className="absolute inset-0 z-10 bg-[linear-gradient(100deg,rgb(var(--voyana-rgb-hero-warm)/0.76)_0%,rgb(var(--voyana-rgb-hero-warm)/0.58)_33%,rgb(var(--voyana-rgb-accent-teal-strong)/0.26)_49%,rgb(var(--voyana-rgb-background-dark)/0.06)_68%,rgb(var(--voyana-rgb-background-dark)/0.2)_100%)]"
       />
 
       <HomeContentContainer className="relative z-20 grid min-h-0 min-w-0 gap-4 pb-8 pt-24 sm:gap-5 sm:pb-10 sm:pt-28 md:gap-6 md:pb-12 lg:min-h-screen lg:pb-52 xl:grid-cols-[minmax(0,40fr)_minmax(0,60fr)] xl:content-center xl:items-start xl:gap-16 xl:pb-56 xl:pt-24">

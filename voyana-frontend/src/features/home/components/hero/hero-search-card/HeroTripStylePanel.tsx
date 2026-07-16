@@ -1,3 +1,4 @@
+import { AppButton } from "../../../../../shared/ui";
 import { tripStyleOptions } from "./heroSearchPanels.content";
 
 export function HeroTripStylePanel() {
@@ -9,10 +10,10 @@ export function HeroTripStylePanel() {
 
       <div className="mt-3 grid gap-2 sm:grid-cols-2">
         {tripStyleOptions.map((option) => (
-          <button
+          <AppButton intent="control"
             key={option.label}
             type="button"
-            className="rounded-2xl border border-[rgb(var(--voyana-rgb-border-subtle)/0.78)] p-4 text-left transition hover:border-[rgb(var(--voyana-rgb-accent-warm)/0.7)] hover:bg-[rgb(var(--voyana-rgb-background-input)/0.72)] focus:outline-none focus:ring-4 focus:ring-[rgb(var(--voyana-rgb-accent-warm)/0.2)]"
+            className="rounded-(--voyana-radius-modal) border border-[rgb(var(--voyana-rgb-border-subtle)/0.78)] p-4 text-left transition hover:border-[rgb(var(--voyana-rgb-accent-warm)/0.7)] hover:bg-[rgb(var(--voyana-rgb-background-input)/0.72)] focus:outline-none focus:ring-4 focus:ring-[rgb(var(--voyana-rgb-accent-warm)/0.2)]"
           >
             <span className="block text-sm font-black text-(--voyana-color-text-primary)">
               {option.label}
@@ -20,7 +21,7 @@ export function HeroTripStylePanel() {
             <span className="mt-1 block text-sm leading-6 text-(--voyana-color-text-muted)">
               {option.note}
             </span>
-          </button>
+          </AppButton>
         ))}
       </div>
     </div>

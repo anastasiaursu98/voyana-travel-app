@@ -1,8 +1,25 @@
 :root {
+  --voyana-font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --voyana-font-weight-action: 700;
+  --voyana-font-weight-regular: 500;
+  --voyana-font-weight-label: 600;
+  --voyana-font-weight-heading: 700;
+
+  --voyana-font-size-page-title: clamp(2.5rem, 6vw, 4.75rem);
+  --voyana-font-size-section-title: clamp(2rem, 4vw, 3.25rem);
+  --voyana-font-size-card-title: 1.25rem;
+  --voyana-font-size-form-title: 1rem;
+  --voyana-font-size-body: 1rem;
+  --voyana-font-size-caption: 0.75rem;
+  --voyana-font-size-label: 0.875rem;
+
   --voyana-rgb-text-primary: 10 11 8;
   --voyana-rgb-text-strong: 28 30 30;
   --voyana-rgb-text-body: 115 123 123;
   --voyana-rgb-text-muted: 92 99 99;
+  --voyana-rgb-text-soft: 123 130 130;
+  --voyana-rgb-text-subtle: 148 156 156;
   --voyana-rgb-text-inverse-muted: 214 222 220;
 
   --voyana-rgb-background-dark: 4 17 23;
@@ -18,6 +35,20 @@
   --voyana-rgb-accent-warm: 255 200 87;
   --voyana-rgb-accent-teal: 89 171 174;
   --voyana-rgb-accent-teal-strong: 18 90 83;
+  --voyana-rgb-success: 21 128 61;
+  --voyana-rgb-success-surface: 240 253 244;
+  --voyana-rgb-success-border: 187 247 208;
+  --voyana-rgb-warning: 161 98 7;
+  --voyana-rgb-warning-surface: 255 251 235;
+  --voyana-rgb-warning-border: 253 230 138;
+  --voyana-rgb-danger: 190 18 60;
+  --voyana-rgb-danger-surface: 255 241 242;
+  --voyana-rgb-danger-border: 254 205 211;
+  --voyana-rgb-error-inverse: 255 145 145;
+  --voyana-rgb-error-inverse-surface: 92 18 28;
+  --voyana-rgb-hero-warm: 197 137 78;
+  --voyana-rgb-destination-coral: 220 66 55;
+  --voyana-rgb-destination-coral-surface: 255 111 97;
   --voyana-rgb-white: 255 255 255;
   --voyana-rgb-black: 0 0 0;
 
@@ -25,6 +56,8 @@
   --voyana-color-text-strong: rgb(var(--voyana-rgb-text-strong));
   --voyana-color-text-body: rgb(var(--voyana-rgb-text-body));
   --voyana-color-text-muted: rgb(var(--voyana-rgb-text-muted));
+  --voyana-color-text-soft: rgb(var(--voyana-rgb-text-soft));
+  --voyana-color-text-subtle: rgb(var(--voyana-rgb-text-subtle));
   --voyana-color-text-inverse-muted: rgb(
     var(--voyana-rgb-text-inverse-muted)
   );
@@ -55,14 +88,37 @@
   --voyana-color-accent-teal-strong: rgb(
     var(--voyana-rgb-accent-teal-strong)
   );
+  --voyana-color-success: rgb(var(--voyana-rgb-success));
+  --voyana-color-success-surface: rgb(var(--voyana-rgb-success-surface));
+  --voyana-color-success-border: rgb(var(--voyana-rgb-success-border));
+  --voyana-color-warning: rgb(var(--voyana-rgb-warning));
+  --voyana-color-warning-surface: rgb(var(--voyana-rgb-warning-surface));
+  --voyana-color-warning-border: rgb(var(--voyana-rgb-warning-border));
+  --voyana-color-danger: rgb(var(--voyana-rgb-danger));
+  --voyana-color-danger-surface: rgb(var(--voyana-rgb-danger-surface));
+  --voyana-color-danger-border: rgb(var(--voyana-rgb-danger-border));
+  --voyana-color-error-inverse: rgb(var(--voyana-rgb-error-inverse));
+  --voyana-color-error-inverse-surface: rgb(var(--voyana-rgb-error-inverse-surface));
   --voyana-color-white: rgb(var(--voyana-rgb-white));
 
   --voyana-radius-card: 8px;
+  --voyana-radius-compact: 6px;
+  --voyana-radius-control: 8px;
+  --voyana-radius-panel: 12px;
+  --voyana-radius-modal: 16px;
+  --voyana-radius-carousel-card: 18px;
+  --voyana-radius-search-card: 30px;
+  --voyana-radius-search-panel: 32px;
+  --voyana-radius-search-control: 24px;
   --voyana-radius-pill: 999px;
 
   --voyana-shadow-control: 0 12px 28px rgb(var(--voyana-rgb-black) / 0.16);
   --voyana-shadow-auth-back: 0 16px 34px rgb(var(--voyana-rgb-black) / 0.22);
   --voyana-shadow-text: 0 8px 26px rgb(var(--voyana-rgb-black) / 0.28);
+  --voyana-shadow-card: 0 14px 40px rgb(var(--voyana-rgb-text-strong) / 0.045);
+  --voyana-shadow-panel: 0 18px 50px rgb(var(--voyana-rgb-text-strong) / 0.06);
+  --voyana-shadow-popover: 0 24px 70px rgb(var(--voyana-rgb-text-strong) / 0.14);
+  --voyana-shadow-search: 0 10px 26px rgb(var(--voyana-rgb-text-strong) / 0.04);
 
   --voyana-gradient-hero-horizontal: linear-gradient(
     90deg,

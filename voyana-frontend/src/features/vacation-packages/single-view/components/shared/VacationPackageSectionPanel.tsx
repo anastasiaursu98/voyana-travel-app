@@ -1,3 +1,4 @@
+import { AppTypography } from "../../../../../shared/ui";
 import type { PropsWithChildren } from "react";
 
 type VacationPackageSectionPanelProps = PropsWithChildren<{
@@ -14,12 +15,12 @@ export function VacationPackageSectionPanel({
 }: VacationPackageSectionPanelProps) {
   return (
     <section
-      className={`rounded-lg border border-[rgb(var(--voyana-rgb-border-subtle)/0.96)] bg-white p-4 shadow-none sm:p-5 ${className}`}
+      className={`rounded-(--voyana-radius-card) border border-[rgb(var(--voyana-rgb-border-subtle)/0.96)] bg-(--voyana-color-background-card) p-4 shadow-none sm:p-5 ${className}`}
     >
       <div>
-        <h2 className="text-xl font-medium leading-none tracking-normal text-(--voyana-color-text-primary)">
+        <AppTypography variant="cardTitle" className=" leading-none tracking-normal text-(--voyana-color-text-primary)">
           {title}
-        </h2>
+        </AppTypography>
         {description ? (
           <p className="mt-2 text-sm font-medium leading-6 text-(--voyana-color-text-body)">
             {description}

@@ -9,7 +9,7 @@ export function TourTemplateVacationPackageDetails({
   vacationPackage,
 }: TourTemplateVacationPackageDetailsProps) {
   return (
-    <div className="grid gap-6 bg-white">
+    <div className="grid gap-6 bg-(--voyana-color-background-card)">
       <TourTemplateItinerary
         itineraryDays={vacationPackage.categoryDetails?.itineraryDays}
       />

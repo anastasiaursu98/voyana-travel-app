@@ -4,14 +4,12 @@ import KeyboardArrowLeftRoundedIcon from "@mui/icons-material/KeyboardArrowLeftR
 import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
 import {
   Box,
-  Button,
-  ButtonBase,
-  IconButton,
   Popover,
   Typography,
 } from "@mui/material";
 import { useMemo, useState } from "react";
 import { designTokens, tokenAlpha } from "../constants/designTokens";
+import { AppButton } from "./AppButton";
 
 export type AppDateRangeValue = {
   startDate: string;
@@ -152,12 +150,42 @@ export function AppDateRangePicker({
 
   return (
     <>
-      <ButtonBase
+      <AppButton
+        intent="control"
         onClick={(event) => setAnchorElement(event.currentTarget)}
+        endIcon={
+          <KeyboardArrowDownRoundedIcon
+            sx={{
+              color: designTokens.colors.textMuted,
+              flexShrink: 0,
+            }}
+          />
+        }
+        startIcon={
+          <Box
+            sx={{
+              alignItems: "center",
+              bgcolor: isCompact
+                ? "transparent"
+                : tokenAlpha(designTokens.rgb.backgroundInput, 0.9),
+              borderRadius: isCompact ? 0 : 1.5,
+              color: isCompact
+                ? designTokens.colors.textMuted
+                : designTokens.colors.textStrong,
+              display: "grid",
+              flexShrink: 0,
+              height: isCompact ? 28 : 42,
+              placeItems: "center",
+              width: isCompact ? 28 : 42,
+            }}
+          >
+            <CalendarMonthRoundedIcon fontSize="small" />
+          </Box>
+        }
         sx={{
           alignItems: "center",
           border: `1px solid ${tokenAlpha(designTokens.rgb.borderSubtle, 0.95)}`,
-          borderRadius: 2,
+          borderRadius: designTokens.radius.card,
           display: "flex",
           gap: isCompact ? 1.25 : 1.5,
           justifyContent: "flex-start",
@@ -170,36 +198,20 @@ export function AppDateRangePicker({
             "border-color 0.2s ease-out, box-shadow 0.2s ease-out, transform 0.2s ease-out",
           "&:hover": {
             borderColor: tokenAlpha(designTokens.rgb.textStrong, 0.28),
-            boxShadow: `0 12px 28px ${tokenAlpha(designTokens.rgb.textStrong, 0.07)}`,
+            boxShadow: designTokens.shadows.search,
             transform: "translateY(-1px)",
+          },
+          "& .MuiButton-endIcon": {
+            ml: "auto",
           },
         }}
       >
-        <Box
-          sx={{
-            alignItems: "center",
-            bgcolor: isCompact
-              ? "transparent"
-              : tokenAlpha(designTokens.rgb.backgroundInput, 0.9),
-            borderRadius: isCompact ? 0 : 1.5,
-            color: isCompact
-              ? designTokens.colors.textMuted
-              : designTokens.colors.textStrong,
-            display: "grid",
-            flexShrink: 0,
-            height: isCompact ? 28 : 42,
-            placeItems: "center",
-            width: isCompact ? 28 : 42,
-          }}
-        >
-          <CalendarMonthRoundedIcon fontSize="small" />
-        </Box>
         <Box sx={{ minWidth: 0 }}>
           <Typography
             sx={{
               color: designTokens.colors.textMuted,
               fontSize: isCompact ? 11 : 12,
-              fontWeight: isCompact ? 650 : 800,
+              fontWeight: designTokens.typography.labelWeight,
               lineHeight: 1.1,
             }}
           >
@@ -212,7 +224,9 @@ export function AppDateRangePicker({
                 ? designTokens.colors.textPrimary
                 : designTokens.colors.textBody,
               fontSize: isCompact ? 15 : 16,
-              fontWeight: value.startDate ? 650 : 600,
+              fontWeight: value.startDate
+                ? designTokens.typography.labelWeight
+                : designTokens.typography.regularWeight,
               lineHeight: 1.25,
               mt: isCompact ? 0.45 : 0.75,
             }}
@@ -220,14 +234,7 @@ export function AppDateRangePicker({
             {rangeLabel}
           </Typography>
         </Box>
-        <KeyboardArrowDownRoundedIcon
-          sx={{
-            color: designTokens.colors.textMuted,
-            flexShrink: 0,
-            ml: "auto",
-          }}
-        />
-      </ButtonBase>
+      </AppButton>
 
       <Popover
         open={isOpen}
@@ -240,8 +247,8 @@ export function AppDateRangePicker({
             sx: {
               bgcolor: designTokens.colors.backgroundCard,
               border: `1px solid ${tokenAlpha(designTokens.rgb.borderSubtle, 0.9)}`,
-              borderRadius: 3,
-              boxShadow: `0 24px 70px ${tokenAlpha(designTokens.rgb.textStrong, 0.14)}`,
+              borderRadius: "var(--voyana-radius-panel)",
+              boxShadow: designTokens.shadows.popover,
               color: designTokens.colors.textPrimary,
               mt: 1,
               overflow: "hidden",
@@ -252,31 +259,31 @@ export function AppDateRangePicker({
         }}
       >
         <Box sx={{ alignItems: "center", display: "flex", gap: 1 }}>
-          <IconButton
+          <AppButton
+            intent="icon"
             aria-label="Previous month"
             onClick={() => handleMonthChange(-1)}
+            icon={<KeyboardArrowLeftRoundedIcon />}
             sx={{ color: designTokens.colors.textStrong }}
-          >
-            <KeyboardArrowLeftRoundedIcon />
-          </IconButton>
+          />
           <Typography
             sx={{
               color: designTokens.colors.textPrimary,
               flex: 1,
               fontSize: 16,
-              fontWeight: 850,
+              fontWeight: designTokens.typography.headingWeight,
               textAlign: "center",
             }}
           >
             {visibleMonthLabel}
           </Typography>
-          <IconButton
+          <AppButton
+            intent="icon"
             aria-label="Next month"
             onClick={() => handleMonthChange(1)}
+            icon={<KeyboardArrowRightRoundedIcon />}
             sx={{ color: designTokens.colors.textStrong }}
-          >
-            <KeyboardArrowRightRoundedIcon />
-          </IconButton>
+          />
         </Box>
 
         <Box
@@ -293,7 +300,7 @@ export function AppDateRangePicker({
               sx={{
                 color: designTokens.colors.textMuted,
                 fontSize: 12,
-                fontWeight: 800,
+                fontWeight: designTokens.typography.labelWeight,
                 py: 0.5,
                 textAlign: "center",
               }}
@@ -317,7 +324,8 @@ export function AppDateRangePicker({
             const isSelected = isStartDate || isEndDate;
 
             return (
-              <Button
+              <AppButton
+                intent="control"
                 key={isoDate}
                 type="button"
                 onClick={() => handleDateClick(date)}
@@ -328,12 +336,12 @@ export function AppDateRangePicker({
                     : isInRange
                       ? tokenAlpha(designTokens.rgb.buttonPrimary, 0.22)
                       : "transparent",
-                  borderRadius: 999,
+                  borderRadius: designTokens.radius.pill,
                   color: isSelected
                     ? designTokens.colors.buttonPrimaryText
                     : designTokens.colors.textPrimary,
                   fontSize: 13,
-                  fontWeight: 850,
+                  fontWeight: designTokens.typography.labelWeight,
                   minWidth: 0,
                   p: 0,
                   "&:hover": {
@@ -344,7 +352,7 @@ export function AppDateRangePicker({
                 }}
               >
                 {date.getDate()}
-              </Button>
+              </AppButton>
             );
           })}
         </Box>

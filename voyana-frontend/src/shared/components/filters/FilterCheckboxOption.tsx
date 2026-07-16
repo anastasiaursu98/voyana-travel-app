@@ -15,7 +15,7 @@ export function FilterCheckboxOption({
 }: FilterCheckboxOptionProps) {
   return (
     <label
-      className={`flex min-h-10 cursor-pointer items-center justify-between gap-3 rounded-md border px-3 py-2 text-sm font-semibold transition-colors focus-within:ring-4 focus-within:ring-[rgb(var(--voyana-rgb-accent-teal)/0.14)] ${
+      className={`flex min-h-10 cursor-pointer items-center justify-between gap-3 rounded-(--voyana-radius-compact) border px-3 py-2 text-sm font-semibold transition-colors focus-within:ring-4 focus-within:ring-[rgb(var(--voyana-rgb-accent-teal)/0.14)] ${
         checked
           ? "border-[rgb(var(--voyana-rgb-accent-teal)/0.26)] bg-[rgb(var(--voyana-rgb-accent-teal)/0.06)] text-(--voyana-color-text-primary)"
           : "border-transparent text-(--voyana-color-text-primary) hover:bg-(--voyana-color-background-section)"
@@ -33,7 +33,7 @@ export function FilterCheckboxOption({
           className={`grid h-[1.125rem] w-[1.125rem] shrink-0 place-items-center rounded border transition-colors ${
             checked
               ? "border-(--voyana-color-accent-teal-strong) bg-(--voyana-color-accent-teal-strong) text-(--voyana-color-white)"
-              : "border-[rgb(var(--voyana-rgb-border-subtle)/0.96)] bg-white"
+              : "border-[rgb(var(--voyana-rgb-border-subtle)/0.96)] bg-(--voyana-color-background-card)"
           }`}
         >
           {checked ? <CheckRoundedIcon className="text-[0.82rem]" /> : null}
@@ -42,9 +42,9 @@ export function FilterCheckboxOption({
       </span>
       {count !== undefined ? (
         <span
-          className={`shrink-0 rounded-full px-2 py-0.5 text-xs font-black leading-5 ${
+          className={`shrink-0 rounded-(--voyana-radius-pill) px-2 py-0.5 text-xs font-black leading-5 ${
             checked
-              ? "bg-white text-(--voyana-color-accent-teal-strong)"
+              ? "bg-(--voyana-color-background-card) text-(--voyana-color-accent-teal-strong)"
               : "bg-(--voyana-color-background-section) text-[rgb(var(--voyana-rgb-text-muted)/0.76)]"
           }`}
         >

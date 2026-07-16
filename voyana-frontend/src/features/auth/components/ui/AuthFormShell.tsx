@@ -1,9 +1,10 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import type { ReactNode } from "react";
 import {
   designTokens,
   tokenAlpha,
 } from "../../../../shared/constants/designTokens";
+import { AppTypography } from "../../../../shared/ui";
 
 type AuthFormShellProps = {
   title: string;
@@ -22,36 +23,32 @@ export function AuthFormShell({
         width: "100%",
       }}
     >
-      <Typography
-        component="h1"
+      <AppTypography
+        variant="pageTitle"
         sx={{
           mb: subtitle ? 1.5 : 3.5,
           color: designTokens.colors.textInverse,
           fontSize: { xs: 31, sm: 38 },
-          fontWeight: 900,
-          lineHeight: 0.98,
-          letterSpacing: 0,
           textAlign: "center",
           textTransform: "uppercase",
           textWrap: "balance",
         }}
       >
         {title}
-      </Typography>
+      </AppTypography>
 
       {subtitle ? (
-        <Typography
+        <AppTypography
+          variant="body"
           sx={{
             mb: { xs: 3, sm: 4 },
-            fontSize: { xs: 15, sm: 16 },
-            lineHeight: 1.5,
             color: tokenAlpha(designTokens.rgb.textInverseMuted, 0.84),
             textAlign: "center",
             textWrap: "balance",
           }}
         >
           {subtitle}
-        </Typography>
+        </AppTypography>
       ) : null}
 
       {children}

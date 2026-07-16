@@ -10,8 +10,8 @@ export function VacationPackageDetailsImageGallery({
   galleryImages = [],
 }: VacationPackageDetailsImageGalleryProps) {
   return (
-    <div className="grid w-full min-w-0 gap-3 bg-white sm:gap-4 xl:grid-cols-[minmax(0,2.15fr)_minmax(17rem,0.85fr)]">
-      <div className="overflow-hidden rounded-lg bg-white">
+    <div className="grid w-full min-w-0 gap-3 bg-(--voyana-color-background-card) sm:gap-4 xl:grid-cols-[minmax(0,2.15fr)_minmax(17rem,0.85fr)]">
+      <div className="overflow-hidden rounded-(--voyana-radius-card) bg-(--voyana-color-background-card)">
         {coverImage && (
           <img
             src={coverImage.url}
@@ -21,9 +21,9 @@ export function VacationPackageDetailsImageGallery({
         )}
       </div>
 
-      <div className="grid min-w-0 grid-cols-2 gap-3 bg-white sm:gap-4 xl:grid-cols-1">
+      <div className="grid min-w-0 grid-cols-2 gap-3 bg-(--voyana-color-background-card) sm:gap-4 xl:grid-cols-1">
         {galleryImages?.slice(0, 2).map((image) => (
-          <div key={image.url} className="overflow-hidden rounded-lg bg-white">
+          <div key={image.url} className="overflow-hidden rounded-(--voyana-radius-card) bg-(--voyana-color-background-card)">
             <img
               src={image.url}
               alt={image.alt}

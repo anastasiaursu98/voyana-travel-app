@@ -1,6 +1,7 @@
+import { AppButton } from "../../../../shared/ui";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 
-type IconCircleButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+type IconCircleButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color"> & {
   children: ReactNode;
   tone?: "light" | "dark";
 };
@@ -20,12 +21,12 @@ export function IconCircleButton({
   ...props
 }: IconCircleButtonProps) {
   return (
-    <button
+    <AppButton intent="control"
       type={type}
-      className={`grid h-11 w-11 place-items-center rounded-full transition hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-[rgb(var(--voyana-rgb-button-primary)/0.24)] disabled:pointer-events-none disabled:opacity-40 ${toneClasses[tone]} ${className}`}
+      className={`grid h-11 w-11 place-items-center rounded-(--voyana-radius-pill) transition hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-[rgb(var(--voyana-rgb-button-primary)/0.24)] disabled:pointer-events-none disabled:opacity-40 ${toneClasses[tone]} ${className}`}
       {...props}
     >
       {children}
-    </button>
+    </AppButton>
   );
 }

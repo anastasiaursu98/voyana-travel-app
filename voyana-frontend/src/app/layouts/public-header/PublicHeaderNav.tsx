@@ -14,7 +14,7 @@ export function PublicHeaderNav({
 }: PublicHeaderNavProps) {
   return (
     <nav
-      className="hidden items-center gap-8 md:flex"
+      className="hidden items-center gap-5 xl:flex 2xl:gap-8"
       aria-label="Primary navigation"
     >
       {PUBLIC_NAV_ITEMS.map((item) => {
@@ -36,10 +36,7 @@ export function PublicHeaderNav({
             to={item.to}
             end={shouldUseExactMatch}
             className={({ isActive }) =>
-              getNavLinkClassName(
-                isActive &&
-                  (item.label === "Home" || item.label === "Destinations"),
-              )
+              getNavLinkClassName(isActive)
             }
           >
             {item.label}

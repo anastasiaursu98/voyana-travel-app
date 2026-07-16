@@ -1,3 +1,4 @@
+import { AppButton } from "../../../../../shared/ui";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import MoreHorizRoundedIcon from "@mui/icons-material/MoreHorizRounded";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
@@ -17,7 +18,7 @@ type VacationPackageDetailsTopBarProps = {
 };
 
 const actionButtonClassName =
-  "grid size-8 place-items-center rounded-full text-(--voyana-color-text-primary) transition hover:bg-white focus:outline-none focus:ring-4 focus:ring-[rgb(var(--voyana-rgb-accent-teal)/0.18)]";
+  "grid size-8 place-items-center rounded-(--voyana-radius-pill) text-(--voyana-color-text-primary) transition hover:bg-(--voyana-color-background-card) focus:outline-none focus:ring-4 focus:ring-[rgb(var(--voyana-rgb-accent-teal)/0.18)]";
 
 export function VacationPackageDetailsTopBar({
   backLabel,
@@ -48,24 +49,22 @@ export function VacationPackageDetailsTopBar({
       </span>
       <div className="ml-auto flex shrink-0 items-center gap-2">
         {showShareAction ? (
-          <button
+          <AppButton intent="control"
             type="button"
             className={actionButtonClassName}
             aria-label={shareLabel}
+            icon={<ShareOutlinedIcon fontSize="small" />}
             onClick={onShareClick}
-          >
-            <ShareOutlinedIcon fontSize="small" />
-          </button>
+          />
         ) : null}
         {showMoreActions ? (
-          <button
+          <AppButton intent="control"
             type="button"
             className={actionButtonClassName}
             aria-label={moreActionsLabel}
+            icon={<MoreHorizRoundedIcon fontSize="small" />}
             onClick={onMoreActionsClick}
-          >
-            <MoreHorizRoundedIcon fontSize="small" />
-          </button>
+          />
         ) : null}
       </div>
     </div>

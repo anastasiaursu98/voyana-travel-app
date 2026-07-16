@@ -9,7 +9,7 @@ export function TourTemplateItineraryModalOverview({
 }: TourTemplateItineraryModalOverviewProps) {
   return (
     <>
-      <div className="overflow-hidden rounded-lg">
+      <div className="overflow-hidden rounded-(--voyana-radius-card)">
         <img
           src={day.image.url}
           alt={day.image.alt}

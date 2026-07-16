@@ -1,3 +1,4 @@
+import { AppButton } from "../../../../shared/ui";
 import {
   AnimatePresence,
   LayoutGroup,
@@ -150,20 +151,20 @@ export function HeroCarousel({
         </LayoutGroup>
       </div>
       <div className="sr-only">
-        <button
+        <AppButton intent="control"
           type="button"
           aria-label="Previous destinations"
           onClick={onGoPrevious}
         >
           Previous destinations
-        </button>
-        <button
+        </AppButton>
+        <AppButton intent="control"
           type="button"
           aria-label="Next destinations"
           onClick={onGoNext}
         >
           Next destinations
-        </button>
+        </AppButton>
       </div>
     </div>
   );

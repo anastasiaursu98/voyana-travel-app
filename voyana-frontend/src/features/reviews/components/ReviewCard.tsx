@@ -1,3 +1,4 @@
+import { AppTypography } from "../../../shared/ui";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import VerifiedRoundedIcon from "@mui/icons-material/VerifiedRounded";
 import type { Review } from "../types/review.types";
@@ -21,15 +22,15 @@ export function ReviewCard({ review }: ReviewCardProps) {
   const reviewMeta = review.stayType ?? review.destination;
 
   return (
-    <article className="flex min-h-72 w-[calc(100vw-3rem)] max-w-96 shrink-0 snap-start flex-col rounded-xl border border-(--voyana-color-border-subtle) bg-white p-5 shadow-none sm:w-88 lg:w-auto lg:max-w-none">
+    <article className="flex min-h-72 w-[calc(100vw-3rem)] max-w-96 shrink-0 snap-start flex-col rounded-(--voyana-radius-panel) border border-(--voyana-color-border-subtle) bg-(--voyana-color-background-card) p-5 shadow-none sm:w-88 lg:w-auto lg:max-w-none">
       <div className="flex items-start justify-between gap-4">
         <div className="flex min-w-0 items-center gap-3">
-          <div className="grid size-12 shrink-0 place-items-center rounded-full bg-[rgb(var(--voyana-rgb-button-primary)/0.24)] text-sm font-black text-(--voyana-color-text-primary)">
+          <div className="grid size-12 shrink-0 place-items-center rounded-(--voyana-radius-pill) bg-[rgb(var(--voyana-rgb-button-primary)/0.24)] text-sm font-black text-(--voyana-color-text-primary)">
             {review.avatarUrl ? (
               <img
                 src={review.avatarUrl}
                 alt={`${review.name} avatar`}
-                className="h-full w-full rounded-full object-cover"
+                className="h-full w-full rounded-(--voyana-radius-pill) object-cover"
                 loading="lazy"
               />
             ) : (
@@ -37,9 +38,9 @@ export function ReviewCard({ review }: ReviewCardProps) {
             )}
           </div>
           <div className="min-w-0">
-            <h3 className="truncate text-base font-semibold leading-tight text-(--voyana-color-text-primary)">
+            <AppTypography variant="cardTitle" className="truncate leading-tight text-(--voyana-color-text-primary)">
               {review.name}
-            </h3>
+            </AppTypography>
             {review.location ? (
               <p className="mt-1 truncate text-xs font-medium text-(--voyana-color-text-muted)">
                 {review.location}
@@ -48,7 +49,7 @@ export function ReviewCard({ review }: ReviewCardProps) {
           </div>
         </div>
 
-        <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-(--voyana-color-background-input) px-2.5 py-1 text-xs font-bold text-(--voyana-color-text-body)">
+        <span className="inline-flex shrink-0 items-center gap-1 rounded-(--voyana-radius-pill) bg-(--voyana-color-background-input) px-2.5 py-1 text-xs font-bold text-(--voyana-color-text-body)">
           <VerifiedRoundedIcon className="text-[0.95rem] text-(--voyana-color-accent-teal-strong)" />
           Verified
         </span>

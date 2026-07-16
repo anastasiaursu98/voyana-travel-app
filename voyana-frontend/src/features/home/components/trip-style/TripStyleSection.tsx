@@ -1,3 +1,4 @@
+import { AppTypography } from "../../../../shared/ui";
 import { Link as RouterLink } from "react-router-dom";
 import { SectionHeader } from "../../../../shared/components/SectionHeader";
 import { ResponsiveImage } from "../../../../shared/components/ResponsiveImage";
@@ -22,7 +23,7 @@ export function TripStyleSection() {
       />
 
       <div className="mt-9 grid gap-5 lg:grid-cols-[minmax(18rem,0.36fr)_minmax(0,0.64fr)]">
-        <article className="overflow-hidden rounded-lg border border-[rgb(var(--voyana-rgb-border-subtle)/0.88)] bg-(--voyana-color-white) shadow-[0_18px_45px_rgb(var(--voyana-rgb-text-strong)/0.08)]">
+        <article className="overflow-hidden rounded-(--voyana-radius-card) border border-[rgb(var(--voyana-rgb-border-subtle)/0.88)] bg-(--voyana-color-white) shadow-(--voyana-shadow-card)">
           <div className="aspect-[4/3] overflow-hidden bg-(--voyana-color-background-section)">
             <ResponsiveImage
               src={homeImages.europeCoastalTown}
@@ -33,9 +34,9 @@ export function TripStyleSection() {
             <p className="text-xs font-black uppercase tracking-normal text-(--voyana-color-accent-teal-strong)">
               Start here
             </p>
-            <h3 className="mt-3 text-2xl font-black leading-tight text-(--voyana-color-text-strong)">
+            <AppTypography variant="cardTitle" className="mt-3 leading-tight text-(--voyana-color-text-strong)">
               Choose the feeling first.
-            </h3>
+            </AppTypography>
             <p className="mt-3 text-sm leading-6 text-[rgb(var(--voyana-rgb-text-muted)/0.94)]">
               Voyana narrows down options by mood, comfort level, budget, and
               timing so the shortlist feels easier to compare.
@@ -52,7 +53,7 @@ export function TripStyleSection() {
               >
                 <RouterLink
                   to={category.to}
-                  className="block h-full rounded-md focus:outline-none focus:ring-4 focus:ring-[rgb(var(--voyana-rgb-accent-teal)/0.18)]"
+                  className="block h-full rounded-(--voyana-radius-compact) focus:outline-none focus:ring-4 focus:ring-[rgb(var(--voyana-rgb-accent-teal)/0.18)]"
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div className="min-w-0">
@@ -65,11 +66,11 @@ export function TripStyleSection() {
                       >
                         Category
                       </p>
-                      <h3 className="mt-3 text-xl font-black text-(--voyana-color-text-strong)">
+                      <AppTypography variant="cardTitle" className="mt-3 text-(--voyana-color-text-strong)">
                         {category.label}
-                      </h3>
+                      </AppTypography>
                     </div>
-                    <span className="grid size-10 shrink-0 place-items-center rounded-full bg-(--voyana-color-background-section) text-sm font-black text-(--voyana-color-text-strong)">
+                    <span className="grid size-10 shrink-0 place-items-center rounded-(--voyana-radius-pill) bg-(--voyana-color-background-section) text-sm font-black text-(--voyana-color-text-strong)">
                       {category.label.charAt(0)}
                     </span>
                   </div>
@@ -80,7 +81,7 @@ export function TripStyleSection() {
               </OnboardingCard>
             ))
           ) : (
-            <p className="rounded-lg border border-[rgb(var(--voyana-rgb-border-subtle)/0.9)] bg-(--voyana-color-background-section) p-5 text-sm font-bold text-(--voyana-color-text-muted) sm:col-span-2">
+            <p className="rounded-(--voyana-radius-card) border border-[rgb(var(--voyana-rgb-border-subtle)/0.9)] bg-(--voyana-color-background-section) p-5 text-sm font-bold text-(--voyana-color-text-muted) sm:col-span-2">
               {isLoading
                 ? "Loading vacation categories..."
                 : categoriesError ?? "No vacation categories available."}

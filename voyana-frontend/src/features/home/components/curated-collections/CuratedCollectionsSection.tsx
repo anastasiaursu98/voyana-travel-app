@@ -1,3 +1,4 @@
+import { AppTypography } from "../../../../shared/ui";
 import BeachAccessRoundedIcon from "@mui/icons-material/BeachAccessRounded";
 import FamilyRestroomRoundedIcon from "@mui/icons-material/FamilyRestroomRounded";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
@@ -43,7 +44,7 @@ export function CuratedCollectionsSection() {
             return (
               <article
                 key={collection.title}
-                className="group relative min-h-28 overflow-hidden rounded-lg border border-[rgb(var(--voyana-rgb-white)/0.78)] bg-(--voyana-color-background-dark) shadow-[0_16px_38px_rgb(var(--voyana-rgb-text-strong)/0.12)] transition hover:-translate-y-1 hover:shadow-[0_22px_52px_rgb(var(--voyana-rgb-text-strong)/0.18)]"
+                className="group relative min-h-28 overflow-hidden rounded-(--voyana-radius-card) border border-[rgb(var(--voyana-rgb-white)/0.78)] bg-(--voyana-color-background-dark) shadow-[0_16px_38px_rgb(var(--voyana-rgb-text-strong)/0.12)] transition hover:-translate-y-1 hover:shadow-[0_22px_52px_rgb(var(--voyana-rgb-text-strong)/0.18)]"
                 style={accentStyle}
               >
                 <ResponsiveImage
@@ -55,13 +56,13 @@ export function CuratedCollectionsSection() {
                 <div className="absolute -left-7 top-0 h-full w-28 skew-x-[-14deg] bg-[var(--collection-accent)]" />
 
                 <div className="relative flex min-h-28 items-center gap-4 p-4 pl-5">
-                  <span className="flex size-12 shrink-0 items-center justify-center rounded-lg bg-[rgb(var(--voyana-rgb-white)/0.92)] text-(--voyana-color-text-strong) shadow-[0_12px_26px_rgb(var(--voyana-rgb-background-dark)/0.18)]">
+                  <span className="flex size-12 shrink-0 items-center justify-center rounded-(--voyana-radius-card) bg-[rgb(var(--voyana-rgb-white)/0.92)] text-(--voyana-color-text-strong) shadow-[0_12px_26px_rgb(var(--voyana-rgb-background-dark)/0.18)]">
                     <Icon fontSize="small" />
                   </span>
                   <div className="min-w-0">
-                    <h3 className="text-base font-black leading-5 text-(--voyana-color-white) shadow-[0_8px_20px_rgb(var(--voyana-rgb-black)/0.24)]">
+                    <AppTypography variant="cardTitle" className=" leading-5 text-(--voyana-color-white) shadow-[0_8px_20px_rgb(var(--voyana-rgb-black)/0.24)]">
                       {collection.title}
-                    </h3>
+                    </AppTypography>
                     <p className="mt-1 line-clamp-2 text-xs font-semibold leading-5 text-[rgb(var(--voyana-rgb-white)/0.82)]">
                       {collection.description}
                     </p>

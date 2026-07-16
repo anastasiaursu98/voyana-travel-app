@@ -1,7 +1,8 @@
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded'
-import { IconButton, Tooltip } from '@mui/material'
+import { Tooltip } from '@mui/material'
 import { Link as RouterLink } from 'react-router-dom'
 import { designTokens, tokenAlpha } from '../../shared/constants/designTokens'
+import { AppButton } from '../../shared/ui'
 
 type AuthBackButtonProps = {
   to: string
@@ -10,10 +11,12 @@ type AuthBackButtonProps = {
 export function AuthBackButton({ to }: AuthBackButtonProps) {
   return (
     <Tooltip title="Back">
-      <IconButton
+      <AppButton
+        intent="icon"
         component={RouterLink}
         to={to}
         aria-label="Back"
+        icon={<ArrowBackRoundedIcon />}
         sx={{
           width: 44,
           height: 44,
@@ -27,9 +30,7 @@ export function AuthBackButton({ to }: AuthBackButtonProps) {
             borderColor: tokenAlpha(designTokens.rgb.buttonPrimary, 0.55),
           },
         }}
-      >
-        <ArrowBackRoundedIcon />
-      </IconButton>
+      />
     </Tooltip>
   )
 }

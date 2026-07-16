@@ -1,9 +1,9 @@
+import { AppButton, AppSearchField, AppTypography } from "../../../shared/ui";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import TuneRoundedIcon from "@mui/icons-material/TuneRounded";
 import VerifiedRoundedIcon from "@mui/icons-material/VerifiedRounded";
-import { Dialog, IconButton } from "@mui/material";
+import { Dialog } from "@mui/material";
 import type {
   Review,
   ReviewCategoryScore,
@@ -69,36 +69,36 @@ export function ReviewsModal({
           <p className="text-xs font-black uppercase leading-none tracking-normal text-(--voyana-color-text-muted)">
             Guest reviews
           </p>
-          <h2 className="mt-2 truncate text-2xl font-semibold tracking-normal text-(--voyana-color-text-primary)">
+          <AppTypography variant="cardTitle" className="mt-2 truncate tracking-normal text-(--voyana-color-text-primary)">
             All reviews
-          </h2>
+          </AppTypography>
         </div>
 
-        <IconButton
+        <AppButton
+          intent="icon"
           aria-label="Close reviews modal"
           onClick={onClose}
+          icon={<CloseRoundedIcon />}
           sx={{
             color: "var(--voyana-color-text-primary)",
             "&:hover": {
               bgcolor: "var(--voyana-color-background-input)",
             },
           }}
-        >
-          <CloseRoundedIcon />
-        </IconButton>
+        />
       </div>
 
       <div className="grid min-h-0 gap-6 overflow-y-auto bg-(--voyana-color-white) px-5 py-5 sm:px-6 lg:grid-cols-[minmax(18rem,0.38fr)_minmax(0,0.62fr)] lg:gap-8">
         <aside className="lg:sticky lg:top-0 lg:self-start">
-          <div className="rounded-xl border border-(--voyana-color-border-subtle) bg-(--voyana-color-background-card) p-5 shadow-[0_16px_42px_rgb(var(--voyana-rgb-text-strong)/0.05)] sm:p-6">
+          <div className="rounded-(--voyana-radius-panel) border border-(--voyana-color-border-subtle) bg-(--voyana-color-background-card) p-5 shadow-(--voyana-shadow-card) sm:p-6">
             <div className="flex items-center gap-4">
-              <div className="grid size-16 place-items-center rounded-lg bg-(--voyana-color-text-primary) text-2xl font-semibold text-(--voyana-color-white)">
+              <div className="grid size-16 place-items-center rounded-(--voyana-radius-card) bg-(--voyana-color-text-primary) text-2xl font-semibold text-(--voyana-color-white)">
                 {summary.score.toFixed(1)}
               </div>
               <div>
-                <h3 className="text-xl font-semibold leading-tight text-(--voyana-color-text-primary)">
+                <AppTypography variant="cardTitle" className=" leading-tight text-(--voyana-color-text-primary)">
                   {summary.label}
-                </h3>
+                </AppTypography>
                 <p className="mt-1 text-sm font-medium text-(--voyana-color-text-muted)">
                   {summary.reviewCount} verified reviews
                 </p>
@@ -125,37 +125,37 @@ export function ReviewsModal({
 
         <div className="min-w-0">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-            <label className="flex min-h-12 flex-1 items-center gap-3 rounded-full border border-(--voyana-color-border-subtle) bg-(--voyana-color-background-card) px-4 shadow-[0_10px_26px_rgb(var(--voyana-rgb-text-strong)/0.04)]">
-              <SearchRoundedIcon className="shrink-0 text-(--voyana-color-text-muted)" />
-              <input
-                type="search"
-                placeholder="Search reviews"
-                className="min-w-0 flex-1 bg-transparent text-sm font-semibold text-(--voyana-color-text-primary) outline-none placeholder:text-(--voyana-color-text-muted)"
-              />
-            </label>
+            <AppSearchField
+              aria-label="Search reviews"
+              placeholder="Search reviews"
+              className="flex-1"
+              inputClassName="rounded-(--voyana-radius-pill) bg-(--voyana-color-background-card) shadow-(--voyana-shadow-search)"
+            />
 
-            <button
+            <AppButton
+              intent="secondary"
+              surface="light"
               type="button"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-(--voyana-color-border-subtle) bg-(--voyana-color-background-card) px-4 text-sm font-bold text-(--voyana-color-text-primary) shadow-[0_10px_26px_rgb(var(--voyana-rgb-text-strong)/0.04)] transition hover:bg-(--voyana-color-background-input) focus:outline-none focus:ring-4 focus:ring-[rgb(var(--voyana-rgb-accent-teal)/0.18)]"
+              startIcon={<TuneRoundedIcon fontSize="small" />}
+              className="min-h-12 px-4"
             >
-              <TuneRoundedIcon fontSize="small" />
               Sort
-            </button>
+            </AppButton>
           </div>
 
           <div className="mt-4 flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {reviewFilters.map((filter, index) => (
-              <button
+              <AppButton intent="control"
                 key={filter}
                 type="button"
-                className={`shrink-0 rounded-full border px-4 py-2 text-xs font-bold transition ${
+                className={`shrink-0 rounded-(--voyana-radius-pill) border px-4 py-2 text-xs font-extrabold transition ${
                   index === 0
                     ? "border-(--voyana-color-button-primary) bg-(--voyana-color-button-primary) text-(--voyana-color-button-primary-text)"
                     : "border-(--voyana-color-border-subtle) bg-transparent text-(--voyana-color-text-body) hover:bg-(--voyana-color-background-input)"
                 }`}
               >
                 {filter}
-              </button>
+              </AppButton>
             ))}
           </div>
 
@@ -163,16 +163,16 @@ export function ReviewsModal({
             {reviews.map((review) => (
               <article
                 key={review.name}
-                className="rounded-xl border border-(--voyana-color-border-subtle) bg-(--voyana-color-background-card) p-5 shadow-[0_12px_32px_rgb(var(--voyana-rgb-text-strong)/0.04)]"
+                className="rounded-(--voyana-radius-panel) border border-(--voyana-color-border-subtle) bg-(--voyana-color-background-card) p-5 shadow-(--voyana-shadow-card)"
               >
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                   <div className="flex min-w-0 items-center gap-3">
-                    <div className="grid size-12 shrink-0 place-items-center rounded-full bg-[rgb(var(--voyana-rgb-button-primary)/0.24)] text-sm font-black text-(--voyana-color-text-primary)">
+                    <div className="grid size-12 shrink-0 place-items-center rounded-(--voyana-radius-pill) bg-[rgb(var(--voyana-rgb-button-primary)/0.24)] text-sm font-black text-(--voyana-color-text-primary)">
                       {review.avatarUrl ? (
                         <img
                           src={review.avatarUrl}
                           alt={`${review.name} avatar`}
-                          className="h-full w-full rounded-full object-cover"
+                          className="h-full w-full rounded-(--voyana-radius-pill) object-cover"
                           loading="lazy"
                         />
                       ) : (
@@ -180,9 +180,9 @@ export function ReviewsModal({
                       )}
                     </div>
                     <div className="min-w-0">
-                      <h3 className="truncate text-base font-semibold leading-tight text-(--voyana-color-text-primary)">
+                      <AppTypography variant="cardTitle" className="truncate leading-tight text-(--voyana-color-text-primary)">
                         {review.name}
-                      </h3>
+                      </AppTypography>
                       {review.location ? (
                         <p className="mt-1 truncate text-xs font-medium text-(--voyana-color-text-muted)">
                           {review.location}
@@ -192,11 +192,11 @@ export function ReviewsModal({
                   </div>
 
                   <div className="flex shrink-0 items-center gap-2">
-                    <span className="inline-flex items-center gap-1 rounded-full bg-(--voyana-color-background-input) px-2.5 py-1 text-xs font-bold text-(--voyana-color-text-body)">
+                    <span className="inline-flex items-center gap-1 rounded-(--voyana-radius-pill) bg-(--voyana-color-background-input) px-2.5 py-1 text-xs font-bold text-(--voyana-color-text-body)">
                       <VerifiedRoundedIcon className="text-[0.95rem] text-(--voyana-color-accent-teal-strong)" />
                       Verified
                     </span>
-                    <span className="rounded-lg bg-(--voyana-color-text-primary) px-2.5 py-1.5 text-sm font-semibold leading-none text-(--voyana-color-white)">
+                    <span className="rounded-(--voyana-radius-card) bg-(--voyana-color-text-primary) px-2.5 py-1.5 text-sm font-semibold leading-none text-(--voyana-color-white)">
                       {(review.rating * 2).toFixed(1)}
                     </span>
                   </div>
@@ -229,7 +229,7 @@ export function ReviewsModal({
                   </span>
                   {review.date ? (
                     <>
-                      <span className="h-1 w-1 rounded-full bg-[rgb(var(--voyana-rgb-text-muted)/0.4)]" />
+                      <span className="h-1 w-1 rounded-(--voyana-radius-pill) bg-[rgb(var(--voyana-rgb-text-muted)/0.4)]" />
                       <span>{review.date}</span>
                     </>
                   ) : null}

@@ -1,3 +1,4 @@
+import { AppTypography } from "../../../../../shared/ui";
 import type { ReactNode } from "react";
 import { VacationPackageMetaInfo } from "../../../shared";
 
@@ -20,9 +21,9 @@ export function VacationPackageDescription({
 }: VacationPackageDescriptionProps) {
   return (
     <div className="max-w-4xl">
-      <h2 className="text-4xl font-medium leading-[1.05] tracking-normal text-(--voyana-color-text-primary) sm:text-5xl">
+      <AppTypography variant="sectionTitle" className=" leading-[1.05] tracking-normal text-(--voyana-color-text-primary)">
         {title}
-      </h2>
+      </AppTypography>
 
       <VacationPackageMetaInfo
         className="mt-5"

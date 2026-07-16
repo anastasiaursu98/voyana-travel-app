@@ -1,5 +1,39 @@
 import { createTheme } from "@mui/material/styles";
+import type { CSSProperties } from "react";
 import { designTokens, tokenAlpha } from "../../shared/constants/designTokens";
+
+declare module "@mui/material/styles" {
+  interface TypographyVariants {
+    pageTitle: CSSProperties;
+    sectionTitle: CSSProperties;
+    cardTitle: CSSProperties;
+    formTitle: CSSProperties;
+    body: CSSProperties;
+    caption: CSSProperties;
+    label: CSSProperties;
+  }
+
+  interface TypographyVariantsOptions {
+    pageTitle?: CSSProperties;
+    sectionTitle?: CSSProperties;
+    cardTitle?: CSSProperties;
+    formTitle?: CSSProperties;
+    body?: CSSProperties;
+    caption?: CSSProperties;
+    label?: CSSProperties;
+  }
+}
+
+declare module "@mui/material/Typography" {
+  interface TypographyPropsVariantOverrides {
+    pageTitle: true;
+    sectionTitle: true;
+    cardTitle: true;
+    formTitle: true;
+    body: true;
+    label: true;
+  }
+}
 
 export const theme = createTheme({
   palette: {
@@ -22,22 +56,67 @@ export const theme = createTheme({
     },
     background: {
       default: designTokens.muiColors.textInverse,
-      paper: designTokens.colors.backgroundCard,
+      paper: designTokens.muiColors.backgroundCard,
     },
   },
   typography: {
-    fontFamily:
-      "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+    fontFamily: "var(--voyana-font-family)",
     h1: {
-      fontWeight: 800,
+      fontWeight: designTokens.typography.headingWeight,
       letterSpacing: 0,
     },
     h2: {
-      fontWeight: 800,
+      fontWeight: designTokens.typography.headingWeight,
       letterSpacing: 0,
     },
     button: {
+      fontSize: 14,
+      fontWeight: designTokens.typography.actionWeight,
       letterSpacing: 0,
+      lineHeight: 1,
+      textTransform: "none",
+    },
+    pageTitle: {
+      fontSize: designTokens.typography.pageTitleSize,
+      fontWeight: designTokens.typography.headingWeight,
+      letterSpacing: "-0.02em",
+      lineHeight: 1.02,
+    },
+    sectionTitle: {
+      fontSize: designTokens.typography.sectionTitleSize,
+      fontWeight: designTokens.typography.headingWeight,
+      letterSpacing: "-0.018em",
+      lineHeight: 1.08,
+    },
+    cardTitle: {
+      fontSize: designTokens.typography.cardTitleSize,
+      fontWeight: designTokens.typography.headingWeight,
+      letterSpacing: 0,
+      lineHeight: 1.25,
+    },
+    formTitle: {
+      fontSize: designTokens.typography.formTitleSize,
+      fontWeight: designTokens.typography.headingWeight,
+      letterSpacing: 0,
+      lineHeight: 1.35,
+    },
+    body: {
+      fontSize: designTokens.typography.bodySize,
+      fontWeight: designTokens.typography.regularWeight,
+      letterSpacing: 0,
+      lineHeight: 1.75,
+    },
+    caption: {
+      fontSize: designTokens.typography.captionSize,
+      fontWeight: designTokens.typography.labelWeight,
+      letterSpacing: 0,
+      lineHeight: 1.5,
+    },
+    label: {
+      fontSize: designTokens.typography.labelSize,
+      fontWeight: designTokens.typography.labelWeight,
+      letterSpacing: 0,
+      lineHeight: 1.3,
     },
   },
   shape: {
@@ -121,7 +200,7 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           color: tokenAlpha(designTokens.rgb.textInverseMuted, 0.86),
-          fontWeight: 700,
+          fontWeight: designTokens.typography.labelWeight,
           fontSize: 14,
         },
       },
@@ -129,6 +208,18 @@ export const theme = createTheme({
     MuiButton: {
       defaultProps: {
         disableElevation: true,
+      },
+      styleOverrides: {
+        root: {
+          fontFamily: "var(--voyana-font-family)",
+          fontWeight: designTokens.typography.actionWeight,
+          letterSpacing: 0,
+          textTransform: "none",
+          "&.MuiButton-containedPrimary": {
+            color: designTokens.colors.buttonPrimaryText,
+            fontWeight: designTokens.typography.actionWeight,
+          },
+        },
       },
     },
     MuiCheckbox: {

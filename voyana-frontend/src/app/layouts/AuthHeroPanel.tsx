@@ -84,7 +84,7 @@ export function AuthHeroPanel() {
           component="span"
           sx={{
             fontSize: 22,
-            fontWeight: 850,
+            fontWeight: 800,
             lineHeight: 1,
             letterSpacing: 0,
           }}
